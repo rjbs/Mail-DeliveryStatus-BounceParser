@@ -41,7 +41,7 @@ appropriate action can be taken.
 use 5.00503;
 use strict;
 
-$Mail::DeliveryStatus::VERSION = '1.511';
+$Mail::DeliveryStatus::BounceParser::VERSION = '1.512';
 
 use MIME::Parser;
 use Mail::DeliveryStatus::Report;
@@ -165,7 +165,7 @@ sub parse {
     last if !$first_part || $first_part->effective_type ne 'text/plain';
     my $string = $first_part->as_string;
     last if length($string) > 3000;
-    last if $string !~ /auto.*repl|vacation|(out|away|on holiday).*office/is;
+    last if $string !~ /auto.{0,20}reply|vacation|(out|away|on holiday).*office/i;
     $self->log("looks like a vacation autoreply, ignoring.");
     $self->{type} = "vacation autoreply";
     $self->{is_bounce} = 0;
@@ -380,7 +380,7 @@ sub parse {
       );
 
       $report->replace(
-        smtp_code => ($report->get("diagnostic-code") =~ /((\d{3})\s|\s(\d{3}))/)[0]
+        smtp_code => ($report->get("diagnostic-code") =~ /((\d{3})\s|\s(\d{3})(?!\.))/)[0]
       );
 
       if (not $report->get("host")) {

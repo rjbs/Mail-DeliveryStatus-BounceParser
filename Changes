@@ -1,7 +1,9 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
-1.512   Sun Jun  4 2006
+1.512   Sat Jul 29 2006
         warning avoidance; lots of ($string||'') added
+        fix a bogus autoresponse detection
+        fix a bogus smtp code determination
 
 1.511   Sun Jun  4 2006
         added pod test
