@@ -1,0 +1,40 @@
+Mail/DeliveryStatus/BounceParser version 1.5
+============================================
+
+Mail::DeliveryStatus::BounceParser analyzes bounce messages and
+returns a structured description of the addresses that bounced and
+why they bounced; it also returns information about the original
+returned message, where possible, including the Message-ID.
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   make
+   make test
+   make install
+
+DEPENDENCIES
+
+This module requires these other modules and libraries:
+
+  Mail::Address
+  MIME::Tools
+
+COPYRIGHT AND LICENCE
+
+    Copyright (C) 2003 IC Group, Inc.
+	pobox.com permanent email forwarding with spam filtering
+      listbox.com mailing list services
+   Meng Weng Wong <mengwong+bounceparser@pobox.com>
+
+   Co-maintained by Aaron Crane <arc@cpan.org>
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
+
+SHOUT OUT
+
+  to coraline, Fletch, TorgoX, mjd, a-mused, Masque, gbarr,
+  sungo, dngor, and all the other hoopy froods on #perl

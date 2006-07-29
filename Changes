@@ -1,0 +1,30 @@
+Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
+
+1.512   Sat Jul 29 2006
+        warning avoidance; lots of ($string||'') added
+        fix a bogus autoresponse detection
+        fix a bogus smtp code determination
+
+1.511   Sun Jun  4 2006
+        added pod test
+        privatize a number of undocumented methods
+
+1.510   Sat May 27 2006
+        some cleanup of code
+        switch to Module::Install
+        rename "new" method to "parse"
+        added first test message
+
+1.501   Fri May 26 2006
+        new maintainer RJBS
+        many formatting changes
+        implementation of arg parsing grossly simplified
+        should be no functionality changes
+
+1.5     Sun Mar 13 13:25:02 2005
+        new co-maintainer Aaron Crane <arc@cpan.org>
+        several improvements to 1.4's accuracy and speed
+
+0.01    Wed Feb 12 13:28:03 2003
+	      original version; created by h2xs 1.22 with options
+		    -b 5.5.3 -A -X -n Mail::DeliveryStatus::BounceParser
