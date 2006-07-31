@@ -1,5 +1,11 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+x.xxx   Mon Jul 31 2006
+        Temp fix for bug #20751 - ignore attachments with /image/
+          in their content-type, add test for same
+        Added comments to a couple tests
+        Munged some email addresses in test messages 
+
 1.512   Sat Jul 29 2006
         warning avoidance; lots of ($string||'') added
         fix a bogus autoresponse detection
