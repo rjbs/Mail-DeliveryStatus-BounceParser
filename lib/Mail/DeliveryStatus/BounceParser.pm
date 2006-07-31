@@ -449,7 +449,7 @@ sub parse {
     #
 
     my @delivery_status_parts = grep {
-      $_->effective_type !~ /rfc822|html/ and not $_->is_multipart
+      $_->effective_type !~ /rfc822|html|image/ and not $_->is_multipart
     } $message->parts;
 
     # $self->log("error parts: @{[ map { $_->bodyhandle->as_string }
