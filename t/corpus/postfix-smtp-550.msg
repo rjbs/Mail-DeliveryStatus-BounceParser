@@ -1,26 +1,21 @@
-Return-Path: <MAILER-DAEMON@ronno.pricegrabber.com>
+Return-Path: <MAILER-DAEMON@somehost.example.com>
 Received: from smith.hpi.net (smith.hpi.net [209.12.9.10])
-	by ronno.pricegrabber.com (8.12.11.20060308/8.12.11) with ESMTP id k56M5rBI022296
-	for <email-alerts@undertow.pricegrabber.com>; Tue, 6 Jun 2006 15:05:57 -0700
+	by somehost.example.com (8.12.11.20060308/8.12.11) with ESMTP id k56M5rBI022296
+	for <someuser@somehost.example.com>; Tue, 6 Jun 2006 15:05:57 -0700
 Received: from morpheus.hpi.net (morpheus.hpi.net [209.12.9.12]) by hpi.net
- (Rockliffe SMTPRA 5.3.11) with ESMTP id <B0016903844@smith.hpi.net> for <email-alerts@undertow.pricegrabber.com>;
+ (Rockliffe SMTPRA 5.3.11) with ESMTP id <B0016903844@smith.hpi.net> for <sender@somehost.example.com>;
  Tue, 6 Jun 2006 15:55:51 -0600
 Received: by morpheus.hpi.net (Postfix)
 	id 9C43E992D7; Tue,  6 Jun 2006 15:04:30 +0000 (GMT)
 Date: Tue,  6 Jun 2006 15:04:30 +0000 (GMT)
 From: MAILER-DAEMON@morpheus.hpi.net (Mail Delivery System)
 Subject: Undelivered Mail Returned to Sender
-To: email-alerts@undertow.pricegrabber.com
+To: sender@somehost.example.com
 MIME-Version: 1.0
 Content-Type: multipart/report; report-type=delivery-status;
 	boundary="1B6C1992D2.1149606270/morpheus.hpi.net"
 Content-Transfer-Encoding: 8bit
 Message-Id: <20060606150430.9C43E992D7@morpheus.hpi.net>
-X-Virus-Scanned: ClamAV version 0.88.1, clamav-milter version 0.88.1 on localhost
-X-Virus-Status: Clean
-X-Spam-Status: No, score=1.6 required=5.0 tests=DATE_IN_PAST_06_12,HTML_MESSAGE,MIME_HTML_MOSTLY,MPART_ALT_DIFF autolearn=disabled version=3.1.0
-X-Spam-Level: *
-X-Spam-Checker-Version: SpamAssassin 3.1.0 (2005-09-13) on ronno.pricegrabber.com
 Content-Length: 50675
 
 This is a MIME-encapsulated message.
@@ -41,8 +36,8 @@ delete your own text from the attached returned message.
 
 			The Postfix program
 
-<regent@scip.net>: host 209.12.9.10[209.12.9.10] said: 550 5.1.1
-    <regent@scip.net> is not a valid mailbox (in reply to RCPT TO command)
+<luser@otherhost.invalid>: host 209.12.9.10[209.12.9.10] said: 550 5.1.1
+    <luser@otherhost.invalid> is not a valid mailbox (in reply to RCPT TO command)
 
 --1B6C1992D2.1149606270/morpheus.hpi.net
 Content-Description: Delivery report
@@ -50,14 +45,14 @@ Content-Type: message/delivery-status
 
 Reporting-MTA: dns; morpheus.hpi.net
 X-Postfix-Queue-ID: 1B6C1992D2
-X-Postfix-Sender: rfc822; email-alerts@undertow.pricegrabber.com
+X-Postfix-Sender: rfc822; sender@somehost.example.com
 Arrival-Date: Tue,  6 Jun 2006 15:04:30 +0000 (GMT)
 
-Final-Recipient: rfc822; regent@scip.net
+Final-Recipient: rfc822; luser@otherhost.invalid
 Action: failed
 Status: 5.0.0
 Diagnostic-Code: X-Postfix; host 209.12.9.10[209.12.9.10] said: 550 5.1.1
-    <regent@scip.net> is not a valid mailbox (in reply to RCPT TO command)
+    <luser@otherhost.invalid> is not a valid mailbox (in reply to RCPT TO command)
 
 --1B6C1992D2.1149606270/morpheus.hpi.net
 Content-Description: Undelivered Message
@@ -66,31 +61,31 @@ Content-Transfer-Encoding: 8bit
 
 Received: from localhost (localhost.hpi.net [127.0.0.1])
 	by morpheus.hpi.net (Postfix) with ESMTP id 1B6C1992D2
-	for <regent@scip.net>; Tue,  6 Jun 2006 15:04:30 +0000 (GMT)
+	for <luser@otherhost.invalid>; Tue,  6 Jun 2006 15:04:30 +0000 (GMT)
 Received: from morpheus.hpi.net ([127.0.0.1])
  by localhost (morpheus.hpi.net [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id 30679-02-2 for <regent@scip.net>;
+ with ESMTP id 30679-02-2 for <luser@otherhost.invalid>;
  Tue,  6 Jun 2006 15:04:13 +0000 (GMT)
-Received: from undertow.pricegrabber.com (pool.pricegrabber.com [64.156.13.1])
+Received: from somehost.example.com (X [64.156.13.1])
 	by morpheus.hpi.net (Postfix) with ESMTP id C443F992DA
-	for <regent@scip.net>; Tue,  6 Jun 2006 15:04:11 +0000 (GMT)
-Received: from undertow.pricegrabber.com (localhost [127.0.0.1])
-	by undertow.pricegrabber.com (8.12.11.20060308/8.12.11) with ESMTP id k56LpAtb024010
-	for <regent@scip.net>; Tue, 6 Jun 2006 14:55:30 -0700
-Received: (from email-alerts@localhost)
-	by undertow.pricegrabber.com (8.12.11.20060308/8.12.11/Submit) id k56LZFWj016815
-	for regent@scip.net; Tue, 6 Jun 2006 14:35:15 -0700
+	for <luser@otherhost.invalid>; Tue,  6 Jun 2006 15:04:11 +0000 (GMT)
+Received: from somehost.example.com (localhost [127.0.0.1])
+	by somehost.example.com (8.12.11.20060308/8.12.11) with ESMTP id k56LpAtb024010
+	for <luser@otherhost.invalid>; Tue, 6 Jun 2006 14:55:30 -0700
+Received: (from sender@localhost)
+	by somehost.example.com (8.12.11.20060308/8.12.11/Submit) id k56LZFWj016815
+	for luser@otherhost.invalid; Tue, 6 Jun 2006 14:35:15 -0700
 Date: Tue, 6 Jun 2006 14:35:15 -0700
-Message-Id: <200606062135.k56LZFWj016815@undertow.pricegrabber.com>
+Message-Id: <200606062135.k56LZFWj016815@somehost.example.com>
 Content-Type: multipart/alternative;
  boundary="----------=_1149629715-3704-6459"
 Content-Transfer-Encoding: binary
 MIME-Version: 1.0
 X-Mailer: MIME-tools 5.415 (Entity 5.415)
-From: PriceGrabber Alert Team <pgalert@pricegrabber.com>
-To: PriceGrabber Alert List <email-alerts@pricegrabber.com>
+From: PriceGrabber Alert Team <address@example.com>
+To: PriceGrabber Alert List <sender@example.com>
 Subject: PriceGrabber.com Newsletter June 6th, 2006
-X-Pgemail: regent@scip.net
+X-Pgemail: luser@otherhost.invalid
 X-Virus-Scanned: amavisd-new at hpi.net
 X-Spam-Status: No, hits=-0.636 tagged_above=-999 required=4 tests=[AWL=0.198,
  BAYES_00=-2.599, EXCUSE_1=0.132, HTML_80_90=0.146, HTML_MESSAGE=0.001,
