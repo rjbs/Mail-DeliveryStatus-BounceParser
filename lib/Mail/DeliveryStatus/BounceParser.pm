@@ -244,7 +244,7 @@ sub parse {
     my $part_for_maybe_transient;
     $part_for_maybe_transient = $message
       if $message->effective_type eq "text/plain";
-    $part_for_maybe_transient
+    ($part_for_maybe_transient)
       = grep { $_->effective_type eq "text/plain" } $message->parts
         if $message->effective_type =~ /multipart/
            && $message->effective_type ne 'multipart/report';
