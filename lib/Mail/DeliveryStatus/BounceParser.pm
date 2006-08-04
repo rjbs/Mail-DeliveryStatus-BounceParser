@@ -800,7 +800,7 @@ sub _std_reason {
   }
 
   my $user_re =
-   qr/(mailbox|user|recipient|address(ee)?|customer|account|e-?mail|<?\S+?@\S+?>?)/;
+   qq/(mailbox|user|recipient|address(ee)?|customer|account|e-?mail|<?\S+?@\S+?>?)/;
 
   if (
     /\s5\.1\.[01]\s/ or                               # rfc 1893
