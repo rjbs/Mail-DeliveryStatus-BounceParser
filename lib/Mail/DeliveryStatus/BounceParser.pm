@@ -68,9 +68,7 @@ my @Preprocessors = qw(
   p_ms
   p_ims
   p_compuserve
-  p_aol_senderblock
   p_novell_groupwise_5_2
-  p_aol_bogus_250
   p_plain_smtp_transcript
   p_xdelivery_status
 );
@@ -87,9 +85,8 @@ report of a transient nonfatal error, or a spam or virus autoresponse, you'll
 still get back a C<$bounce>, but its C<<$bounce->is_bounce()>> will return
 false.
 
-It is possible that some bounces are not really bounces; for example, when
-Hotmail responds with 554 Transaction Failed, that just means hotmail was
-overloaded at the time, so the user actually isn't bouncing.  To include such
+It is possible that some bounces are not really bounces; such as
+anything that apears to have a 2XX status code.  To include such
 non-bounces in the reports, pass the option {report_non_bounces=>1}.
 
 For historical reasons, C<new> is an alias for the C<parse> method.
@@ -374,7 +371,22 @@ sub parse {
 
       $report->replace(email      => $email);
       $report->replace(reason     => $reason);
-      $report->replace(std_reason => _std_reason($report->get("diagnostic-code")));
+      if (my $status = $report->get('Status')) {
+        # RFC 1893... prefer Status: if it exists and is something we know
+        # about
+        # Not 100% sure about 5.1.0...
+        if ($status =~ /^5\.1\.[01]$/)  {
+          $report->replace(std_reason => "user_unknown");
+        } elsif ($status eq "5.1.2") {
+          $report->replace(std_reason => "domain_error");
+        } elsif ($status eq "5.2.2") {
+          $report->replace(std_reason => "over_quota");
+        } else {
+          $report->replace(std_reason => _std_reason($report->get("diagnostic-code")));
+        }
+      } else {
+        $report->replace(std_reason => _std_reason($report->get("diagnostic-code")));
+      }
       $report->replace(
         host => ($report->get("diagnostic-code") =~ /\bhost\s+(\S+)/)
       );
@@ -394,11 +406,6 @@ sub parse {
           . "; no_problemo."
         );
 
-        unless ($report->get("host") =~ /\baol\.com$/i) {
-          $report->replace(std_reason => "no_problemo");
-        } else {
-          $self->log("but it's aol telling us that; not going to believe it.");
-        }
       }
 
       unless ($arg->{report_non_bounces}) {
@@ -536,12 +543,6 @@ sub _extract_reports {
     next if $i % 2 == 0;
 
     my $email = _cleanup_email($split[$i]);
-
-    if ($split[$i-1] =~ /they are not accepting mail from/) {
-      # aol airmail sender block $self->log("$email is not actually a bouncing
-      # address...") if $DEBUG > 3;
-      next;
-    }
 
     # $self->log("looking for the reason that $email bounced...") if $DEBUG > 3;
 
@@ -784,24 +785,42 @@ sub _std_reason {
     /try.again.later/is or
     /mailbox\b.*\bfull/ or
     /storage/i          or
-    /quota/i
+    /quota/i            or
+    /\s552\s/           or
+    /\s#?5\.2\.2\s/                                   # rfc 1893
   ) {
     return "over_quota";
   }
 
+  my $user_re =
+   qr/(mailbox|user|recipient|address(ee)?|customer|account|e-?mail|<?\S+?@\S+?>?)/;
+
   if (
-    /unknown/i or
-    /disabled|discontinued/is or
-    /can't\s+open/is or
-    /invalid/is or
-    /permanent/is or
-    /unauthorized/is or
-    /unavailable/is or
-    /not(\s+a)?\s+(found|known|listed|valid|recogni|present|exist|activ|allow)/i or
-    /\bno\s+(email|such|mailbox)/i or
-    /unknown|inactive|suspended|cancel+ed/i or
-    /doesn\'t/is or
-    /5\.1\.1/
+    /\s5\.1\.[01]\s/ or                               # rfc 1893
+    /$user_re\s+ (\S+\s+)? (is\s+)?                   # Generic
+     ( (un|not\s+) known| [dw]oes\s?n[o']?t 
+     ( exist|found ) | disabled ) /ix or
+    /no\s+(such\s+)?$user_re/i or                     # Gmail and other
+    /inactive user/i or                               # Outblaze
+    /unknown local part/i or                          # Exim(?)
+    /user\s+doesn't\s+have\s+a/i or                   # Yahoo!
+    /account\s+has\s+been\s+(disabled|suspended)/i or # Yahoo!
+    /$user_re\s+(suspended|discontinued)/i or         # everyone.net / other?
+    /unknown\s+$user_re/i or                          # Generic
+    /$user_re\s+(is\s+)?(inactive|unavailable)/i or   # Hotmail, others?
+    /((in|not\s+a\s+)?valid|no such)\s$user_re/i or   # Various
+    /$user_re\s+(was\s+)?not\s+found/i or             # AOL, generic
+    /$user_re \s+ (is\s+)? (currently\s+)?            # ATT, generic
+     (suspended|unavailable)/ix or 
+    /address is administratively disabled/i or        # Unknown
+    /no $user_re\s+(here\s+)?by that name/i or        # Unknown
+    /<\S+@\S+> is invalid/i or                        # Unknown
+    /address.*not known here/i or                     # Unknown
+    /recipient\s+(address\s+)?rejected/i or           # Cox, generic
+    /User.*not\s+listed\s+in/i or                     # Domino
+    /account not activated/i or                       # usa.net
+    /not\s+our\s+customer/i or                        # Comcast
+    /doesn't handle mail for that user/i              # mailfoundry
   ) {
     return "user_unknown";
   }
@@ -815,10 +834,6 @@ sub _std_reason {
     /no\s+data\s+record\s+of\s+requested\s+type/i
   ) {
     return "domain_error";
-  } elsif (/hotmail.+transaction\s+failed/is) {
-    # next if it's hotmail and they reject 554 transaction failed; that just
-    # means their system is too loaded.
-    return "no_problemo";
   }
 
   return "unknown";
@@ -1122,59 +1137,6 @@ sub p_ims {
   return $message;
 }
 
-sub p_aol_senderblock {
-  my $self    = shift;
-  my $message = shift;
-
-  # From: Mail Delivery Subsystem <MAILER-DAEMON@aol.com>
-  # Date: Sun, 16 Feb 2003 19:40:22 EST
-  # To: <owner-batmail@v2.listbox.com>
-  # Subject: Mail Delivery Problem
-  # Mailer: AIRmail [v90_r2.5]
-  # Message-ID: <200302161944.08TTIXHa07448@omr-m05.mx.aol.com>
-  # Lines: 4
-  #
-  #
-  # Your mail to the following recipients could not be delivered because they are not accepting mail from giltaylor@hawaii.rr.com:
-  #         theetopdog
-  #
-
-  return unless ($message->head->get("Mailer")||'') =~ /AirMail/i;
-  return unless $message->effective_type eq "text/plain";
-  return unless $message->bodyhandle->as_string =~ /Your mail to the following recipients could not be delivered because they are not accepting mail from/i;
-
-  my ($host) = $message->head->get("From") =~ /\@(\S+)>/;
-
-  my $rejector;
-  my @new_output;
-  for (split /\n/, $message->bodyhandle->as_string) {
-    if (/because they are not accepting mail from (\S+?):?/i) {
-      $rejector = $1;
-      push @new_output, $_;
-      next;
-    }
-    if (/^\s*(\S+)\s*$/) {
-      my $recipient = $1;
-      if ($recipient =~ /\@/) {
-        push @new_output, $_;
-        next;
-      }
-      s/^(\s*)(\S+)(\s*)$/$1$2\@$host$3/;
-      push @new_output, $_;
-      next;
-    }
-    push @new_output, $_;
-    next;
-  }
-
-  push @new_output, ("# rewritten by BounceParser: p_aol_senderblock()", "");
-  if (my $io = $message->open("w")) {
-    $io->print(join "\n", @new_output);
-    $io->close;
-  }
-  return $message;
-}
-
 sub p_novell_groupwise_5_2 {
   my $self    = shift;
   my $message = shift;
@@ -1231,76 +1193,6 @@ sub p_novell_groupwise_5_2 {
     $io->close;
   }
   return $message;
-}
-
-sub p_aol_bogus_250 {
-  my ($self, $message) = @_;
-
-  # the SMTP snapshot shows 550.  the actual Diagnostic-Code shows 250.  what
-  # is going on?
-
-  # pennwomen-la@v2.listbox.com/200209/19/1032468845.1444_1.frodo
-  # ----- Transcript of session follows -----
-  # ... while talking to air-xj03.mail.aol.com.:
-  # >>> RCPT To:<robinbw@aol.com>
-  # <<< 550 MAILBOX NOT FOUND
-  # 550 <robinbw@aol.com>... User unknown
-  #
-  # --QAM07349.1032468790/rly-xj03.mx.aol.com
-  # Content-Type: message/delivery-status
-  #
-  # Reporting-MTA: dns; rly-xj03.mx.aol.com
-  # Arrival-Date: Thu, 19 Sep 2002 16:52:48 -0400 (EDT)
-  #
-  # Final-Recipient: RFC822; robinbw@aol.com
-  # Action: failed
-  # Status: 2.0.0
-  # Remote-MTA: DNS; air-xj03.mail.aol.com
-  # Diagnostic-Code: SMTP; 250 OK
-  # Last-Attempt-Date: Thu, 19 Sep 2002 16:53:10 -0400 (EDT)
-
-  return unless $message->head->get("From") =~ /<MAILER-DAEMON\@aol.com>/i;
-  return unless $message->effective_type eq "multipart/report";
-  my ($plain, $error_part) = $message->parts;
-
-  return unless
-    ($error_part->bodyhandle->as_string =~ /Diagnostic-Code: .*250 OK/);
-
-  my %by_email = $self->_analyze_smtp_transcripts($plain->bodyhandle->as_string);
-
-  my (@new_output, $email);
-  # rewrite the diagnostic code in the delivery-status part.
-  for (split /\n/, $error_part->bodyhandle->as_string) {
-    undef $email if /^$/;
-    $email = _cleanup_email($1) if (/^Final-Recipient: .*\s(\S+)$/);
-
-    if (/^Diagnostic-Code:/
-        and
-        exists $by_email{$email}->{smtp_code}
-    ) {
-      $self->log("cleaning up AOL bogosity: before, $_");
-      push @new_output, _construct_diagnostic_code(\%by_email, $email);
-      $self->log("cleaning up AOL bogosity:  after, $new_output[-1]");
-    }
-    push @new_output, $_ and next;
-  }
-
-  if (my $io = $error_part->open("w")) {
-    $io->print(join "\n", @new_output);
-    $io->close;
-  }
-  return $message;
-}
-
-sub _construct_diagnostic_code {
-  my %by_email = %{shift()};
-  my $email = shift;
-  join (" ",
-    "Diagnostic-Code: X-BounceParser;",
-    ($by_email{$email}->{host} ? "host $by_email{$email}->{host} said:" : ()),
-    ($by_email{$email}->{smtp_code}),
-    (join ", ", @{ $by_email{$email}->{errors} })
-  );
 }
 
 sub p_plain_smtp_transcript {
