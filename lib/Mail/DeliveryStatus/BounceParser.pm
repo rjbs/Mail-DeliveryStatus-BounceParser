@@ -68,6 +68,7 @@ my @Preprocessors = qw(
   p_ms
   p_ims
   p_compuserve
+  p_aol_senderblock
   p_novell_groupwise_5_2
   p_plain_smtp_transcript
   p_xdelivery_status
@@ -543,6 +544,12 @@ sub _extract_reports {
     next if $i % 2 == 0;
 
     my $email = _cleanup_email($split[$i]);
+
+    if ($split[$i-1] =~ /they are not accepting mail from/) {
+      # aol airmail sender block $self->log("$email is not actually a bouncing
+      # address...") if $DEBUG > 3;
+      next;
+    }
 
     # $self->log("looking for the reason that $email bounced...") if $DEBUG > 3;
 
@@ -1134,6 +1141,65 @@ sub p_ims {
     return $self->new_plain_report($message, $stuff_before, $stuff_after);
   }
 
+  return $message;
+}
+
+sub p_aol_senderblock {
+  my $self    = shift;
+  my $message = shift;
+
+  # From: Mail Delivery Subsystem <MAILER-DAEMON@aol.com>
+  # Date: Sun, 16 Feb 2003 19:40:22 EST
+  # To: <owner-batmail@v2.listbox.com>
+  # Subject: Mail Delivery Problem
+  # Mailer: AIRmail [v90_r2.5]
+  # Message-ID: <200302161944.08TTIXHa07448@omr-m05.mx.aol.com>
+  # Lines: 4
+  #
+  #
+  # Your mail to the following recipients could not be delivered because they are not accepting mail from giltaylor@hawaii.rr.com:
+  #         theetopdog
+  #
+
+  return unless ($message->head->get("Mailer")||'') =~ /AirMail/i;
+  return unless $message->effective_type eq "text/plain";
+  return unless $message->bodyhandle->as_string =~ /Your mail to the following recipients could not be delivered because they are not accepting mail/i;
+
+  my ($host) = $message->head->get("From") =~ /\@(\S+)>/;
+
+  my $rejector;
+  my @new_output;
+  for (split /\n/, $message->bodyhandle->as_string) {
+
+    # "Sorry luser@example.com. Your mail to the...
+    # Get rid of this so that the module doesn't create a report for
+    # *your* address.
+    s/Sorry \S+?@\S+?\.//g;
+
+    if (/because they are not accepting mail from (\S+?):?/i) {
+      $rejector = $1;
+      push @new_output, $_;
+      next;
+    }
+    if (/^\s*(\S+)\s*$/) {
+      my $recipient = $1;
+      if ($recipient =~ /\@/) {
+        push @new_output, $_;
+        next;
+      }
+      s/^(\s*)(\S+)(\s*)$/$1$2\@$host$3/;
+      push @new_output, $_;
+      next;
+    }
+    push @new_output, $_;
+    next;
+  }
+
+  push @new_output, ("# rewritten by BounceParser: p_aol_senderblock()", "");
+  if (my $io = $message->open("w")) {
+    $io->print(join "\n", @new_output);
+    $io->close;
+  }
   return $message;
 }
 
