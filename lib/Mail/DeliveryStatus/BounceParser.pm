@@ -148,6 +148,16 @@ sub parse {
 
   my $first_part = _first_non_multi_part($message);
 
+  # Deal with some common C/R systems like TMDA
+  {
+    last unless ($message->head->get("x-delivery-agent")
+     and $message->head->get("X-Delivery-Agent") =~ /^TMDA/);
+    $self->log("looks like a challenge/response autoresponse; ignoring.");
+    $self->{type} = "Challenge / Response system autoreply";
+    $self->{is_bounce} = 0;
+    return $self;
+  }
+
   # we'll deem autoreplies to be usually less than a certain size.
 
   # Some vacation autoreplies are (sigh) multipart/mixed, with an additional
