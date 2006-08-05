@@ -1451,6 +1451,8 @@ sub _cleanup_email {
     s/.*:SMTP=//;
     s/^\s+//;
     s/\s+$//;
+    # hack to get rid of stuff like "luser@example.com...User"
+    s/\.{3}\S+//;
     }
   return $email;
 }
