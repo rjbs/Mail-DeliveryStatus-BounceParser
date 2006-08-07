@@ -1,5 +1,11 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+x.xxx   Fri Aug  4 2006
+        Ignore TMDA confirmation messages
+        Bit more address cleanup
+        Change around user unknown regexes
+        Update AOL's "sender block" preprocessor
+
 x.xxx   Mon Jul 31 2006
         Temp fix for bug #20751 - ignore attachments with /image/
           in their content-type, add test for same
