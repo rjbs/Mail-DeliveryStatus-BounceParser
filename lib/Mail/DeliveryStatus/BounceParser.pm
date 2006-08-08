@@ -339,6 +339,8 @@ sub parse {
       my $report = Mail::Header->new([split /\n/, $para]);
 
       {
+        # This is to prevent Mail::Header from warning with apparently
+        # reasonable data in place. -- rjbs, 2006-08-07
         local $^W = 0;
         $report->combine;
         $report->unfold;
