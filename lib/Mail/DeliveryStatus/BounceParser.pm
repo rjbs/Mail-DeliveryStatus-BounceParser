@@ -489,7 +489,7 @@ sub parse {
 
     my $body_string = $message->bodyhandle->as_string || '';
 
-    if ($body_string =~ /foo/) {
+    if ($body_string =~ $Returned_Message_Below) {
       my ($stuff_before, $stuff_splitted, $stuff_after) =
         split $Returned_Message_Below, $message->bodyhandle->as_string, 3;
       # $self->log("splitting on \"$stuff_splitted\", " . length($stuff_before)
