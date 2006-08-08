@@ -337,8 +337,12 @@ sub parse {
 
     foreach my $para (split /\n\n/, $delivery_status_body) {
       my $report = Mail::Header->new([split /\n/, $para]);
-      $report->combine();
-      $report->unfold;
+
+      {
+        local $^W = 0;
+        $report->combine;
+        $report->unfold;
+      }
 
       # Some MTAs send unsought delivery-status notifications indicating
       # success; others send RFC1892/RFC3464 delivery status notifications
@@ -481,20 +485,21 @@ sub parse {
     # they usually say "returned message" somewhere, and we can split on that,
     # above and below.
 
-    if (($message->bodyhandle->as_string||'') =~ $Returned_Message_Below) {
+    my $body_string = $message->bodyhandle->as_string || '';
+
+    if ($body_string =~ /foo/) {
       my ($stuff_before, $stuff_splitted, $stuff_after) =
         split $Returned_Message_Below, $message->bodyhandle->as_string, 3;
       # $self->log("splitting on \"$stuff_splitted\", " . length($stuff_before)
       # . " vs " . length($stuff_after) . " bytes.") if $DEBUG > 3;
       push @{$self->{reports}}, $self->_extract_reports($stuff_before);
       $self->{orig_text} = $stuff_before;
-    } elsif (/(.+)\n\n(.+?Message-ID:.+)/is) {
+    } elsif ($body_string =~ /(.+)\n\n(.+?Message-ID:.+)/is) {
       push @{$self->{reports}}, $self->_extract_reports($1);
       $self->{orig_text} = $2;
     } else {
-      push @{$self->{reports}},
-        $self->_extract_reports($message->bodyhandle->as_string);
-      $self->{orig_text} = $message->bodyhandle->as_string;
+      push @{$self->{reports}}, $self->_extract_reports($body_string);
+      $self->{orig_text} = $body_string;
     }
   }
   return $self;
@@ -538,14 +543,11 @@ sub _extract_reports {
   # blah blah 2
   #
 
-  foreach my $line (split/\n/, $text) {
-    # $self->log("-ext- looking for error in $line") if $DEBUG > 3;
-  }
-
   # we'll break it up accordingly, and first try to detect a reason for email 1
   # in section 1; if there's no reason returned, we'll look in section 0.  and
   # we'll keep going that way for each address.
 
+  return unless $text;
   my @split = split(/(\S+\@\S+)/, $text);
 
   foreach my $i (0 .. $#split) {
