@@ -14,11 +14,15 @@ MANIFEST
 META.yml
 README
 t/00-load.t
+t/aol-senderblock.t
+t/corpus/aol-senderblock.msg
 t/corpus/non-autoreply.msg
 t/corpus/postfix-smtp-550.msg
 t/corpus/postfix.msg
+t/corpus/spam-with-image.msg
 t/non-autoreply.t
 t/pod-coverage.t
 t/pod.t
 t/postfix.t
+t/spam-with-image.t
 t/status-209.t

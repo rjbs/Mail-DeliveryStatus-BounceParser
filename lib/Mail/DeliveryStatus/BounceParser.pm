@@ -41,7 +41,7 @@ appropriate action can be taken.
 use 5.00503;
 use strict;
 
-$Mail::DeliveryStatus::BounceParser::VERSION = '1.512';
+$Mail::DeliveryStatus::BounceParser::VERSION = '1.514';
 
 use MIME::Parser;
 use Mail::DeliveryStatus::Report;
