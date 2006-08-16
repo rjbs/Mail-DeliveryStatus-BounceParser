@@ -814,34 +814,34 @@ sub _std_reason {
   }
 
   my $user_re =
-   '(mailbox|user|recipient|address(ee)?|customer|account|e-?mail|<?\S+?@\S+?>?)';
+   '(?:mailbox|user|recipient|address(?:ee)?|customer|account|e-?mail|<?\S+?@\S+?>?)';
 
   if (
-    /\s5\.1\.[01]\s/ or                               # rfc 1893
-    /$user_re\s+ (\S+\s+)? (is\s+)?                   # Generic
-     ( (un|not\s+) known| [dw]oes\s?n[o']?t 
-     ( exist|found ) | disabled ) /ix or
-    /no\s+(such\s+)?$user_re/i or                     # Gmail and other
-    /inactive user/i or                               # Outblaze
-    /unknown local part/i or                          # Exim(?)
-    /user\s+doesn't\s+have\s+a/i or                   # Yahoo!
-    /account\s+has\s+been\s+(disabled|suspended)/i or # Yahoo!
-    /$user_re\s+(suspended|discontinued)/i or         # everyone.net / other?
-    /unknown\s+$user_re/i or                          # Generic
-    /$user_re\s+(is\s+)?(inactive|unavailable)/i or   # Hotmail, others?
-    /((in|not\s+a\s+)?valid|no such)\s$user_re/i or   # Various
-    /$user_re\s+(was\s+)?not\s+found/i or             # AOL, generic
-    /$user_re \s+ (is\s+)? (currently\s+)?            # ATT, generic
-     (suspended|unavailable)/ix or 
-    /address is administratively disabled/i or        # Unknown
-    /no $user_re\s+(here\s+)?by that name/i or        # Unknown
-    /<\S+@\S+> is invalid/i or                        # Unknown
-    /address.*not known here/i or                     # Unknown
-    /recipient\s+(address\s+)?rejected/i or           # Cox, generic
-    /User.*not\s+listed\s+in/i or                     # Domino
-    /account not activated/i or                       # usa.net
-    /not\s+our\s+customer/i or                        # Comcast
-    /doesn't handle mail for that user/i              # mailfoundry
+    /\s5\.1\.[01]\s/ or                                 # rfc 1893
+    /$user_re\s+ (?:\S+\s+)? (?:is\s+)?                 # Generic
+     (?: (?: un|not\s+) known| [dw]oes\s?n[o']?t 
+     (?: exist|found ) | disabled ) /ix or
+    /no\s+(?:such\s+)?$user_re/i or                     # Gmail and other
+    /inactive user/i or                                 # Outblaze
+    /unknown local part/i or                            # Exim(?)
+    /user\s+doesn't\s+have\s+a/i or                     # Yahoo!
+    /account\s+has\s+been\s+(?:disabled|suspended)/i or # Yahoo!
+    /$user_re\s+(?:suspended|discontinued)/i or         # everyone.net / other?
+    /unknown\s+$user_re/i or                            # Generic
+    /$user_re\s+(?:is\s+)?(?:inactive|unavailable)/i or # Hotmail, others?
+    /(?:(?:in|not\s+a\s+)?valid|no such)\s$user_re/i or # Various
+    /$user_re\s+(?:was\s+)?not\s+found/i or             # AOL, generic
+    /$user_re \s+ (?:is\s+)? (?:currently\s+)?          # ATT, generic
+     (?:suspended|unavailable)/ix or 
+    /address is administratively disabled/i or          # Unknown
+    /no $user_re\s+(?:here\s+)?by that name/i or        # Unknown
+    /<\S+@\S+> is invalid/i or                          # Unknown
+    /address.*not known here/i or                       # Unknown
+    /recipient\s+(?:address\s+)?rejected/i or           # Cox, generic
+    /User.*not\s+listed\s+in/i or                       # Domino
+    /account not activated/i or                         # usa.net
+    /not\s+our\s+customer/i or                          # Comcast
+    /doesn't handle mail for that user/i                # mailfoundry
   ) {
     return "user_unknown";
   }
