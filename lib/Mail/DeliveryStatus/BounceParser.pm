@@ -814,10 +814,11 @@ sub _std_reason {
   }
 
   my $user_re =
-   '(?:mailbox|user|recipient|address(?:ee)?|customer|account|e-?mail|<?\S+?@\S+?>?)';
+   qr'(?: mailbox  | user | recipient | address (?: ee)?
+       | customer | account | e-?mail | <?\S+@\S+>? )'x;
 
   if (
-    /\s5\.1\.[01]\s/ or                                 # rfc 1893
+    /\s \(? #? 5\.1\.[01] \)? \s/x or                     # rfc 1893
     /$user_re\s+ (?:\S+\s+)? (?:is\s+)?                 # Generic
      (?: (?: un|not\s+) known| [dw]oes\s?n[o']?t 
      (?: exist|found ) | disabled ) /ix or
