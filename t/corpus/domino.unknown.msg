@@ -11,9 +11,9 @@ Received: from inw2kmr03.corp.example.net (inw2kmr03.corp.example.net [30.37.205
 Date: Tue, 1 Aug 2006 10:54:01 -0700
 MIME-Version: 1.0
 X-Mailer: MIME-tools 5.415 (Entity 5.415)
-From: Postmaster@Anthem.com
+From: Postmaster@example.net
 To: Sender Address <sender@example.com>
-Subject: DELIVERY FAILURE: User craig.vernon (recipient@example.net) not listed in
+Subject: DELIVERY FAILURE: User some.name (recipient@example.net) not listed in
  Domino Directory
 X-PMX-Version: 4.7.1.128075, Antispam-Engine: 2.4.0.264935, Antispam-Data: 2006.8.1.105433
 X-OriginalArrivalTime: 01 Aug 2006 19:02:59.0038 (UTC) FILETIME=[1AC6FFE0:01C6B59D]
@@ -37,6 +37,6 @@ was not delivered to:
 
 because:
 
-  User craig.vernon (recipient@example.net) not listed in Domino Directory
+  User some.name (recipient@example.net) not listed in Domino Directory
 
 
