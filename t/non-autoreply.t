@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More 'no_plan';
+use Test::More tests => 2;
 
 use Mail::DeliveryStatus::BounceParser;
 
