@@ -15,8 +15,9 @@ sub readfile {
   return $text;
 }
 
-foreach (<corpus/*_via_sendmail.unknown.msg>) {
-  my $message = readfile('t/$_');
+foreach $file (<t/corpus/*-via-sendmail.unknown.msg>) {
+
+  my $message = readfile("t/$file");
 
   my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
 
@@ -31,4 +32,5 @@ foreach (<corpus/*_via_sendmail.unknown.msg>) {
     [ 'recipient@example.net' ],
     "the right bounced address is given",
   );
+
 }
