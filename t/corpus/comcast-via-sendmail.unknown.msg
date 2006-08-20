@@ -25,7 +25,7 @@ The original message was received at Tue, 1 Aug 2006 10:48:04 -0700
 from localhost [127.0.0.1]
 
    ----- The following addresses had permanent fatal errors -----
-<pugaholicnm@comcast.net>
+<recipient@example.net>
     (reason: 551 not our customer)
 
    ----- Transcript of session follows -----
@@ -34,7 +34,7 @@ from localhost [127.0.0.1]
 ... while talking to gateway-s.comcast.net.:
 >>> DATA
 <<< 551 not our customer
-550 5.1.1 <pugaholicnm@comcast.net>... User unknown
+550 5.1.1 <recipient@example.net>... User unknown
 <<< 503 need RCPT command [data]
 
 --k71HmEfS028945.1154454494/somehost.example.com
@@ -44,7 +44,7 @@ Reporting-MTA: dns; somehost.example.com
 Received-From-MTA: DNS; localhost
 Arrival-Date: Tue, 1 Aug 2006 10:48:04 -0700
 
-Final-Recipient: RFC822; pugaholicnm@comcast.net
+Final-Recipient: RFC822; recipient@example.net
 Action: failed
 Status: 5.1.6
 Remote-MTA: DNS; gateway-s.comcast.net
@@ -58,10 +58,10 @@ Content-Transfer-Encoding: binary
 Return-Path: <sender@somehost.example.com>
 Received: from somehost.example.com (localhost [127.0.0.1])
 	by somehost.example.com (8.12.11.20060308/8.12.11) with ESMTP id k71HjSW6023431
-	for <pugaholicnm@comcast.net>; Tue, 1 Aug 2006 10:48:04 -0700
+	for <recipient@example.net>; Tue, 1 Aug 2006 10:48:04 -0700
 Received: (from sender@localhost)
 	by somehost.example.com (8.12.11.20060308/8.12.11/Submit) id k71HjChr023017
-	for pugaholicnm@comcast.net; Tue, 1 Aug 2006 10:45:12 -0700
+	for recipient@example.net; Tue, 1 Aug 2006 10:45:12 -0700
 Date: Tue, 1 Aug 2006 10:45:12 -0700
 Message-Id: <200608011745.k71HjChr023017@somehost.example.com>
 Content-Type: multipart/alternative;

@@ -25,14 +25,14 @@ The original message was received at Tue, 6 Jun 2006 14:54:42 -0700
 from localhost [127.0.0.1]
 
    ----- The following addresses had permanent fatal errors -----
-<recipient@example.com>
-    (reason: 550 5.1.1 <recipient@example.com>: Recipient address rejected: User unknown in local recipient table)
+<recipient@example.net>
+    (reason: 550 5.1.1 <recipient@example.net>: Recipient address rejected: User unknown in local recipient table)
 
    ----- Transcript of session follows -----
 ... while talking to c.mx.voyager.net.:
 >>> DATA
-<<< 550 5.1.1 <recipient@example.com>: Recipient address rejected: User unknown in local recipient table
-550 5.1.1 <recipient@example.com>... User unknown
+<<< 550 5.1.1 <recipient@example.net>: Recipient address rejected: User unknown in local recipient table
+550 5.1.1 <recipient@example.net>... User unknown
 <<< 554 5.5.1 Error: no valid recipients
 
 --k56LshjZ000347.1149630883/somehost.example.com
@@ -42,11 +42,11 @@ Reporting-MTA: dns; somehost.example.com
 Received-From-MTA: DNS; localhost
 Arrival-Date: Tue, 6 Jun 2006 14:54:42 -0700
 
-Final-Recipient: RFC822; recipient@example.com
+Final-Recipient: RFC822; recipient@example.net
 Action: failed
 Status: 5.1.1
 Remote-MTA: DNS; c.mx.voyager.net
-Diagnostic-Code: SMTP; 550 5.1.1 <recipient@example.com>: Recipient address rejected: User unknown in local recipient table
+Diagnostic-Code: SMTP; 550 5.1.1 <recipient@example.net>: Recipient address rejected: User unknown in local recipient table
 Last-Attempt-Date: Tue, 6 Jun 2006 14:54:42 -0700
 
 --k56LshjZ000347.1149630883/somehost.example.com
@@ -56,10 +56,10 @@ Content-Transfer-Encoding: binary
 Return-Path: <sender@somehost.example.com>
 Received: from somehost.example.com (localhost [127.0.0.1])
 	by somehost.example.com (8.12.11.20060308/8.12.11) with ESMTP id k56LsJpH032469
-	for <recipient@example.com>; Tue, 6 Jun 2006 14:54:42 -0700
+	for <recipient@example.net>; Tue, 6 Jun 2006 14:54:42 -0700
 Received: (from sender@localhost)
 	by somehost.example.com (8.12.11.20060308/8.12.11/Submit) id k56LA4MN021347
-	for recipient@example.com; Tue, 6 Jun 2006 14:10:04 -0700
+	for recipient@example.net; Tue, 6 Jun 2006 14:10:04 -0700
 Date: Tue, 6 Jun 2006 14:10:04 -0700
 Message-Id: <200606062110.k56LA4MN021347@somehost.example.com>
 Content-Type: multipart/alternative;
