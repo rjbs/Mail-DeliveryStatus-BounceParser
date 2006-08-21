@@ -808,7 +808,7 @@ sub _std_reason {
     /storage/i          or
     /quota/i            or
     /\s552\s/           or
-    /\s#?5\.2\.2\s/                                   # rfc 1893
+    /\s#?5\.2\.2\s/                                     # rfc 1893
   ) {
     return "over_quota";
   }
@@ -818,7 +818,7 @@ sub _std_reason {
        | customer | account | e-?mail | <?\S+@\S+>? )'x;
 
   if (
-    /\s \(? #? 5\.1\.[01] \)? \s/x or                     # rfc 1893
+    /\s \(? \#? 5\.1\.[01] \)? \s/x or                  # rfc 1893
     /$user_re\s+ (?:\S+\s+)? (?:is\s+)?                 # Generic
      (?: (?: un|not\s+) known| [dw]oes\s?n[o']?t 
      (?: exist|found ) | disabled ) /ix or
@@ -839,7 +839,7 @@ sub _std_reason {
     /<\S+@\S+> is invalid/i or                          # Unknown
     /address.*not known here/i or                       # Unknown
     /recipient\s+(?:address\s+)?rejected/i or           # Cox, generic
-    /User.*not\s+listed\s+in/i or                       # Domino
+    /not\s+listed\s+in\s+Domino/i or                    # Domino
     /account not activated/i or                         # usa.net
     /not\s+our\s+customer/i or                          # Comcast
     /doesn't handle mail for that user/i                # mailfoundry
@@ -1455,6 +1455,8 @@ sub _cleanup_email {
     s/\s+$//;
     # hack to get rid of stuff like "luser@example.com...User"
     s/\.{3}\S+//;
+    # SMTP:foo@example.com
+    s/^SMTP://;
     }
   return $email;
 }
