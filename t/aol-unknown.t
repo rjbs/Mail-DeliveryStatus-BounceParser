@@ -15,6 +15,7 @@ sub readfile {
   return $text;
 }
 
+# Test an AOL "accept-then-reject" style bounce
 my $message = readfile("t/corpus/aol.unknown.msg");
 
 my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
