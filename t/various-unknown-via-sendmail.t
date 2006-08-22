@@ -15,6 +15,9 @@ sub readfile {
   return $text;
 }
 
+# Loop through a bunch of "user unknown" reject messages from various
+# providers / MTAs, as delivered by Sendmail, and make sure they give us
+# what we want.
 foreach my $file (<t/corpus/*-via-sendmail.unknown.msg>) {
 
   my $message = readfile("$file");
