@@ -404,9 +404,13 @@ sub parse {
       } else {
         $report->replace(std_reason => _std_reason($report->get("diagnostic-code")));
       }
-      $report->replace(
-        host => ($report->get("diagnostic-code") =~ /\bhost\s+(\S+)/)
-      );
+      {
+        # Get rid of more annoying warnings - wby 082306
+        local $^W = 0;
+        $report->replace(
+          host => ($report->get("diagnostic-code") =~ /\bhost\s+(\S+)/)
+        );
+      }
 
       $report->replace(
         smtp_code => ($report->get("diagnostic-code") =~
