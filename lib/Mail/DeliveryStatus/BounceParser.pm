@@ -409,7 +409,9 @@ sub parse {
       );
 
       $report->replace(
-        smtp_code => ($report->get("diagnostic-code") =~ /((\d{3})\s|\s(\d{3})(?!\.))/)[0]
+        smtp_code => ($report->get("diagnostic-code") =~
+         # Make sure whatever we think is the status code begins with 2,4, or 5
+         / ( ( [245] \d{2} ) \s | \s ( [245] \d{2} ) (?!\.) ) /x)[0]
       );
 
       if (not $report->get("host")) {
@@ -1444,7 +1446,9 @@ sub _cleanup_email {
   my $email = shift;
   for ($email) {
     chomp;
-    s/\(.*\)//;
+    # Get rid of parens around addresses like (luser@example.com)
+    # Got rid of earlier /\(.*\)/ - not sure what that was about - wby
+    tr/[()]//d;
     s/^To:\s*//i;
     s/[.:;]+$//;
     s/<(.+)>/$1/;
