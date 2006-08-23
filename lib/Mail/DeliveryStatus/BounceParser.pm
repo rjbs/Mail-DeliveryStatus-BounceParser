@@ -402,9 +402,8 @@ sub parse {
       } else {
         $report->replace(std_reason => _std_reason($report->get("diagnostic-code")));
       }
-      $report->replace(
-          host => ($report->get("diagnostic-code") =~ /\bhost\s+(\S+)/ || '')
-      );
+      my ($host) = $report->get("diagnostic-code") =~ /\bhost\s+(\S+)/;
+      $report->replace( host => ($host)) if $host;
 
       $report->replace(
         smtp_code => ($report->get("diagnostic-code") =~
