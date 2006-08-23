@@ -338,13 +338,11 @@ sub parse {
     foreach my $para (split /\n\n/, $delivery_status_body) {
       my $report = Mail::Header->new([split /\n/, $para]);
 
-      {
-        # This is to prevent Mail::Header from warning with apparently
-        # reasonable data in place. -- rjbs, 2006-08-07
-        local $^W = 0;
-        $report->combine;
-        $report->unfold;
-      }
+      # Removed a $report->combine here - doesn't seem to work without a tag
+      # anyway... not sure what that was for. - wby 20060823
+
+      # Unfold so message doesn't wrap over multiple lines
+      $report->unfold;
 
       # Some MTAs send unsought delivery-status notifications indicating
       # success; others send RFC1892/RFC3464 delivery status notifications
@@ -404,13 +402,9 @@ sub parse {
       } else {
         $report->replace(std_reason => _std_reason($report->get("diagnostic-code")));
       }
-      {
-        # Get rid of more annoying warnings - wby 082306
-        local $^W = 0;
-        $report->replace(
-          host => ($report->get("diagnostic-code") =~ /\bhost\s+(\S+)/)
-        );
-      }
+      $report->replace(
+          host => ($report->get("diagnostic-code") =~ /\bhost\s+(\S+)/ || '')
+      );
 
       $report->replace(
         smtp_code => ($report->get("diagnostic-code") =~
