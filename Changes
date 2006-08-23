@@ -1,5 +1,10 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.xxx   Tue Aug 22 2006
+        Fix a few regexps, including an unescaped comment.
+        Added more new tests, and updated some existing ones (including
+          some tests for minor issues that aren't resolved yet).
+
 1.514   Wed Aug 16 2006
         Ignore TMDA confirmation messages
         Bit more address cleanup
