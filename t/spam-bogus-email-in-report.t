@@ -29,6 +29,6 @@ isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
 TODO: {
 
   local $TODO = "Haven't started fixing this one yet";
-  ok( !($bounce->reports), "No reports (good)");
+  isnt($bounce->reports, "No reports (good)");
 
 }
