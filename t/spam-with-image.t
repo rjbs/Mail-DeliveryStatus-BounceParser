@@ -25,5 +25,5 @@ my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
 
 isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
 
-ok( not ($bounce->reports), "No reports (good)");
+ok( !($bounce->reports), "No reports (good)");
 
