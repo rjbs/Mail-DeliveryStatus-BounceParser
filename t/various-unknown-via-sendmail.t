@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 42;
+use Test::More tests => 48;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -33,7 +33,9 @@ my %files_and_msgs = (
   "msn-via-sendmail.unknown.msg"                =>
   '550 Requested action not taken: mailbox unavailable',
   "yahoo-via-sendmail.unknown.msg"              =>
-  '554 delivery error: dd Sorry your message to recipient@example.net cannot be delivered. This account has been disabled or discontinued [#102]. - mta330.mail.mud.yahoo.com'
+  '554 delivery error: dd Sorry your message to recipient@example.net cannot be delivered. This account has been disabled or discontinued [#102]. - mta330.mail.mud.yahoo.com',
+  "hotmail-via-sendmail.unknown.msg"            =>
+  '550 Requested action not taken: mailbox unavailable'
 );
 
 while (my ($file, $msg) = each(%files_and_msgs)) {
