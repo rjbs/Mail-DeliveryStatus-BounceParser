@@ -62,6 +62,7 @@ my %files_and_responses = (
     "smtp_code"   =>  550,
   },
   "domino.unknown.msg"                          => {
+  # TODO = should return actual code / reason
     "reason"      =>
       '',
     "smtp_code"   =>  '',
@@ -72,6 +73,7 @@ my %files_and_responses = (
     "smtp_code"   =>  550,
   },
   "qmail.unknown.msg"                           => {
+  # TODO = should return actual code / reason
     "reason"      =>
       '',
     "smtp_code"   =>  '',
