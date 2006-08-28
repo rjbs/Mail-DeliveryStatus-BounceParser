@@ -20,7 +20,6 @@ sub readfile {
 # what we want.
 
 my %files_and_responses = (
-
   "att-via-sendmail.unknown.msg"                => {
     "reason"      =>
       '550 [SUSPEND] Mailbox currently suspended - Please contact correspondent directly',
