@@ -335,8 +335,12 @@ sub parse {
     my $delivery_status_body
       = eval { $delivery_status->bodyhandle->as_string } || '';
 
-    # used to be \n\n, but allow 3 to deal with stupid IIS bug
-    # see iis test in t/
+    # Used to be \n\n, but allow any number of newlines between individual
+    # per-recipient fields to deal with stupid bug with the IIS SMTP service.
+    # RFC1894 (2.1, 2.3) is not 100% clear about whether more than one line is
+    # allowed - it just says "preceded by a blank line".
+    #
+    # See IIS test in t/.
     foreach my $para (split /\n{2,}/, $delivery_status_body) {
       my $report = Mail::Header->new([split /\n/, $para]);
 
