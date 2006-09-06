@@ -41,7 +41,7 @@ appropriate action can be taken.
 use 5.00503;
 use strict;
 
-$Mail::DeliveryStatus::BounceParser::VERSION = '1.514';
+$Mail::DeliveryStatus::BounceParser::VERSION = '1.515';
 
 use MIME::Parser;
 use Mail::DeliveryStatus::Report;
@@ -322,9 +322,8 @@ sub parse {
   #
 
   if ($message->effective_type eq "multipart/report") {
-    my ($delivery_status) = grep { $_->effective_type eq "message/delivery-status" } $message->parts;
-
-    # $self->log("examining multipart/report...") if $DEBUG > 3;
+    my ($delivery_status) =
+      grep { $_->effective_type eq "message/delivery-status" } $message->parts;
 
     my %global = ("reporting-mta" => undef, "arrival-date"  => undef);
 
@@ -335,10 +334,11 @@ sub parse {
     my $delivery_status_body
       = eval { $delivery_status->bodyhandle->as_string } || '';
 
-    # Used to be \n\n, but allow any number of newlines between individual
-    # per-recipient fields to deal with stupid bug with the IIS SMTP service.
-    # RFC1894 (2.1, 2.3) is not 100% clear about whether more than one line is
-    # allowed - it just says "preceded by a blank line".
+    # Used to be \n\n, but now we allow any number of newlines between
+    # individual per-recipient fields to deal with stupid bug with the IIS SMTP
+    # service.  RFC1894 (2.1, 2.3) is not 100% clear about whether more than
+    # one line is allowed - it just says "preceded by a blank line".  We very
+    # well may put an upper bound on this in the future.
     #
     # See IIS test in t/.
     foreach my $para (split /\n{2,}/, $delivery_status_body) {
@@ -373,8 +373,8 @@ sub parse {
         }
       }
 
-      for (qw(Reporting-MTA Arrival-Date)) {
-        $report->replace($_ => $global{$_} ||= $report->get($_))
+      for my $hdr (qw(Reporting-MTA Arrival-Date)) {
+        $report->replace($hdr => $global{$hdr} ||= $report->get($hdr))
       }
 
       next unless my $email = $report->get("original-recipient")
@@ -403,19 +403,22 @@ sub parse {
         } elsif ($status eq "5.2.2") {
           $report->replace(std_reason => "over_quota");
         } else {
-          $report->replace(std_reason => _std_reason($report->get("diagnostic-code")));
+          $report->replace(
+            std_reason => _std_reason($report->get("diagnostic-code"))
+          );
         }
       } else {
-        $report->replace(std_reason => _std_reason($report->get("diagnostic-code")));
+        $report->replace(
+          std_reason => _std_reason($report->get("diagnostic-code"))
+        );
       }
       my ($host) = $report->get("diagnostic-code") =~ /\bhost\s+(\S+)/;
       $report->replace( host => ($host)) if $host;
 
-      $report->replace(
-        smtp_code => ($report->get("diagnostic-code") =~
-         # Make sure whatever we think is the status code begins with 2,4, or 5
-         / ( ( [245] \d{2} ) \s | \s ( [245] \d{2} ) (?!\.) ) /x)[0]
-      );
+      my ($code) = $report->get('diagnostic-code') =~
+         m/ ( ( [245] \d{2} ) \s | \s ( [245] \d{2} ) (?!\.) ) /x;
+
+      $report->replace(smtp_code => $code);
 
       if (not $report->get("host")) {
         $report->replace(host => ($report->get("email") =~ /\@(.+)/)[0])
@@ -438,9 +441,6 @@ sub parse {
           next;
         }
       }
-
-      # $self->log("learned about $email: " . $report->get("std_reason")) if
-      # $DEBUG > 3;
 
       push @{$self->{reports}},
         Mail::DeliveryStatus::Report->new([ split /\n/, $report->as_string ]
@@ -785,6 +785,9 @@ Schwern's modules have the Alexandre Dumas property.
 Original author: Meng Weng Wong, E<lt>mengwong+bounceparser@pobox.comE<gt>
 
 Current maintainer: Ricardo SIGNES, E<lt>rjbs@cpan.orgE<gt>
+
+Massive contributions to the 1.5xx series were made by William Yardley.
+Ricardo mostly just helped out and managed releases.
 
 =head1 COPYRIGHT AND LICENSE
 
