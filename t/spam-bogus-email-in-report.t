@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 3;
+use Test::More tests => 2;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -29,7 +29,6 @@ isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
 TODO: {
 
   local $TODO = "Haven't started fixing this one yet";
-  ok( !($bounce->reports), "No reports (good)");
   ok( not($bounce->reports), "No reports (good)");
 
 }
