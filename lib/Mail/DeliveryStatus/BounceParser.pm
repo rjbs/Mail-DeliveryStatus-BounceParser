@@ -543,7 +543,7 @@ sub _extract_reports {
   # we'll keep going that way for each address.
 
   return unless $text;
-  my @split = split(/$EMAIL_ADDR_REGEX/, $text);
+  my @split = split($EMAIL_ADDR_REGEX, $text);
 
   foreach my $i (0 .. $#split) {
     # only interested in the odd numbered elements, which are the email
