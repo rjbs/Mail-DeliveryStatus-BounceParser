@@ -47,7 +47,7 @@ use MIME::Parser;
 use Mail::DeliveryStatus::Report;
 use vars qw($EMAIL_ADDR_REGEX);
 
-my $EMAIL_ADDR_REGEX = qr/
+$EMAIL_ADDR_REGEX = qr/
 # Original stupid regex to fix
 (\S+\@\S+)
 /six;
