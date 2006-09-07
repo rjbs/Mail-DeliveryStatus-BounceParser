@@ -45,6 +45,12 @@ $Mail::DeliveryStatus::BounceParser::VERSION = '1.515';
 
 use MIME::Parser;
 use Mail::DeliveryStatus::Report;
+use vars qw($EMAIL_ADDR_REGEX);
+
+my $EMAIL_ADDR_REGEX = qr/
+# Original stupid regex to fix
+(\S+\@\S+)
+/six;
 
 my $Not_An_Error = qr/
     \b delayed \b
@@ -537,7 +543,7 @@ sub _extract_reports {
   # we'll keep going that way for each address.
 
   return unless $text;
-  my @split = split(/(\S+\@\S+)/, $text);
+  my @split = split(/$EMAIL_ADDR_REGEX/, $text);
 
   foreach my $i (0 .. $#split) {
     # only interested in the odd numbered elements, which are the email
