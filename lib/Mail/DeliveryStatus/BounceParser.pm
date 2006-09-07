@@ -810,7 +810,8 @@ sub _std_reason {
   if (
     /\s \(? \#? 5\.1\.[01] \)? \s/x or                  # rfc 1893
     /$user_re\s+ (?:\S+\s+)? (?:is\s+)?                 # Generic
-     (?: (?: un|not\s+) known| [dw]oes\s?n[o']?t 
+     (?: (?: un|not\s+) (?: known | recognized )
+      | [dw]oes\s?n[o']?t 
      (?: exist|found ) | disabled ) /ix or
     /no\s+(?:such\s+)?$user_re/i or                     # Gmail and other
     /inactive user/i or                                 # Outblaze

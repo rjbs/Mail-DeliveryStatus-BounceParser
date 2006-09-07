@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 66;
+use Test::More tests => 72;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -77,10 +77,18 @@ my %files_and_responses = (
       '',
     "smtp_code"   =>  '',
   },
+  "exchange.unknown.msg"                        => {
+  # TODO = should return actual code / reason
+    "reason"      =>
+      '',
+    "smtp_code"   =>  '',
+  },
 );
 
 foreach my $file (keys %files_and_responses) {
 
+  # just for debugging
+  print "$file\n";
   my $smtp_code = $files_and_responses{$file}{"smtp_code"};
   my $reason    = $files_and_responses{$file}{"reason"};
 
@@ -102,10 +110,8 @@ foreach my $file (keys %files_and_responses) {
 
   is($report->get('smtp_code'), $smtp_code, "We got the right smtp code");
 
-  is_deeply(
-    [ $bounce->addresses ],
-    [ 'recipient@example.net' ],
-    "the right bounced address is given",
-  );
+  my ($address) = $bounce->addresses;
+  $address = lc($address);
+  is($address, 'recipient@example.net', "the right bounced address is given");
 
 }
