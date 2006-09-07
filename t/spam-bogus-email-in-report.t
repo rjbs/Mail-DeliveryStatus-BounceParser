@@ -26,9 +26,5 @@ my $message = readfile('t/corpus/spam-bogus-email-in-report.msg');
 my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
 isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
 
-TODO: {
+ok( not($bounce->reports), "No reports (good)");
 
-  local $TODO = "Haven't started fixing this one yet";
-  ok( not($bounce->reports), "No reports (good)");
-
-}
