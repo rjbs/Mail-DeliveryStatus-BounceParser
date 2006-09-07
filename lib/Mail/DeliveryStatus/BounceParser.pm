@@ -474,12 +474,18 @@ sub parse {
 
     push @{$self->{reports}}, $self->_extract_reports(@delivery_status_parts);
 
-  } else {
+  } elsif ($message->effective_type =~ m{text/plain}) {
     # handle plain-text responses
 
+    # This used to just take *any* part, even if the only part wasn't a
+    # text/plain part
+    #
+    # We may have to specifically allow some other types, but in my testing, all
+    # the messages that get here and are actual bounces are text/plain
+    # wby - 20060907
+    
     # they usually say "returned message" somewhere, and we can split on that,
     # above and below.
-
     my $body_string = $message->bodyhandle->as_string || '';
 
     if ($body_string =~ $Returned_Message_Below) {
