@@ -824,7 +824,7 @@ sub _std_reason {
 
   my $user_re =
    qr'(?: mailbox  | user | recipient | address (?: ee)?
-       | customer | account | e-?mail | <? $EMAIL_ADDR_REGEX >? )'x;
+       | customer | account | e-?mail | <? $EMAIL_ADDR_REGEX >? )'ix;
 
   if (
     /\s \(? \#? 5\.1\.[01] \)? \s/x or                  # rfc 1893
@@ -862,7 +862,6 @@ sub _std_reason {
     /timed\s+out/i or
     /route\s+to\s+host/i or
     /connection\s+refused/i or
-    /relay/i or
     /no\s+data\s+record\s+of\s+requested\s+type/i
   ) {
     return "domain_error";
