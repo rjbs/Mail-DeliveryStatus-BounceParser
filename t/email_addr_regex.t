@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 15;
+use Test::More tests => 16;
 use Mail::DeliveryStatus::BounceParser;
 
 my $regex = $Mail::DeliveryStatus::BounceParser::EMAIL_ADDR_REGEX;
@@ -28,3 +28,10 @@ my @bad_addrs = ('enI@rgement',          # yay spammers
 like($_, $regex , "\"$_\" is Ok") for @ok_addrs;
 unlike($_, $regex , "\"$_\" is Ok") for @bad_addrs;
 
+# This caused some problems, initially
+my $addr;
+my $string = 'RCPT TO:<luser@example.com>:';
+if ($string =~ /($regex)/) {
+  $addr = $1;
+}
+is($addr, 'luser@example.com', "We got the right address");
