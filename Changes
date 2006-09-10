@@ -1,5 +1,15 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+x.xxx   xxx xxx  x xxx
+        Remove some naive assumptions that were causing MBP to look at
+          bogus parts in non-bounce messages. This may break some stuff,
+          but is a first step towards fixing some longer problems.
+        Updated _std_reason regexp to catch some Exchange bounces
+        Fix a bug reported by Chris Dragon where the IIS smtp service uses
+          2 blank lines (rather than one) between each per-recipient field.
+        More new tests / emails in corpus
+        Improve email regexp
+
 1.515   Tue Sep  5 2006
         (most maintenance by William Yardley)
         Fix a few regexps, including an unescaped comment.
