@@ -49,16 +49,17 @@ use vars qw($EMAIL_ADDR_REGEX);
 
 
 
-$EMAIL_ADDR_REGEX = qr/
+$EMAIL_ADDR_REGEX = qr{
 # Avoid using something like Email::Valid
 # Full rfc(2)822 compliance isn't exactly what we want, and this seems to work
 # for most real world cases
-(?:^|\s)          # Space, or the start of a string
-([^\s\/]+         # Something that's not a space and isn't "/"
-\@                # at sign (duh)
-[-\w]+\.[-\w]+)   # word characters or hypens organized into
-                  # at least two dot-separated words
-/sx;
+(?:<|^|\s)            # Space, or the start of a string
+([^\s\/<][^\s\/]*     # some non-space, non-/ characters; first isn't <
+\@                    # at sign (duh)
+(?:[-\w]+\.)+[-\w]+)  # word characters or hypens organized into
+                      # at least two dot-separated words
+(?:$|\s|>)            # then the end
+}sx;
 
 my $Not_An_Error = qr/
     \b delayed \b
