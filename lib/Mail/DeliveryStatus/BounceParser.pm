@@ -47,14 +47,12 @@ use MIME::Parser;
 use Mail::DeliveryStatus::Report;
 use vars qw($EMAIL_ADDR_REGEX);
 
-
-
 $EMAIL_ADDR_REGEX = qr{
 # Avoid using something like Email::Valid
 # Full rfc(2)822 compliance isn't exactly what we want, and this seems to work
 # for most real world cases
 (?:<|^|\s)            # Space, or the start of a string
-([^\s\/<][^\s\/]*     # some non-space, non-/ characters; first isn't <
+([^\s\/<]+            # some non-space, non-/ characters; none are <
 \@                    # at sign (duh)
 (?:[-\w]+\.)+[-\w]+)  # word characters or hypens organized into
                       # at least two dot-separated words
@@ -826,7 +824,7 @@ sub _std_reason {
 
   my $user_re =
    qr'(?: mailbox  | user | recipient | address (?: ee)?
-       | customer | account | e-?mail | <?\S+@\S+>? )'x;
+       | customer | account | e-?mail | <? $EMAIL_ADDR_REGEX >? )'x;
 
   if (
     /\s \(? \#? 5\.1\.[01] \)? \s/x or                  # rfc 1893
@@ -848,7 +846,7 @@ sub _std_reason {
      (?:suspended|unavailable)/ix or 
     /address is administratively disabled/i or          # Unknown
     /no $user_re\s+(?:here\s+)?by that name/i or        # Unknown
-    /<\S+@\S+> is invalid/i or                          # Unknown
+    /<?$EMAIL_ADDR_REGEX>? is invalid/i or              # Unknown
     /address.*not known here/i or                       # Unknown
     /recipient\s+(?:address\s+)?rejected/i or           # Cox, generic
     /not\s+listed\s+in\s+Domino/i or                    # Domino
