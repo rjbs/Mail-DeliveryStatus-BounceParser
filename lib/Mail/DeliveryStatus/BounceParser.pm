@@ -54,7 +54,7 @@ $EMAIL_ADDR_REGEX = qr/
 # Full rfc(2)822 compliance isn't exactly what we want, and this seems to work
 # for most real world cases
 (?:^|\s)          # Space, or the start of a string
-[^\s\/]+          # Something that's not a space and isn't "/"
+([^\s\/]+         # Something that's not a space and isn't "/"
 \@                # at sign (duh)
 [-\w]+\.[-\w]+)   # word characters or hypens organized into
                   # at least two dot-separated words
