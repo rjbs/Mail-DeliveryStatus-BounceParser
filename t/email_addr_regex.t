@@ -31,7 +31,7 @@ unlike($_, $regex , "\"$_\" is Ok") for @bad_addrs;
 # This caused some problems, initially
 my $addr;
 my $string = 'RCPT TO:<luser@example.com>:';
-if ($string =~ /$regex/) {
+if ($string =~ $regex) {
   $addr = $1;
 }
 is($addr, 'luser@example.com', "We got the right address");
