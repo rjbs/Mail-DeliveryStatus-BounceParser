@@ -50,7 +50,6 @@ use vars qw($EMAIL_ADDR_REGEX);
 
 
 $EMAIL_ADDR_REGEX = qr/
-# Original stupid regex to fix
 (?:^|\s)([^\s\/]+\@[-\w]+\.[-\w]+)
 /six;
 
