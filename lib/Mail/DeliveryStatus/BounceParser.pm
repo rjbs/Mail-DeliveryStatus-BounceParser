@@ -50,8 +50,15 @@ use vars qw($EMAIL_ADDR_REGEX);
 
 
 $EMAIL_ADDR_REGEX = qr/
-(?:^|\s)([^\s\/]+\@[-\w]+\.[-\w]+)
-/six;
+# Avoid using something like Email::Valid
+# Full rfc(2)822 compliance isn't exactly what we want, and this seems to work
+# for most real world cases
+(?:^|\s)          # Space, or the start of a string
+[^\s\/]+          # Something that's not a space and isn't "/"
+\@                # at sign (duh)
+[-\w]+\.[-\w]+)   # word characters or hypens organized into
+                  # at least two dot-separated words
+/sx;
 
 my $Not_An_Error = qr/
     \b delayed \b
