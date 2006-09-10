@@ -47,9 +47,11 @@ use MIME::Parser;
 use Mail::DeliveryStatus::Report;
 use vars qw($EMAIL_ADDR_REGEX);
 
+
+
 $EMAIL_ADDR_REGEX = qr/
 # Original stupid regex to fix
-(\S+\@\S+)
+(?:^|\s)([^\s\/]+\@[-\w]+\.[-\w]+)
 /six;
 
 my $Not_An_Error = qr/
