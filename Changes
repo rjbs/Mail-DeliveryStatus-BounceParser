@@ -1,6 +1,7 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
-x.xxx   xxx xxx  x xxx
+1.516   Tue Sep 26 2006
+        fix manifest
         Remove some naive assumptions that were causing MBP to look at
           bogus parts in non-bounce messages. This may break some stuff,
           but is a first step towards fixing some longer problems.
