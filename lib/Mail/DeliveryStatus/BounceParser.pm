@@ -79,7 +79,6 @@ my $Returned_Message_Below = qr/(
 
 my @Preprocessors = qw(
   p_ims
-  p_compuserve
   p_aol_senderblock
   p_novell_groupwise
   p_plain_smtp_transcript
@@ -229,27 +228,6 @@ sub parse {
     $self->log("seems like a nonfatal error, ignoring.");
     $self->{is_bounce} = 0;
     return $self;
-  }
-
-  # jkburns@compuserve.com has a new CompuServe e-mail address.  The new e-mail
-  # address is johnkingburns@cs.com and CompuServe has automatically forwarded
-  # your message. Please take this opportunity to update your address book with
-  # the new e-mail address.
-  if ($message->effective_type eq "text/plain") {
-    my $string = $message->bodyhandle->as_string;
-    my $forwarded_pos
-      = _match_position($string, qr/automatically.{0,40}forwarded/is);
-
-    my $orig_msg_pos 
-      = _match_position($string, $Returned_Message_Below);
-    if (
-      defined($forwarded_pos)
-      && _position_before($forwarded_pos, $orig_msg_pos)
-    ) {
-      $self->log("message forwarding notification, ignoring");
-      $self->{is_bounce} = 0;
-      return $self;
-    }
   }
 
   # nonfatal errors usually say they're transient, but sometimes they do it
@@ -877,68 +855,6 @@ sub _std_reason {
 # ---------------------------------------------------------------------
 # 		       preprocessors
 # ---------------------------------------------------------------------
-
-sub p_compuserve {
-  my ($self, $message) = @_;
-
-  # afe-chicago@v2.listbox.com/200209/18/1032373866.29028_0.frodo
-  # From: CompuServe Postmaster <postmaster@compuserve.com>
-  # Subject: Undeliverable Message
-  # Sender: CompuServe Postmaster <auto.reply@compuserve.com>
-  # To: listbox+trampoline+282+137177+366d45b9@v2.listbox.com
-  # X-Listbox-Reason: lallison@compuserve.com user unknown
-  # Lines: 81
-  #
-  # Receiver not found: lallison
-  #
-  #
-  # Your message could not be delivered as addressed.
-  #
-  # --- Message From Postmaster ---
-  #
-  # Subject: Addressing CompuServe Mail users
-  #
-  # Please contact postmaster@compuserve.com if you need additional formatting
-  # information for other types of addresses.
-  #
-  # Cordially,
-  #
-  # The Electronic Postmaster
-  #
-  # --- Returned Message ---
-  #
-  # Sender: listbox+trampoline+282+137177+366d45b9@v2.listbox.com
-  # Received: from frodo.listbox.com (frodo.listbox.com [208.210.125.58])
-  #         by siaag1af.compuserve.com (8.9.3/8.9.3/SUN-1.14) with ESMTP id MAA16547
-  #         for <lallison@compuserve.com>; Wed, 18 Sep 2002 12:40:17 -0400 (EDT)
-  # Received: by frodo.listbox.com (Postfix, from userid 1003)
-  #         id 65A1F8056; Wed, 18 Sep 2002 12:40:16 -0400 (EDT)
-  #
-  return if not $message->head->get("from") =~ /\@compuserve\.com/i;
-  return if $message->is_multipart;
-  return unless $message->bodyhandle->as_string =~ /Receiver not found:/;
-
-  my ($stuff_before, $stuff_after)
-    = split(/.*Returned Message.*/i, $message->bodyhandle->as_string);
-
-  $stuff_before =~ s/Your message could not be delivered as addressed.*//is;
-
-  my @new_errors;
-  for (split /\n/, $stuff_before) {
-    if (my ($receiver) = /Receiver not found:\s*(\S+)/) {
-      if ($receiver !~ /\@/) {
-        push @new_errors, "$receiver\@compuserve\.com: Receiver not found";
-        next;
-      }
-    }
-    push @new_errors, $_;
-  }
-  return $self->new_plain_report(
-    $message,
-    join ("\n", @new_errors),
-    $stuff_after
-  );
-}
 
 sub p_ims {
   my $self    = shift;
