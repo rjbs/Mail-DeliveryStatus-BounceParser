@@ -1,11 +1,11 @@
 From MAILER-DAEMON@somehost.example.com Tue Sep 26 11:34:02 2006
 Return-Path: <MAILER-DAEMON@somehost.example.com>
-Received: from simba2.example.k12.pa.us (simba2.example.k12.pa.us [204.14.13.133])
+Received: from simba2.k12.example.net (simba2.k12.example.net [204.14.13.133])
 	by somehost.example.com (8.12.11.20060308/8.12.11) with ESMTP id k8QIY1E8023292
 	for <sender@somehost.example.com>; Tue, 26 Sep 2006 11:34:02 -0700
-Received: from SMSD_Groupwise_Domain-MTA by simba2.example.k12.pa.us
+Received: from SMSD_Groupwise_Domain-MTA by simba2.k12.example.net
 	with Novell_GroupWise; Tue, 26 Sep 2006 14:34:00 -0400
-Message-Id: <s5193a58.029@simba2.example.k12.pa.us>
+Message-Id: <s5193a58.029@simba2.k12.example.net>
 X-Mailer: Novell GroupWise Internet Agent 7.0.1 
 Date: Tue, 26 Sep 2006 14:34:00 -0400
 From: Mailer-Daemon@simba2.k12.example.net
