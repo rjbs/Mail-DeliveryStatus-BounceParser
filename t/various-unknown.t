@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 72;
+use Test::More tests => 84;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -81,6 +81,22 @@ my %files_and_responses = (
   # TODO = should return actual code / reason
     "reason"      =>
       '',
+    "smtp_code"   =>  '',
+  },
+  # Recipient on this one is broken - can't really be fixed, since the
+  # information isn't available.
+  "novell-no-rhs.msg"                           => {
+    # TODO = should (maybe) return actual reason
+    "reason"      =>
+      '',
+    # Can't really get this since it DNE
+    "smtp_code"   =>  '',
+  },
+  "novell-with-rhs.msg"                           => {
+    # TODO = should (maybe) return actual reason
+    "reason"      =>
+      '',
+    # Can't really get this since it DNE
     "smtp_code"   =>  '',
   },
 );
