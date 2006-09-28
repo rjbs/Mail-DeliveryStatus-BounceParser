@@ -36,6 +36,7 @@ t/corpus/spam-bogus-email-in-report.msg
 t/corpus/spam-lots-of-bogus-addresses.msg
 t/corpus/spam-with-badly-parsed-email.msg
 t/corpus/spam-with-image.msg
+t/corpus/surfcontrol-extra-newline.msg
 t/corpus/virus-caused-multiple-weird-reports.msg
 t/corpus/yahoo-via-sendmail.unknown.msg
 t/email_addr_regex.t
@@ -48,6 +49,7 @@ t/spam-bogus-email-in-report.t
 t/spam-lots-of-bogus-addresses.t
 t/spam-with-image.t
 t/status-209.t
+t/surfcontrol-extra-newline.t
 t/various-domain.t
 t/various-unknown.t
 t/virus-caused-multiple-weird-reports.t

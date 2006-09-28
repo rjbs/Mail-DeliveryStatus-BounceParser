@@ -354,6 +354,7 @@ sub parse {
     #
     # See IIS test in t/.
     foreach my $para (split /\n{2,}/, $delivery_status_body) {
+      $para =~ s/\A\n+//g;
       my $report = Mail::Header->new([split /\n/, $para]);
 
       # Removed a $report->combine here - doesn't seem to work without a tag

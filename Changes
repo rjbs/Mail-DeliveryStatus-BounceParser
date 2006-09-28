@@ -1,6 +1,14 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.517   CHANGEME!!
+        (most maintenance by William Yardley)
+        Updated docs
+        Removed p_ms preprocessor (should be needed anymore)
+        Fixed bug 21249 (extra \n causing message not to be parsed)
+        Added test for above
+        
 1.516   Tue Sep 26 2006
+        (most maintenance by William Yardley)
         fix manifest
         Remove some naive assumptions that were causing MBP to look at
           bogus parts in non-bounce messages. This may break some stuff,
