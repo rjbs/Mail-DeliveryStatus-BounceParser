@@ -352,9 +352,12 @@ sub parse {
     # one line is allowed - it just says "preceded by a blank line".  We very
     # well may put an upper bound on this in the future.
     #
-    # See IIS test in t/.
+    # See t/iis-multiple-bounce.t
     foreach my $para (split /\n{2,}/, $delivery_status_body) {
+
+      # See t/surfcontrol-extra-newline.t - deal with bug #21249
       $para =~ s/\A\n+//g;
+
       my $report = Mail::Header->new([split /\n/, $para]);
 
       # Removed a $report->combine here - doesn't seem to work without a tag
