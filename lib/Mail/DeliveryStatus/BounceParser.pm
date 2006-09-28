@@ -946,20 +946,8 @@ sub p_ims {
   my $self    = shift;
   my $message = shift;
 
-  # Your message
-  #
-  #   To:      slpark@msx.ndc.mc.uci.edu
-  #   Subject: Penn Women Paving The Way - Register Now!
-  #   Sent:    Thu, 19 Sep 2002 13:40:20 -0700
-  #
-  # did not reach the following recipient(s):
-  #
-  # c=US;a= ;p=NDC;o=ORANGE;dda:SMTP=slpark@msx.ndc.mc.uci.edu; on Thu, 19 Sep
-  # 2002 13:53:00 -0700
-  #     The recipient name is not recognized
-  #         The MTS-ID of the original message is: c=us;a=
-  # ;p=ndc;l=LEA0209192052TAM7PVWM
-  #     MSEXCH:IMS:NDC:ORANGE:LEA 0 (000C05A6) Unknown Recipient
+  # Mangle Exchange messages into a format we like better
+  # see t/corpus/exchange.unknown.msg
 
   return
     unless ($message->head->get("X-Mailer")||'') =~ /Internet Mail Service/i;
@@ -976,40 +964,8 @@ sub p_ims {
       $io->print($actual_error);
       $io->close;
     }
-    # $self->log("rewrote IMS error text to " . $error_part->as_string) if
-    # $DEBUG > 3;
+
   } else {
-    # X-Mailer: Internet Mail Service (5.5.2654.52)
-    # X-MS-Embedded-Report:
-    # MIME-Version: 1.0
-    # X-WSS-ID: 11966AB2117930-01-01
-    # Content-Type: text/plain
-    # Content-Transfer-Encoding: 7bit
-    # X-Listbox-Reason: jfrancl@sidley.com user unknown
-    # Lines: 66
-    #
-    # Your message
-    #
-    #   To:      USER_EMAIL@frodo.listbox.com
-    #   Subject: You have an online postcard waiting for you!
-    #   Sent:    Wed, 18 Sep 2002 11:00:36 -0500
-    #
-    # did not reach the following recipient(s):
-    #
-    # jfrancl@sidley.com on Wed, 18 Sep 2002 11:40:15 -0500
-    #     The recipient name is not recognized
-    #         The MTS-ID of the original message is: c=us;a= ;p=sidley
-    # austin;l=CHEXCHANGE10209181640TFHKWW8X
-    #     MSEXCH:IMS:Sidley & Austin:Chicago:CHEXCHANGE1 0 (000C05A6) Unknown
-    # Recipient
-    #
-    #
-    #
-    # -----
-    # Message-ID: <E17rhFk-00085B-00@erie.vervehosting.com>
-    # From: Bonnie Eisner <owner-afe-chicago@v2.listbox.com>
-    # To: USER_EMAIL@frodo.listbox.com
-    #
 
     return unless my ($actual_error)
       = $message->bodyhandle->as_string
