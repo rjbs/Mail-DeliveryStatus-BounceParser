@@ -28,6 +28,7 @@ t/corpus/hotmail-via-sendmail.unknown.msg
 t/corpus/iis-multiple-bounce.msg
 t/corpus/msn-via-sendmail.unknown.msg
 t/corpus/non-autoreply.msg
+t/corpus/novell-with-rhs.msg
 t/corpus/postfix-smtp-550.msg
 t/corpus/postfix.msg
 t/corpus/qmail.unknown.msg
