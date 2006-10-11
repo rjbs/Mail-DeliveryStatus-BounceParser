@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 84;
+use Test::More tests => 78;
 
 use Mail::DeliveryStatus::BounceParser;
 
