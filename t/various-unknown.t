@@ -83,15 +83,6 @@ my %files_and_responses = (
       '',
     "smtp_code"   =>  '',
   },
-  # Recipient on this one is broken - can't really be fixed, since the
-  # information isn't available.
-  "novell-no-rhs.msg"                           => {
-    # TODO = should (maybe) return actual reason
-    "reason"      =>
-      '',
-    # Can't really get this since it DNE
-    "smtp_code"   =>  '',
-  },
   "novell-with-rhs.msg"                           => {
     # TODO = should (maybe) return actual reason
     "reason"      =>
