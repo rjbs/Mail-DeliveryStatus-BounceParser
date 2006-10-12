@@ -131,6 +131,7 @@ sub parse {
     log       => $arg->{log},
     parser    => $parser,
     orig_message_id => undef,
+    prefer_final_recipient => $arg->{prefer_final_recipient},
   }, $class;
 
   $self->log(
@@ -371,8 +372,17 @@ sub parse {
         $report->replace($hdr => $global{$hdr} ||= $report->get($hdr))
       }
 
-      next unless my $email = $report->get("original-recipient")
-                           || $report->get("final-recipient");
+      my $email;
+
+      if ($self->{prefer_final_recipient}) {
+        $email = $report->get("final-recipient")
+              || $report->get("original-recipient");
+      } else {
+        $email = $report->get("original-recipient")
+              || $report->get("final-recipient");
+      }
+
+      next unless $email;
 
       # $self->log("email = \"$email\"") if $DEBUG > 3;
 
