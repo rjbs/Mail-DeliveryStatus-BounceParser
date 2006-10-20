@@ -1,7 +1,8 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
-1.517   CHANGEME!!
-        (most maintenance by William Yardley)
+1.517   Fri Oct 20 2006
+        allow user to choose to prioritize original or final recipient
+        (below, mostly maintenance by William Yardley)
         Updated docs
         Removed p_ms preprocessor (should be needed anymore)
         Fixed bug 21249 (extra \n causing message not to be parsed)
