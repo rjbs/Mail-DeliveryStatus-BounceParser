@@ -55,3 +55,4 @@ t/surfcontrol-extra-newline.t
 t/various-domain.t
 t/various-unknown.t
 t/virus-caused-multiple-weird-reports.t
+LICENSE

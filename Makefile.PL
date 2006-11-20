@@ -1,4 +1,3 @@
-#!perl -w
 use strict;
 
 use inc::Module::Install;
