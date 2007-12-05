@@ -41,7 +41,7 @@ appropriate action can be taken.
 use 5.00503;
 use strict;
 
-$Mail::DeliveryStatus::BounceParser::VERSION = '1.517';
+$Mail::DeliveryStatus::BounceParser::VERSION = '1.518';
 
 use MIME::Parser;
 use Mail::DeliveryStatus::Report;
@@ -1080,6 +1080,16 @@ sub _construct_delivery_status_paras {
   }
 
   return @new_output;
+}
+
+sub _construct_diagnostic_code {
+  my %by_email = %{shift()};
+  my $email = shift;
+  join (" ",
+  "Diagnostic-Code: X-BounceParser;",
+  ($by_email{$email}->{'host'} ? "host $by_email{$email}->{'host'} said:" : ()),
+  ($by_email{$email}->{'smtp_code'}),
+  (join ", ", @{ $by_email{$email}->{'errors'} }));
 }
 
 sub _analyze_smtp_transcripts {
