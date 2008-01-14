@@ -1,5 +1,11 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.519   2008-01-14
+        fix POD coverage test (failure mode was weird and stupid)
+
+1.518   2007-12-05
+        restore the somehow-deleted _construct_diagnostic_code
+
 1.517   Fri Oct 20 2006
         allow user to choose to prioritize original or final recipient
         (below, mostly maintenance by William Yardley)
