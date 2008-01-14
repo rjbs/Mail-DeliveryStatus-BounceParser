@@ -3,7 +3,7 @@ package Mail::DeliveryStatus::Report;
 use Mail::Header;
 use strict;
 use vars qw(@ISA);
-@ISA = qw(Mail::Header);
+BEGIN { @ISA = qw(Mail::Header) };
 
 # i just don't like how Mail::Header leaves a \n at the end of everything
 # meng
