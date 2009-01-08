@@ -66,7 +66,8 @@ my $Not_An_Error = qr/
   | Your \s message .{0,100} was \s delivered \s to \s the \s following \s recipient
 /six;
 
-my $Really_An_Error = qr/this is a permanent error/i;
+# added "permanent fatal errors" - fix for bug #41874
+my $Really_An_Error = qr/this is a permanent error|permanent fatal errors/i;
 
 my $Returned_Message_Below = qr/(
     (?:original|returned) \s message \s (?:follows|below)
@@ -185,7 +186,8 @@ sub parse {
     last if !$first_part || $first_part->effective_type ne 'text/plain';
     my $string = $first_part->as_string;
     last if length($string) > 3000;
-    last if $string !~ /auto.{0,20}reply|vacation|(out|away|on holiday).*office/i;
+    # added return receipt (fix for bug #41870)
+    last if $string !~ /auto.{0,20}reply|return receipt|vacation|(out|away|on holiday).*office/i;
     $self->log("looks like a vacation autoreply, ignoring.");
     $self->{type} = "vacation autoreply";
     $self->{is_bounce} = 0;
@@ -336,6 +338,8 @@ sub parse {
 
       # See t/surfcontrol-extra-newline.t - deal with bug #21249
       $para =~ s/\A\n+//g;
+      # added the following line as part of fix for #41874
+      $para =~ s/\r/ /g;
 
       my $report = Mail::Header->new([split /\n/, $para]);
 
@@ -820,11 +824,12 @@ sub _std_reason {
 
   if (
     /\s \(? \#? 5\.1\.[01] \)? \s/x or                  # rfc 1893
-    /$user_re\s+ (?:\S+\s+)? (?:is\s+)?                 # Generic
+    /$user_re\s+(?:\S+\s+)? (?:is\s+)?                  # Generic
      (?: (?: un|not\s+) (?: known | recognized )
       | [dw]oes\s?n[o']?t 
      (?: exist|found ) | disabled | expired ) /ix or
-    /no\s+(?:such\s+)?$user_re/i or                     # Gmail and other
+    /no\s+(?:such)\s+?$user_re/i or                     # Gmail and other (mofified for bug #41874)
+    /unrouteable address/i or                           # bug #41874
     /inactive user/i or                                 # Outblaze
     /unknown local part/i or                            # Exim(?)
     /user\s+doesn't\s+have\s+a/i or                     # Yahoo!
