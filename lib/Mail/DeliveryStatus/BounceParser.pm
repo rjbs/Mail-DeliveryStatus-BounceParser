@@ -805,7 +805,7 @@ it under the same terms as Perl itself.
 sub _std_reason {
   local $_ = shift;
 
-  if (/(?:domain|host)\s+(?:not\s+found|unknown)/i) { return "domain_error" }
+  if (/(?:domain|host|service)\s+(?:not\s+found|unknown|not\s+known)/i) { return "domain_error" }
 
   if (
     /try.again.later/is or
