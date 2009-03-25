@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 6;
+use Test::More tests => 12;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -24,6 +24,11 @@ my %files_and_responses = (
     "reason"      => '550 Host unknown',
     "smtp_code"   =>  550,
     "recipient"   => 'recipient@#example.net'
+  },
+  "postfix-host-unknown.msg"                => {
+    "reason"      => '[dest.example.com]: Name or service not known',
+    "smtp_code"   =>  '',
+    "recipient"   => 'bounce@dest.example.com'
   },
 );
 
