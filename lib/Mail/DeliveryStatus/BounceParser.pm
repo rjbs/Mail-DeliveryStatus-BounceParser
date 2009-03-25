@@ -73,10 +73,10 @@ my $Returned_Message_Below = qr/(
     (?:original|returned) \s message \s (?:follows|below)
   | (?: this \s is \s a \s copy \s of
       | below \s this \s line \s is \s a \s copy
-    ) .{0,100} \s message
+    ) .{0,100} \s message\.?
   | message \s header \s follows
   | ^ (?:return-path|received|from):
-)/sixm;
+)\s+/sixm;
 
 my @Preprocessors = qw(
   p_ims
@@ -493,11 +493,11 @@ sub parse {
 
     if ($body_string =~ $Returned_Message_Below) {
       my ($stuff_before, $stuff_splitted, $stuff_after) =
-        split $Returned_Message_Below, $message->bodyhandle->as_string, 3;
+        split $Returned_Message_Below, $message->bodyhandle->as_string, 2;
       # $self->log("splitting on \"$stuff_splitted\", " . length($stuff_before)
       # . " vs " . length($stuff_after) . " bytes.") if $DEBUG > 3;
       push @{$self->{reports}}, $self->_extract_reports($stuff_before);
-      $self->{orig_text} = $stuff_before;
+      $self->{orig_text} = $stuff_after;
     } elsif ($body_string =~ /(.+)\n\n(.+?Message-ID:.+)/is) {
       push @{$self->{reports}}, $self->_extract_reports($1);
       $self->{orig_text} = $2;
