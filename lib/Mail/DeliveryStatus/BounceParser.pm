@@ -308,7 +308,6 @@ sub parse {
     $self->log("couldn't find original message id.");
   }
 
-
   #
   # try to extract email addresses to identify members.
   # we will also try to extract reasons as much as we can.
@@ -580,10 +579,14 @@ sub _extract_reports {
       ne "unknown" and $std_reason eq "unknown"
     );
 
+	my $reason = $split[$i-1];
+	$reason =~ s/(.*?). (Your mail to the following recipients could not be delivered)/$2/;
+
     $by_email{$email} = {
       email => $email,
       raw   => join ("", @split[$i-1..$i+1]),
       std_reason => $std_reason,
+	  reason => $reason
     };
   }
 
