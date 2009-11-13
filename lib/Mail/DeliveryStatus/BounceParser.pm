@@ -859,7 +859,8 @@ sub _std_reason {
     /timed\s+out/i or
     /route\s+to\s+host/i or
     /connection\s+refused/i or
-    /no\s+data\s+record\s+of\s+requested\s+type/i
+    /no\s+data\s+record\s+of\s+requested\s+type/i or
+	/Malformed name server reply/i
   ) {
     return "domain_error";
   }
