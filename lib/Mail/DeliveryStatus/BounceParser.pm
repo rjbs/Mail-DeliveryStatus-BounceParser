@@ -381,7 +381,10 @@ sub parse {
       }
 
       for my $hdr (qw(Reporting-MTA Arrival-Date)) {
-        $report->replace($hdr => $global{$hdr} ||= $report->get($hdr))
+        my $val = $global{$hdr} ||= $report->get($hdr);
+		if (defined($val)) {
+			$report->replace($hdr => $val)
+		}
       }
 
       my $email;
@@ -434,13 +437,15 @@ sub parse {
       my ($code) = $report->get('diagnostic-code') =~
          m/ ( ( [245] \d{2} ) \s | \s ( [245] \d{2} ) (?!\.) ) /x;
 
-      $report->replace(smtp_code => $code);
+      if ($code) {
+		$report->replace(smtp_code => $code);
+	  }
 
       if (not $report->get("host")) {
         $report->replace(host => ($report->get("email") =~ /\@(.+)/)[0])
       }
 
-      if ($report->get("smtp_code") =~ /^2../) {
+      if ($report->get("smtp_code") and ($report->get("smtp_code") =~ /^2../)) {
         $self->log(
           "smtp code is "
           . $report->get("smtp_code")
