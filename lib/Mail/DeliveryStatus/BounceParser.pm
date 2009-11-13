@@ -171,6 +171,15 @@ sub parse {
     return $self;
   }
 
+  {
+	last unless ($message->head->get("X-Bluebottle-Request") and $first_part->stringify_body =~ /This account is protected by Bluebottle/);
+	$self->log("looks like a challenge/response autoresponse; ignoring.");
+    $self->{type} = "Challenge / Response system autoreply";
+    $self->{is_bounce} = 0;
+    return $self;
+
+  }
+
   # we'll deem autoreplies to be usually less than a certain size.
 
   # Some vacation autoreplies are (sigh) multipart/mixed, with an additional
