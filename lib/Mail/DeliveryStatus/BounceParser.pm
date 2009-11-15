@@ -886,6 +886,12 @@ sub _std_reason {
     return "domain_error";
   }
 
+  if (
+    /Blocked\s+by\s+SpamAssassin/i
+  ) {
+    return "spam";
+  }
+
   return "unknown";
 }
 
