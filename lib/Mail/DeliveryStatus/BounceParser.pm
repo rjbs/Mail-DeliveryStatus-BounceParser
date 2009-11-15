@@ -669,8 +669,12 @@ standardized reasons:
   user_unknown
   over_quota
   domain_error
+  spam
   unknown
   no_problemo
+
+The "spam" standard reason indicates that the message bounced because the recipient
+considered it spam.
 
 (no_problemo will only appear if you set {report_non_bounces=>1})
 
