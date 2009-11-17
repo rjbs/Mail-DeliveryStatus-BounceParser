@@ -887,7 +887,8 @@ sub _std_reason {
   }
 
   if (
-    /Blocked\s+by\s+SpamAssassin/i
+    /Blocked\s+by\s+SpamAssassin/i or
+	/spam\s+rejection/i
   ) {
     return "spam";
   }
