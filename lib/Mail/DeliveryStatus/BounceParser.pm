@@ -459,7 +459,11 @@ sub parse {
 	  }
 
       if (not $report->get("host")) {
-        $report->replace(host => ($report->get("email") =~ /\@(.+)/)[0])
+		my $email = $report->get("email");
+		if (defined $email) {
+			my $host = ($email =~ /\@(.+)/)[0];
+			$report->replace(host => $host) if $host;
+		}
       }
 
       if ($report->get("smtp_code") and ($report->get("smtp_code") =~ /^2../)) {

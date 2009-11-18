@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 6;
+use Test::More tests => 9;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -44,3 +44,15 @@ my $std_reason2 = $report2->get("std_reason");
 # FIXME: later obviously we'll fix this to be something better than "unknown"
 # but for now it's the expected behaviour.
 is($std_reason2, "unknown", "std reason is unknown");
+
+my $message3 = readfile('t/corpus/warning-3.msg');
+my $bounce3 = Mail::DeliveryStatus::BounceParser->new($message3);
+
+isa_ok($bounce3, 'Mail::DeliveryStatus::BounceParser');
+ok($bounce3->is_bounce, "This is a bounce");
+
+my ($report3) = $bounce3->reports;
+
+my $std_reason3 = $report3->get("std_reason");
+
+is($std_reason3, "user_unknown", "std reason is user_unknown");
