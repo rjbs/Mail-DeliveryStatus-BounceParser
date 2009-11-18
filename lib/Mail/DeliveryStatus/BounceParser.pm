@@ -843,6 +843,10 @@ it under the same terms as Perl itself.
 sub _std_reason {
   local $_ = shift;
 
+  if (!defined $_) {
+	  return "unknown";
+  }
+
   if (/(?:domain|host|service)\s+(?:not\s+found|unknown|not\s+known)/i) { return "domain_error" }
 
   if (

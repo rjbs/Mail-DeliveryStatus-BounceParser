@@ -72,3 +72,4 @@ t/various-unknown.t
 t/virus-caused-multiple-weird-reports.t
 t/warnings.t
 t/corpus/warning-1.msg
+t/corpus/warning-2.msg
