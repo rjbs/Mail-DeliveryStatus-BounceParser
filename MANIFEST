@@ -70,3 +70,5 @@ t/surfcontrol-extra-newline.t
 t/various-domain.t
 t/various-unknown.t
 t/virus-caused-multiple-weird-reports.t
+t/warnings.t
+t/corpus/warning-1.msg

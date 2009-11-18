@@ -405,12 +405,19 @@ sub parse {
       my $reason = $report->get("diagnostic-code");
 
       $email  =~ s/[^;]+;\s*//; # strip leading RFC822; or LOCAL; or system;
-      $reason =~ s/[^;]+;\s*//; # strip leading X-Postfix;
+	  if (defined $reason) {
+		$reason =~ s/[^;]+;\s*//; # strip leading X-Postfix;
+	  }
 
       $email = _cleanup_email($email);
 
       $report->replace(email      => $email);
-      $report->replace(reason     => $reason);
+	  if (defined $reason) {
+		$report->replace(reason     => $reason);
+	  } else {
+		$report->delete("reason");
+	  }
+
       if (my $status = $report->get('Status')) {
         # RFC 1893... prefer Status: if it exists and is something we know
         # about
@@ -431,11 +438,21 @@ sub parse {
           std_reason => _std_reason($report->get("diagnostic-code"))
         );
       }
-      my ($host) = $report->get("diagnostic-code") =~ /\bhost\s+(\S+)/;
-      $report->replace( host => ($host)) if $host;
+	  my $diag_code = $report->get("diagnostic-code");
 
-      my ($code) = $report->get('diagnostic-code') =~
+	  my $host;
+	  if (defined $diag_code) {
+		 ($host) = $diag_code =~ /\bhost\s+(\S+)/;
+	  }
+
+      $report->replace(host => ($host)) if $host;
+
+      my ($code);
+	 
+	  if (defined $diag_code) {
+		 ($code) = $diag_code =~
          m/ ( ( [245] \d{2} ) \s | \s ( [245] \d{2} ) (?!\.) ) /x;
+	  }
 
       if ($code) {
 		$report->replace(smtp_code => $code);
