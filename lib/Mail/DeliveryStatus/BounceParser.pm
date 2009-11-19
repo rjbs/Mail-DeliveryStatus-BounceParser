@@ -907,7 +907,8 @@ sub _std_reason {
     /connection\s+refused/i or
     /no\s+data\s+record\s+of\s+requested\s+type/i or
 	/Malformed name server reply/i or
-	/as\s+a\s+relay,\s+but\s+I\s+have\s+not\s+been\s+configured\s+to\s+let/i
+	/as\s+a\s+relay,\s+but\s+I\s+have\s+not\s+been\s+configured\s+to\s+let/i or
+	/550\s+relay\s+not\s+permitted/i
   ) {
     return "domain_error";
   }
