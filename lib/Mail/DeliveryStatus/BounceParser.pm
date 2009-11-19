@@ -906,7 +906,8 @@ sub _std_reason {
     /route\s+to\s+host/i or
     /connection\s+refused/i or
     /no\s+data\s+record\s+of\s+requested\s+type/i or
-	/Malformed name server reply/i
+	/Malformed name server reply/i or
+	/as\s+a\s+relay,\s+but\s+I\s+have\s+not\s+been\s+configured\s+to\s+let/i
   ) {
     return "domain_error";
   }

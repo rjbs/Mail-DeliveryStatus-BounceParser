@@ -74,3 +74,5 @@ t/warnings.t
 t/corpus/warning-1.msg
 t/corpus/warning-2.msg
 t/corpus/warning-3.msg
+t/corpus/not-a-relay.msg
+t/not-a-relay.t
