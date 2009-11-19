@@ -917,7 +917,8 @@ sub _std_reason {
 
   if (
     /Blocked\s+by\s+SpamAssassin/i or
-	/spam\s+rejection/i
+	/spam\s+rejection/i or
+	/identified\s+SPAM,\s+message\s+permanently\s+rejected/i
   ) {
     return "spam";
   }

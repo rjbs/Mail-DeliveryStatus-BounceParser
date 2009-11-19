@@ -76,3 +76,5 @@ t/corpus/warning-2.msg
 t/corpus/warning-3.msg
 t/corpus/not-a-relay.msg
 t/not-a-relay.t
+t/spambouncer.t
+t/corpus/spambouncer.msg
