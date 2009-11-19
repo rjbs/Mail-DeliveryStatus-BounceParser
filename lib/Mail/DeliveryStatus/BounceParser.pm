@@ -910,7 +910,8 @@ sub _std_reason {
 	/as\s+a\s+relay,\s+but\s+I\s+have\s+not\s+been\s+configured\s+to\s+let/i or
 	/550\s+relay\s+not\s+permitted/i or
 	/550\s+relaying\s+denied/i or
-	/Relay\s+access\s+denied/i
+	/Relay\s+access\s+denied/i or
+	/Relaying\s+denied/i
   ) {
     return "domain_error";
   }

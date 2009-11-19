@@ -78,3 +78,5 @@ t/corpus/not-a-relay.msg
 t/not-a-relay.t
 t/spambouncer.t
 t/corpus/spambouncer.msg
+t/relaying-denied.t
+t/corpus/relaying-denied.msg
