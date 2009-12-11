@@ -24,17 +24,24 @@ This module requires these other modules and libraries:
 
 COPYRIGHT AND LICENCE
 
-    Copyright (C) 2003 IC Group, Inc.
+    Copyright (C) 2003-2006 IC Group, Inc.
 	pobox.com permanent email forwarding with spam filtering
-      listbox.com mailing list services
-   Meng Weng Wong <mengwong+bounceparser@pobox.com>
-
-   Co-maintained by Aaron Crane <arc@cpan.org>
+    listbox.com mailing list services
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
+
+AUTHOR
+
+Original author: Meng Weng Wong, mengwong+bounceparser@pobox.com
+
+Current maintainer: Ricardo SIGNES, rjbs@cpan.org
+
+Massive contributions to the 1.5xx series were made by William Yardley.
+Ricardo mostly just helped out and managed releases.
 
 SHOUT OUT
 
   to coraline, Fletch, TorgoX, mjd, a-mused, Masque, gbarr,
   sungo, dngor, and all the other hoopy froods on #perl
+

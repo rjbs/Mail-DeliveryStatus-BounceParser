@@ -63,7 +63,13 @@ my %files_and_responses = (
   "domino.unknown.msg"                          => {
   # TODO = should return actual code / reason
     "reason"      =>
-      '',
+      'Your message
+
+  Subject: Test Bounce
+
+was not delivered to:
+
+ ',
     "smtp_code"   =>  '',
   },
   "aol.unknown.msg"                             => {
@@ -74,7 +80,9 @@ my %files_and_responses = (
   "qmail.unknown.msg"                           => {
   # TODO = should return actual code / reason
     "reason"      =>
-      '',
+      "Hi. This is the qmail-send program at mail1.coqui.net.
+I'm afraid I wasn't able to deliver your message to the following addresses.
+This is a permanent error; I've given up. Sorry it didn't work out.",
     "smtp_code"   =>  '',
   },
   "exchange.unknown.msg"                        => {
@@ -86,7 +94,7 @@ my %files_and_responses = (
   "novell-with-rhs.msg"                           => {
     # TODO = should (maybe) return actual reason
     "reason"      =>
-      '',
+      'The message that you sent was undeliverable to the following:',
     # Can't really get this since it DNE
     "smtp_code"   =>  '',
   },
