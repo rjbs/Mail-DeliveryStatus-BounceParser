@@ -38,10 +38,11 @@ appropriate action can be taken.
 
 =cut
 
-use 5.00503;
+use 5.006;
 use strict;
 
-$Mail::DeliveryStatus::BounceParser::VERSION = '1.521';
+our $VERSION = '1.520_001';
+$VERSION = eval $VERSION;
 
 use MIME::Parser;
 use Mail::DeliveryStatus::Report;
