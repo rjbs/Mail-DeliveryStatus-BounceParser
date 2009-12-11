@@ -13,7 +13,6 @@ LICENSE
 Makefile
 Makefile.PL
 MANIFEST
-META.yml
 README
 t/00-load.t
 t/aol-attachment.t
