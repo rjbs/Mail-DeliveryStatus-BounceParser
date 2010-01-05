@@ -920,7 +920,8 @@ sub _std_reason {
   if (
     /Blocked\s+by\s+SpamAssassin/i or
 	/spam\s+rejection/i or
-	/identified\s+SPAM,\s+message\s+permanently\s+rejected/i
+	/identified\s+SPAM,\s+message\s+permanently\s+rejected/i or
+	/Mail\s+appears\s+to\s+be\s+unsolicited/i
   ) {
     return "spam";
   }
