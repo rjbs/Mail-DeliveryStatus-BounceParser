@@ -40,6 +40,7 @@ appropriate action can be taken.
 
 use 5.006;
 use strict;
+use warnings;
 
 our $VERSION = '1.520_001';
 $VERSION = eval $VERSION;

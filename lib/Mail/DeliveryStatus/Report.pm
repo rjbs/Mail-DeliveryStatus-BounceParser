@@ -2,6 +2,7 @@ package Mail::DeliveryStatus::Report;
 
 use Mail::Header;
 use strict;
+use warnings;
 use vars qw(@ISA);
 BEGIN { @ISA = qw(Mail::Header) };
 
