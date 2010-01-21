@@ -285,8 +285,12 @@ sub parse {
     ) {
       # see MIME::Entity regarding REPLACE
       my $orig_message_id = $orig_message->parts(0)->head->get("message-id");
-      chomp $orig_message_id;
-      $self->log("extracted original message-id $orig_message_id from the original rfc822/message");
+	  if ($orig_message_id) {
+		chomp $orig_message_id;
+        $self->log("extracted original message-id $orig_message_id from the original rfc822/message");
+	  } else {
+        $self->log("Couldn't extract original message-id from the original rfc822/message");
+	  }
       $self->{orig_message_id} = $orig_message_id;
       $self->{orig_message} = $orig_message->parts(0);
     }

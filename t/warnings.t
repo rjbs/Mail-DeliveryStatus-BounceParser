@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 9;
+use Test::More tests => 12;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -56,3 +56,15 @@ my ($report3) = $bounce3->reports;
 my $std_reason3 = $report3->get("std_reason");
 
 is($std_reason3, "user_unknown", "std reason is user_unknown");
+
+my $message4 = readfile('t/corpus/warning-4.msg');
+my $bounce4 = Mail::DeliveryStatus::BounceParser->new($message4);
+
+isa_ok($bounce4, 'Mail::DeliveryStatus::BounceParser');
+ok($bounce4->is_bounce, "This is a bounce");
+
+my ($report4) = $bounce4->reports;
+
+my $std_reason4 = $report4->get("std_reason");
+
+is($std_reason4, "unknown", "std reason is unknown");
