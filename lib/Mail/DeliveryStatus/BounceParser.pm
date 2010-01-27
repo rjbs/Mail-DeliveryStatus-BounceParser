@@ -139,9 +139,9 @@ sub parse {
 
   $self->log(
     "received message with type "
-    . $message->effective_type
+    . (defined($message->effective_type) ? $message->effective_type : "undef")
     . ", subject "
-    . $message->head->get("subject")
+    . (defined($message->head->get("subject")) ? $message->head->get("subject") : "CAN'T GET SUBJECT")
   );
 
   # before we even start to analyze the bounce, we recognize certain special
@@ -158,7 +158,7 @@ sub parse {
     "now the message is type "
     . $message->effective_type
     . ", subject "
-    . $message->head->get("subject")
+    . (defined($message->head->get("subject")) ? $message->head->get("subject") : "CAN'T GET SUBJECT")
   );
 
   my $first_part = _first_non_multi_part($message);
