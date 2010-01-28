@@ -97,7 +97,7 @@ used as a logging callback.
 
 NON-BOUNCES.  If the message is recognizably a vacation autoresponse, or is a
 report of a transient nonfatal error, or a spam or virus autoresponse, you'll
-still get back a C<$bounce>, but its C<<$bounce->is_bounce()>> will return
+still get back a C<$bounce>, but its C<< $bounce->is_bounce() >> will return
 false.
 
 It is possible that some bounces are not really bounces; such as
