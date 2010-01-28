@@ -40,6 +40,7 @@ appropriate action can be taken.
 
 use 5.006;
 use strict;
+use warnings;
 
 our $VERSION = '1.520_001';
 $VERSION = eval $VERSION;
@@ -138,9 +139,9 @@ sub parse {
 
   $self->log(
     "received message with type "
-    . $message->effective_type
+    . (defined($message->effective_type) ? $message->effective_type : "undef")
     . ", subject "
-    . $message->head->get("subject")
+    . (defined($message->head->get("subject")) ? $message->head->get("subject") : "CAN'T GET SUBJECT")
   );
 
   # before we even start to analyze the bounce, we recognize certain special
@@ -157,7 +158,7 @@ sub parse {
     "now the message is type "
     . $message->effective_type
     . ", subject "
-    . $message->head->get("subject")
+    . (defined($message->head->get("subject")) ? $message->head->get("subject") : "CAN'T GET SUBJECT")
   );
 
   my $first_part = _first_non_multi_part($message);
@@ -285,8 +286,12 @@ sub parse {
     ) {
       # see MIME::Entity regarding REPLACE
       my $orig_message_id = $orig_message->parts(0)->head->get("message-id");
-      chomp $orig_message_id;
-      $self->log("extracted original message-id $orig_message_id from the original rfc822/message");
+	  if ($orig_message_id) {
+		chomp $orig_message_id;
+        $self->log("extracted original message-id $orig_message_id from the original rfc822/message");
+	  } else {
+        $self->log("Couldn't extract original message-id from the original rfc822/message");
+	  }
       $self->{orig_message_id} = $orig_message_id;
       $self->{orig_message} = $orig_message->parts(0);
     }
@@ -922,7 +927,8 @@ sub _std_reason {
   if (
     /Blocked\s+by\s+SpamAssassin/i or
 	/spam\s+rejection/i or
-	/identified\s+SPAM,\s+message\s+permanently\s+rejected/i
+	/identified\s+SPAM,\s+message\s+permanently\s+rejected/i or
+	/Mail\s+appears\s+to\s+be\s+unsolicited/i
   ) {
     return "spam";
   }
