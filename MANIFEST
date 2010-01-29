@@ -60,7 +60,6 @@ t/corpus/warning-5.msg
 t/corpus/yahoo-via-sendmail.unknown.msg
 t/email_addr_regex.t
 t/iis-multiple-bounce.t
-t/kwalitee.t
 t/non-autoreply.t
 t/not-a-relay.t
 t/orig-message.t
