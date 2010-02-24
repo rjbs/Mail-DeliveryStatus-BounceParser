@@ -867,7 +867,8 @@ sub _std_reason {
     /storage/i          or
     /quota/i            or
     /\s552\s/           or
-    /\s#?5\.2\.2\s/                                     # rfc 1893
+    /\s#?5\.2\.2\s/     or                                # rfc 1893
+	/User\s+mailbox\s+exceeds\s+allowed\s+size/
   ) {
     return "over_quota";
   }

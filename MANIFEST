@@ -40,6 +40,7 @@ t/corpus/postfix-orig.msg
 t/corpus/postfix-smtp-550.msg
 t/corpus/postfix.msg
 t/corpus/qmail.unknown.msg
+t/corpus/quota.msg
 t/corpus/relaying-denied.msg
 t/corpus/sendmail-host-unknown.msg
 t/corpus/spam-bogus-email-in-report.msg
@@ -67,6 +68,7 @@ t/pod-coverage.t
 t/pod.t
 t/postfix-malformed.t
 t/postfix.t
+t/quota.t
 t/relaying-denied.t
 t/spam-bogus-email-in-report.t
 t/spam-lots-of-bogus-addresses.t
