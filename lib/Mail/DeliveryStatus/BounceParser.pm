@@ -929,7 +929,8 @@ sub _std_reason {
     /Blocked\s+by\s+SpamAssassin/i or
 	/spam\s+rejection/i or
 	/identified\s+SPAM,\s+message\s+permanently\s+rejected/i or
-	/Mail\s+appears\s+to\s+be\s+unsolicited/i
+	/Mail\s+appears\s+to\s+be\s+unsolicited/i or
+	/Message\s+rejected\s+as\s+spam\s+by\s+Content\s+Filtering/i 
   ) {
     return "spam";
   }

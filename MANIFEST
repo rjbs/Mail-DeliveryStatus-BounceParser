@@ -47,6 +47,7 @@ t/corpus/spam-bogus-email-in-report.msg
 t/corpus/spam-lots-of-bogus-addresses.msg
 t/corpus/spam-rejection.msg
 t/corpus/spam-rejection2.msg
+t/corpus/spam-rejection3.msg
 t/corpus/spam-with-badly-parsed-email.msg
 t/corpus/spam-with-image.msg
 t/corpus/spamassassin.msg
@@ -74,6 +75,7 @@ t/spam-bogus-email-in-report.t
 t/spam-lots-of-bogus-addresses.t
 t/spam-rejection.t
 t/spam-rejection2.t
+t/spam-rejection3.t
 t/spam-with-image.t
 t/spamassassin.t
 t/spambouncer.t
