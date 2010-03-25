@@ -868,7 +868,8 @@ sub _std_reason {
     /quota/i            or
     /\s552\s/           or
     /\s#?5\.2\.2\s/     or                                # rfc 1893
-	/User\s+mailbox\s+exceeds\s+allowed\s+size/
+	/User\s+mailbox\s+exceeds\s+allowed\s+size/i or
+	/Mailbox\s+size\s+limit\s+exceeded/i
   ) {
     return "over_quota";
   }
