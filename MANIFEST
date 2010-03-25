@@ -62,6 +62,7 @@ t/corpus/warning-3.msg
 t/corpus/warning-4.msg
 t/corpus/warning-5.msg
 t/corpus/yahoo-via-sendmail.unknown.msg
+t/corpus/misidentified-recipient.msg
 t/email_addr_regex.t
 t/iis-multiple-bounce.t
 t/non-autoreply.t
@@ -89,3 +90,4 @@ t/various-domain.t
 t/various-unknown.t
 t/virus-caused-multiple-weird-reports.t
 t/warnings.t
+t/misidentified-recipient.t
