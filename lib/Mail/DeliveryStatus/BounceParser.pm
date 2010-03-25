@@ -869,7 +869,8 @@ sub _std_reason {
     /\s552\s/           or
     /\s#?5\.2\.2\s/     or                                # rfc 1893
 	/User\s+mailbox\s+exceeds\s+allowed\s+size/i or
-	/Mailbox\s+size\s+limit\s+exceeded/i
+	/Mailbox\s+size\s+limit\s+exceeded/i or
+	/message\s+size\s+\d+\s+exceeds\s+size\s+limit\s+\d+/i
   ) {
     return "over_quota";
   }
