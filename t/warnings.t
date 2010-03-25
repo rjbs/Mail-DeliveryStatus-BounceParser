@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 15;
+use Test::More tests => 17;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -80,3 +80,9 @@ my ($report5) = $bounce5->reports;
 # FIXME: This is actually wrong, but documents current behaviour
 # it should give a report!
 is($report5, undef, "report is missing");
+
+my $message6 = readfile('t/corpus/warning-6.msg');
+my $bounce6 = Mail::DeliveryStatus::BounceParser->new($message6);
+
+isa_ok($bounce6, 'Mail::DeliveryStatus::BounceParser');
+ok(!$bounce6->is_bounce, "This is not a bounce");

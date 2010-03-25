@@ -61,6 +61,7 @@ t/corpus/warning-2.msg
 t/corpus/warning-3.msg
 t/corpus/warning-4.msg
 t/corpus/warning-5.msg
+t/corpus/warning-6.msg
 t/corpus/yahoo-via-sendmail.unknown.msg
 t/corpus/misidentified-recipient.msg
 t/email_addr_regex.t
