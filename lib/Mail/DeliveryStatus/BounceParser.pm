@@ -606,6 +606,11 @@ sub _extract_reports {
       next;
     }
 
+	if($split[$i-1] =~ /A message sent by/) {
+		# sender block
+		next;
+	}
+
     my $std_reason = "unknown";
     $std_reason = _std_reason($split[$i+1]) if $#split > $i;
     $std_reason = _std_reason($split[$i-1]) if $std_reason eq "unknown";
