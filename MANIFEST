@@ -43,6 +43,7 @@ t/corpus/qmail.unknown.msg
 t/corpus/quota.msg
 t/corpus/quota-2.msg
 t/corpus/quota-3.msg
+t/corpus/quota-4.msg
 t/corpus/relaying-denied.msg
 t/corpus/sendmail-host-unknown.msg
 t/corpus/spam-bogus-email-in-report.msg
@@ -76,6 +77,7 @@ t/postfix.t
 t/quota.t
 t/quota-2.t
 t/quota-3.t
+t/quota-4.t
 t/relaying-denied.t
 t/spam-bogus-email-in-report.t
 t/spam-lots-of-bogus-addresses.t

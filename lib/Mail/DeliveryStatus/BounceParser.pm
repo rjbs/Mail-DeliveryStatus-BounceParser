@@ -25,8 +25,8 @@ Mail::DeliveryStatus::BounceParser - Perl extension to analyze bounce messages
 Mail::DeliveryStatus::BounceParser analyzes RFC822 bounce messages and returns
 a structured description of the addresses that bounced and the reason they
 bounced; it also returns information about the original returned message
-including the Message-ID.  It works best with RFC1892 delivery reports, but
-will gamely attempt to understand any bounce message no matter what MTA
+	including the Message-ID.  It works best with RFC1892 delivery reports, but
+	will gamely attempt to understand any bounce message no matter what MTA
 generated it.
 
 =head1 DESCRIPTION
@@ -888,7 +888,8 @@ sub _std_reason {
     /\s#?5\.2\.2\s/     or                                # rfc 1893
 	/User\s+mailbox\s+exceeds\s+allowed\s+size/i or
 	/Mailbox\s+size\s+limit\s+exceeded/i or
-	/message\s+size\s+\d+\s+exceeds\s+size\s+limit\s+\d+/i
+	/message\s+size\s+\d+\s+exceeds\s+size\s+limit\s+\d+/i or
+	/max\s+message\s+size\s+exceeded/i
   ) {
     return "over_quota";
   }
