@@ -1197,9 +1197,12 @@ sub _analyze_smtp_transcripts {
 
   # parse the text part for the actual SMTP transcript
   for (split /\n\n|(?=>>>)/, $plain_smtp_transcript) {
-    # $self->log("_analyze_smtp_transcripts: $_") if $DEBUG > 3;
-
     $email = _cleanup_email($1) if /RCPT TO:\s*(\S+)/im;
+
+	if (/The\s+following\s+addresses\s+had\s+permanent\s+fatal\s+errors\s+-----\s+\<(.*)\>/im) {
+	  $email = _cleanup_email($1);
+	}
+
     $by_email{$email}->{host} = $host if $email;
 
     if (/while talking to (\S+)/im) {

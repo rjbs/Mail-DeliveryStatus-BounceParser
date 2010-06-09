@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 17;
+use Test::More tests => 20;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -86,3 +86,15 @@ my $bounce6 = Mail::DeliveryStatus::BounceParser->new($message6);
 
 isa_ok($bounce6, 'Mail::DeliveryStatus::BounceParser');
 ok(!$bounce6->is_bounce, "This is not a bounce");
+
+my $message7 = readfile('t/corpus/warning-7.msg');
+my $bounce7 = Mail::DeliveryStatus::BounceParser->new($message7);
+
+isa_ok($bounce7, 'Mail::DeliveryStatus::BounceParser');
+ok($bounce7->is_bounce, "This is a bounce");
+
+my ($report7) = $bounce7->reports;
+
+my $std_reason7 = $report7->get("std_reason");
+
+is($std_reason7, "over_quota", "std reason is over_quota");
