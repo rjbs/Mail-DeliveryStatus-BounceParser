@@ -319,9 +319,12 @@ sub parse {
          grep { lc $_->effective_type eq "text/rfc822-headers" } $message->parts
     ) {
       my $orig_head = Mail::Header->new($rfc822_headers->body);
-      chomp ($self->{orig_message_id} = $orig_head->get("message-id"));
-      $self->{orig_header} = $orig_head;
-      $self->log("extracted original message-id $self->{orig_message_id} from text/rfc822-headers");
+	  my $message_id = $orig_head->get("message-id");
+	  if ($message_id) {
+		chomp ($self->{orig_message_id} = $orig_head->get("message-id"));
+		$self->{orig_header} = $orig_head;
+		$self->log("extracted original message-id $self->{orig_message_id} from text/rfc822-headers");
+	  }
     }
   }
 
