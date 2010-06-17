@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 20;
+use Test::More tests => 23;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -98,3 +98,22 @@ my ($report7) = $bounce7->reports;
 my $std_reason7 = $report7->get("std_reason");
 
 is($std_reason7, "over_quota", "std reason is over_quota");
+
+my $message8 = readfile('t/corpus/warning-8.msg');
+my $bounce8 = Mail::DeliveryStatus::BounceParser->new($message8);
+
+isa_ok($bounce8, 'Mail::DeliveryStatus::BounceParser');
+
+TODO: {
+  local $TODO = "Not detected correctly yet";
+
+  ok($bounce8->is_bounce, "This is a bounce");
+  my ($report8) = $bounce8->reports;
+  
+  if (defined $report8) {
+	my $std_reason8 = $report8->get("std_reason");
+	is($std_reason8, "over_quota", "std reason is over_quota");
+  } else {
+	fail("report8 should be defined");
+  }
+}
