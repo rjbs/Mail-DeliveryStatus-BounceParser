@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 3;
+use Test::More tests => 4;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -29,3 +29,8 @@ my ($report) = $bounce->reports;
 my $std_reason = $report->get("std_reason");
 
 is($std_reason, "domain_error", "std reason is domain_error");
+
+TODO: {
+	local $TODO = "status should be extracted correctly";
+	is($report->get("status"), "5.4.4", "check status code is extracted ok");
+};
