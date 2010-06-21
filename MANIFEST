@@ -31,6 +31,7 @@ t/corpus/generic-postfix-via-sendmail.unknown.msg
 t/corpus/gmail-via-sendmail.unknown.msg
 t/corpus/hotmail-via-sendmail.unknown.msg
 t/corpus/iis-multiple-bounce.msg
+t/corpus/malformed-dns.msg
 t/corpus/misidentified-recipient.msg
 t/corpus/msn-via-sendmail.unknown.msg
 t/corpus/non-autoreply.msg
@@ -70,6 +71,7 @@ t/corpus/warning-8.msg
 t/corpus/yahoo-via-sendmail.unknown.msg
 t/email_addr_regex.t
 t/iis-multiple-bounce.t
+t/malformed-dns.t
 t/misidentified-recipient.t
 t/non-autoreply.t
 t/not-a-relay.t
