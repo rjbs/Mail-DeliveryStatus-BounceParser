@@ -444,13 +444,15 @@ sub parse {
         # RFC 1893... prefer Status: if it exists and is something we know
         # about
         # Not 100% sure about 5.1.0...
-		print "[$status]" . "\n";
         if ($status =~ /^5\.1\.[01]$/)  {
           $report->replace(std_reason => "user_unknown");
         } elsif ($status eq "5.1.2") {
           $report->replace(std_reason => "domain_error");
         } elsif ($status eq "5.2.2") {
           $report->replace(std_reason => "over_quota");
+		# this fits my reading of RFC 3463
+		# FIXME: I suspect there's something wrong with the parsing earlier
+		# that this has to be a regexp rather than a straight comparison
 		} elsif ($status =~ /^5\.4\.4/) {
 		  $report->replace(std_reason => "domain_error");
         } else {
