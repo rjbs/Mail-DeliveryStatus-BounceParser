@@ -444,12 +444,15 @@ sub parse {
         # RFC 1893... prefer Status: if it exists and is something we know
         # about
         # Not 100% sure about 5.1.0...
+		print "[$status]" . "\n";
         if ($status =~ /^5\.1\.[01]$/)  {
           $report->replace(std_reason => "user_unknown");
         } elsif ($status eq "5.1.2") {
           $report->replace(std_reason => "domain_error");
         } elsif ($status eq "5.2.2") {
           $report->replace(std_reason => "over_quota");
+		} elsif ($status =~ /^5\.4\.4/) {
+		  $report->replace(std_reason => "domain_error");
         } else {
           $report->replace(
             std_reason => _std_reason($report->get("diagnostic-code"))
