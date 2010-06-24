@@ -19,15 +19,14 @@ my $message = readfile('t/corpus/quota-5.msg');
 
 my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
 
+isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
+ok($bounce->is_bounce, "It's a bounce");
+
+my ($report) = $bounce->reports;
+
+my $std_reason = $report->get("std_reason");
+
 TODO: {
 	local $TODO = "not done yet";
-
-	isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
-	ok($bounce->is_bounce, "It's a bounce");
-
-	my ($report) = $bounce->reports;
-
-	my $std_reason = $report->get("std_reason");
-
 	is($std_reason, "over_quota", "std reason is over_quota");
 };
