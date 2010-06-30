@@ -723,6 +723,7 @@ standardized reasons:
   over_quota
   domain_error
   spam
+  message_too_large
   unknown
   no_problemo
 
@@ -963,6 +964,12 @@ sub _std_reason {
     /message\s+looks\s+like\s+SPAM\s+to\s+me/i
   ) {
     return "spam";
+  }
+
+  if (
+	  /RESOLVER.RST.RecipSizeLimit/i
+	) {
+		return "message_too_large";
   }
 
   return "unknown";
