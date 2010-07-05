@@ -198,7 +198,7 @@ sub parse {
     my $string = $first_part->as_string;
     last if length($string) > 3000;
     # added return receipt (fix for bug #41870)
-    last if $string !~ /auto.{0,20}reply|return receipt|vacation|(out|away|on holiday).*office/i;
+    last if $string !~ /auto.{0,20}(reply|response)|return receipt|vacation|(out|away|on holiday).*office/i;
     $self->log("looks like a vacation autoreply, ignoring.");
     $self->{type} = "vacation autoreply";
     $self->{is_bounce} = 0;

@@ -21,6 +21,7 @@ t/bluebottle.t
 t/corpus/aol-senderblock.msg
 t/corpus/aol.attachment.msg
 t/corpus/aol.unknown.msg
+t/corpus/aol-vacation.msg
 t/corpus/att-via-sendmail.unknown.msg
 t/corpus/bluebottle.msg
 t/corpus/comcast-via-sendmail.unknown.msg
@@ -105,3 +106,4 @@ t/various-domain.t
 t/various-unknown.t
 t/virus-caused-multiple-weird-reports.t
 t/warnings.t
+t/aol-vacation.t
