@@ -961,7 +961,8 @@ sub _std_reason {
 	/identified\s+SPAM,\s+message\s+permanently\s+rejected/i or
 	/Mail\s+appears\s+to\s+be\s+unsolicited/i or
 	/Message\s+rejected\s+as\s+spam\s+by\s+Content\s+Filtering/i or
-    /message\s+looks\s+like\s+SPAM\s+to\s+me/i
+    /message\s+looks\s+like\s+SPAM\s+to\s+me/i or
+	/NOT\s+JUNKEMAILFILTER/i
   ) {
     return "spam";
   }
