@@ -935,7 +935,8 @@ sub _std_reason {
     /account not activated/i or                         # usa.net
     /not\s+our\s+customer/i or                          # Comcast
     /doesn't handle mail for that user/i or             # mailfoundry
-	/Address\s+does\s+not\s+exist/i
+	/Address\s+does\s+not\s+exist/i or
+	/Recipient\s+<?$EMAIL_ADDR_REGEX>?\s+does\s+not\s+exist/i
   ) {
     return "user_unknown";
   }
