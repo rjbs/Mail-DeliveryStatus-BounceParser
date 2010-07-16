@@ -934,7 +934,8 @@ sub _std_reason {
     /not\s+listed\s+in\s+Domino/i or                    # Domino
     /account not activated/i or                         # usa.net
     /not\s+our\s+customer/i or                          # Comcast
-    /doesn't handle mail for that user/i                # mailfoundry
+    /doesn't handle mail for that user/i or             # mailfoundry
+	/Address\s+does\s+not\s+exist/i
   ) {
     return "user_unknown";
   }
