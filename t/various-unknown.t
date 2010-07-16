@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 78;
+use Test::More tests => 84;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -97,6 +97,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
       'The message that you sent was undeliverable to the following:',
     # Can't really get this since it DNE
     "smtp_code"   =>  '',
+  },
+  "yahoo-user-unknown.msg" => {
+	  "reason" => '553 5.3.0 <recipient@example.net>... Address does not     exist',
+	  "smtp_code" => "553",
   },
 );
 

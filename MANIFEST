@@ -74,6 +74,7 @@ t/corpus/warning-6.msg
 t/corpus/warning-7.msg
 t/corpus/warning-8.msg
 t/corpus/yahoo-via-sendmail.unknown.msg
+t/corpus/yahoo-user-unknown.msg
 t/email_addr_regex.t
 t/iis-multiple-bounce.t
 t/junkemailfilter.t
