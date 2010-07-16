@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 84;
+use Test::More tests => 90;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -102,6 +102,11 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	  "reason" => '553 5.3.0 <recipient@example.net>... Address does not     exist',
 	  "smtp_code" => "553",
   },
+  "user-unknown-polish.msg" => {
+	  # reason is a little ugly
+	  "reason" => '501 5.1.3 Odbiorca <recipient@example.net> nie     istnieje / Recipient <recipient@example.net> does not exist',
+	  "smtp_code" => "501",
+	  }
 );
 
 foreach my $file (keys %files_and_responses) {
