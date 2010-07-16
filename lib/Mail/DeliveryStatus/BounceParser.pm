@@ -727,14 +727,15 @@ standardized reasons:
   unknown
   no_problemo
 
-The "spam" standard reason indicates that the message bounced because the recipient
-considered it spam.
+The "spam" standard reason indicates that the message bounced because
+the recipient considered it spam.
 
 (no_problemo will only appear if you set {report_non_bounces=>1})
 
-If the bounce message is not structured according to RFC1892, BounceParser will
-still try to return as much information as it can; in particular, you can count
-on "email" and "std_reason" to be present.
+If the bounce message is not structured according to RFC1892,
+BounceParser will still try to return as much information as it can;
+in particular, you can count on "email" and "std_reason" to be
+present.
 
 =cut
 
