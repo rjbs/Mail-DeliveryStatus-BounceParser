@@ -937,7 +937,8 @@ sub _std_reason {
     /not\s+our\s+customer/i or                          # Comcast
     /doesn't handle mail for that user/i or             # mailfoundry
 	/Address\s+does\s+not\s+exist/i or
-	/Recipient\s+<?$EMAIL_ADDR_REGEX>?\s+does\s+not\s+exist/i
+	/Recipient\s+<?$EMAIL_ADDR_REGEX>?\s+does\s+not\s+exist/i or
+	/recipient\s+no\s+longer\s+on\s+server/i # me.com
   ) {
     return "user_unknown";
   }
