@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 90;
+use Test::More tests => 96;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -106,7 +106,11 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	  # reason is a little ugly
 	  "reason" => '501 5.1.3 Odbiorca <recipient@example.net> nie     istnieje / Recipient <recipient@example.net> does not exist',
 	  "smtp_code" => "501",
-	  }
+	  },
+  "me-user-unknown.msg" => {
+	  "reason" => '550 5.1.6 recipient no longer on server: recipient@example.net',
+	  "smtp_code" => "550",
+  },
 );
 
 foreach my $file (keys %files_and_responses) {
