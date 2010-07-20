@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 96;
+use Test::More tests => 102;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -110,6 +110,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
   "me-user-unknown.msg" => {
 	  "reason" => '550 5.1.6 recipient no longer on server: recipient@example.net',
 	  "smtp_code" => "550",
+  },
+  "cam-unknown.msg" => {
+	  "reason" => '550-<recipient@example.net> is not a known user on this     system; 550 see http://www.example.net/cs/email/bounce.html',
+	  "smtp_code" => '550',
   },
 );
 
