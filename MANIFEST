@@ -79,6 +79,7 @@ t/corpus/user-unknown-polish.msg
 t/corpus/autoreply.msg
 t/corpus/me-user-unknown.msg
 t/corpus/cam-unknown.msg
+t/corpus/whitelist.msg
 t/autoreply.t
 t/email_addr_regex.t
 t/iis-multiple-bounce.t
@@ -115,3 +116,4 @@ t/various-unknown.t
 t/virus-caused-multiple-weird-reports.t
 t/warnings.t
 t/aol-vacation.t
+t/whitelist.t
