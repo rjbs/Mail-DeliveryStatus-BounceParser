@@ -896,6 +896,10 @@ sub _std_reason {
     return "domain_error"
   }
 
+  if (/sorry,\s+that\s+domain\s+isn't\s+in\s+my\s+list\s+of\s+allowed\s+rcpthosts/i) {
+	  return "domain_error";
+  }
+
   if (
     /try.again.later/is or
     /mailbox\b.*\bfull/ or

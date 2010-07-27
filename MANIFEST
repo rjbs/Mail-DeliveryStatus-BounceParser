@@ -80,6 +80,7 @@ t/corpus/autoreply.msg
 t/corpus/me-user-unknown.msg
 t/corpus/cam-unknown.msg
 t/corpus/whitelist.msg
+t/corpus/rcpthosts.msg
 t/autoreply.t
 t/email_addr_regex.t
 t/iis-multiple-bounce.t
@@ -94,6 +95,7 @@ t/pod-coverage.t
 t/pod.t
 t/postfix-malformed.t
 t/postfix.t
+t/rcpthosts.t
 t/quota-2.t
 t/quota-3.t
 t/quota-4.t

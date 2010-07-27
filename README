@@ -22,6 +22,14 @@ This module requires these other modules and libraries:
   Mail::Address
   MIME::Tools
 
+TESTS
+
+Test cases have been mostly anonymised a fair bit to hide details
+of the original emails being tested.
+
+They retain enough essence to form a test case but if you're looking
+to examine more detail they may no longer be there.
+
 COPYRIGHT AND LICENCE
 
     Copyright (C) 2003-2006 IC Group, Inc.
