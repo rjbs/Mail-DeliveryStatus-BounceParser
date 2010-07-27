@@ -179,7 +179,14 @@ sub parse {
     $self->{type} = "Challenge / Response system autoreply";
     $self->{is_bounce} = 0;
     return $self;
+  }
 
+  {
+	  last unless $first_part->stringify_body =~ /Your server requires confirmation/;
+	  $self->log("Looks like a challenge/response autoresponse; ignoring.");
+	  $self->{type} = "Challenge / Response system autoreply";
+	  $self->{is_bounce} = 0;
+	  return $self;
   }
 
   # we'll deem autoreplies to be usually less than a certain size.
