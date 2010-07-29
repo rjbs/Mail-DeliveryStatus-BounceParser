@@ -81,6 +81,7 @@ t/corpus/me-user-unknown.msg
 t/corpus/cam-unknown.msg
 t/corpus/whitelist.msg
 t/corpus/rcpthosts.msg
+t/corpus/rcpt-dne.msg
 t/autoreply.t
 t/email_addr_regex.t
 t/iis-multiple-bounce.t
