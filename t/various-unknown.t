@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 102;
+use Test::More tests => 108;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -114,6 +114,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
   "cam-unknown.msg" => {
 	  "reason" => '550-<recipient@example.net> is not a known user on this     system; 550 see http://www.example.net/cs/email/bounce.html',
 	  "smtp_code" => '550',
+  },
+  "rcpt-dne.msg" => {
+	  "reason" => '554 Rcpt <recipient@example.net> does not exist',
+	  "smtp_code" => "554",
   },
 );
 
