@@ -40,6 +40,7 @@ t/corpus/msn-via-sendmail.unknown.msg
 t/corpus/non-autoreply.msg
 t/corpus/not-a-relay.msg
 t/corpus/novell-with-rhs.msg
+t/corpus/polish-unknown.msg
 t/corpus/postfix-host-unknown.msg
 t/corpus/postfix-malformed.msg
 t/corpus/postfix-orig.msg
