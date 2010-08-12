@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 108;
+use Test::More tests => 114;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -119,6 +119,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	  "reason" => '554 Rcpt <recipient@example.net> does not exist',
 	  "smtp_code" => "554",
   },
+  "polish-unknown.msg" => {
+		"reason" => "550 5.2.1 Mailbox not available / Konto niedostepne",
+		"smtp_code" => "550"
+	},
 );
 
 foreach my $file (keys %files_and_responses) {

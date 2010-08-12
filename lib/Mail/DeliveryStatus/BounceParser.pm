@@ -951,7 +951,8 @@ sub _std_reason {
 	/Recipient\s+<?$EMAIL_ADDR_REGEX>?\s+does\s+not\s+exist/i or
 	/recipient\s+no\s+longer\s+on\s+server/i or # me.com
 	/is\s+not\s+a\s+known\s+user\s+on\s+this\s+system/i or # cam.ac.uk
-	/Rcpt\s+<?$EMAIL_ADDR_REGEX>?\s+does\s+not\s+exist/i
+	/Rcpt\s+<?$EMAIL_ADDR_REGEX>?\s+does\s+not\s+exist/i or
+	/Mailbox\s+not\s+available/i 
   ) {
     return "user_unknown";
   }
