@@ -42,6 +42,7 @@ t/corpus/non-autoreply.msg
 t/corpus/not-a-relay.msg
 t/corpus/novell-with-rhs.msg
 t/corpus/polish-unknown.msg
+t/corpus/polish-autoreply.msg
 t/corpus/postfix-host-unknown.msg
 t/corpus/postfix-malformed.msg
 t/corpus/postfix-orig.msg
@@ -97,6 +98,7 @@ t/misidentified-recipient.t
 t/non-autoreply.t
 t/not-a-relay.t
 t/orig-message.t
+t/polish-autoreply.t
 t/pod-coverage.t
 t/pod.t
 t/postfix-malformed.t

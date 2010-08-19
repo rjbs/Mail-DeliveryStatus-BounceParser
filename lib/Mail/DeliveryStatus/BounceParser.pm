@@ -115,6 +115,7 @@ sub parse {
 
   my $parser = new MIME::Parser;
      $parser->output_to_core(1);
+	 $parser->decode_headers(1);
   my $message;
 
   if (not $data) {
@@ -222,6 +223,19 @@ sub parse {
 	last if $subject !~ /is out of the office/;
     $self->log("looks like a vacation autoreply, ignoring.");
     $self->{type} = "vacation autoreply";
+    $self->{is_bounce} = 0;
+    return $self;
+  }
+
+  # Polish auto-reply
+  {
+    last if $message->effective_type eq 'multipart/report';
+    last if !$first_part || $first_part->effective_type ne 'text/plain';
+	my $subject = $message->head->get('Subject');
+	last if !defined($subject);
+	last if $subject !~ /Automatyczna\s+odpowied/;
+    $self->log("looks like a polish autoreply, ignoring.");
+    $self->{type} = "polish autoreply";
     $self->{is_bounce} = 0;
     return $self;
   }
