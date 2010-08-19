@@ -983,7 +983,8 @@ sub _std_reason {
 	/550\s+relay\s+not\s+permitted/i or
 	/550\s+relaying\s+denied/i or
 	/Relay\s+access\s+denied/i or
-	/Relaying\s+denied/i
+	/Relaying\s+denied/i or
+	/No\s+such\s+domain\s+at\s+this\s+location/i
   ) {
     return "domain_error";
   }
