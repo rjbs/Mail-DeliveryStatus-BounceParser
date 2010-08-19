@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 12;
+use Test::More tests => 18;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -29,6 +29,11 @@ my %files_and_responses = (
     "reason"      => '[dest.example.com]: Name or service not known',
     "smtp_code"   =>  '',
     "recipient"   => 'bounce@dest.example.com'
+  },
+  "no-such-domain.msg" => {
+	"reason"	=> '550 No such domain at this location (recipient@example.net)',
+	"smtp_code"	=> "550",
+	"recipient"	=> 'recipient@example.net',
   },
 );
 
