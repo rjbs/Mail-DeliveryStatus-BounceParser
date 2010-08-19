@@ -26,6 +26,7 @@ t/corpus/att-via-sendmail.unknown.msg
 t/corpus/bluebottle.msg
 t/corpus/comcast-via-sendmail.unknown.msg
 t/corpus/cox-via-sendmail.unknown.msg
+t/corpus/deactivated-mailbox.msg
 t/corpus/domino.unknown.msg
 t/corpus/exchange.unknown.msg
 t/corpus/generic-postfix-via-sendmail.unknown.msg
