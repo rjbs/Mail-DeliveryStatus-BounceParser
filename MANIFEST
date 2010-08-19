@@ -34,6 +34,7 @@ t/corpus/hotmail-via-sendmail.unknown.msg
 t/corpus/iis-multiple-bounce.msg
 t/corpus/junkemailfilter.msg
 t/corpus/malformed-dns.msg
+t/corpus/mailbox-unknown.msg
 t/corpus/message-too-large.msg
 t/corpus/misidentified-recipient.msg
 t/corpus/msn-via-sendmail.unknown.msg

@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 114;
+use Test::More tests => 120;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -122,6 +122,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
   "polish-unknown.msg" => {
 		"reason" => "550 5.2.1 Mailbox not available / Konto niedostepne",
 		"smtp_code" => "550"
+	},
+  "mailbox-unknown.msg" => {
+		"reason" => "550 5.7.1 No mailbox found",
+		"smtp_code" => "550",
 	},
 );
 
