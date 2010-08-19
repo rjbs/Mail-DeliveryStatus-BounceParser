@@ -62,6 +62,7 @@ t/corpus/spam-rejection3.msg
 t/corpus/spam-rejection4.msg
 t/corpus/spam-rejection5.msg
 t/corpus/spam-rejection6.msg
+t/corpus/spam-rejection7.msg
 t/corpus/spam-with-badly-parsed-email.msg
 t/corpus/spam-with-image.msg
 t/corpus/spamassassin.msg
@@ -114,6 +115,7 @@ t/spam-rejection3.t
 t/spam-rejection4.t
 t/spam-rejection5.t
 t/spam-rejection6.t
+t/spam-rejection7.t
 t/spam-with-image.t
 t/spamassassin.t
 t/spambouncer.t
