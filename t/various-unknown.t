@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 126;
+use Test::More tests => 132;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -130,6 +130,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
   "deactivated-mailbox.msg" => {
 		"reason" => '551 <recipient@example.net> is a deactivated mailbox',
 		"smtp_code" => "551",
+	},
+	"user-unknown-dne.msg" => {
+		"reason" => "550 Recipient does not exist on this system",
+		"smtp_code" => "550"
 	},
 );
 
