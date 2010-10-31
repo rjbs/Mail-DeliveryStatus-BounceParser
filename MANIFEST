@@ -33,7 +33,6 @@ t/corpus/generic-postfix-via-sendmail.unknown.msg
 t/corpus/gmail-via-sendmail.unknown.msg
 t/corpus/hotmail-via-sendmail.unknown.msg
 t/corpus/iis-multiple-bounce.msg
-t/corpus/junkemailfilter.msg
 t/corpus/malformed-dns.msg
 t/corpus/mailbox-unknown.msg
 t/corpus/message-too-large.msg
@@ -94,7 +93,6 @@ t/corpus/user-unknown-dne.msg
 t/autoreply.t
 t/email_addr_regex.t
 t/iis-multiple-bounce.t
-t/junkemailfilter.t
 t/malformed-dns.t
 t/message-too-large.t
 t/misidentified-recipient.t

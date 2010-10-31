@@ -999,7 +999,6 @@ sub _std_reason {
     /Mail\s+appears\s+to\s+be\s+unsolicited/i or
     /Message\s+rejected\s+as\s+spam\s+by\s+Content\s+Filtering/i or
     /message\s+looks\s+like\s+SPAM\s+to\s+me/i or
-    /NOT\s+JUNKEMAILFILTER/i or
     /your\s+message\s+has\s+triggered\s+a\s+SPAM\s+block/i or
     /Spam\s+detected/i or
     /Message\s+looks\s+like\s+spam/i
