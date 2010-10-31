@@ -1,5 +1,12 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.525   2010-10-30
+        (all changes by mstevens)
+
+        domain_error now reported for bounces due to DNS error (5.4.4, etc)
+        message_too_large now reported for oversize deliveries
+        messages from challenge/response systems should be identified
+
 1.524   2010-06-10
         test for more cases of over quota and spam (mstevens)
 
