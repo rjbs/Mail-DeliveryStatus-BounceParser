@@ -1002,7 +1002,8 @@ sub _std_reason {
     /NOT\s+JUNKEMAILFILTER/i or
     /your\s+message\s+has\s+triggered\s+a\s+SPAM\s+block/i or
     /Spam\s+detected/i or
-    /Message\s+looks\s+like\s+spam/i
+    /Message\s+looks\s+like\s+spam/i or
+	/Message\s+content\s+rejected,\s+UBE/i
   ) {
     return "spam";
   }
