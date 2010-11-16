@@ -932,7 +932,8 @@ sub _std_reason {
     /User\s+mailbox\s+exceeds\s+allowed\s+size/i or
     /Mailbox\s+size\s+limit\s+exceeded/i or
     /message\s+size\s+\d+\s+exceeds\s+size\s+limit\s+\d+/i or
-    /max\s+message\s+size\s+exceeded/i
+    /max\s+message\s+size\s+exceeded/i or
+	/Benutzer\s+hat\s+zuviele\s+Mails\s+auf\s+dem\s+Server/i 
   ) {
     return "over_quota";
   }
