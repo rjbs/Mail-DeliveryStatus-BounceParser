@@ -191,6 +191,13 @@ sub parse {
     return $self;
   }
 
+  {
+    last unless $first_part->stringify_body =~ /Please add yourself to my Boxbe Guest List/;
+	$self->log("Looks like a challenge/response autoresponse; ignoring.");
+	$self->{type} = "Challenge / Response system autoreply";
+	$self->{is_bounce} = 0;
+  }
+
   # we'll deem autoreplies to be usually less than a certain size.
 
   # Some vacation autoreplies are (sigh) multipart/mixed, with an additional
