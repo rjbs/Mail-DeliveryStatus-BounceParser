@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 132;
+use Test::More tests => 138;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -134,6 +134,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	"user-unknown-dne.msg" => {
 		"reason" => "550 Recipient does not exist on this system",
 		"smtp_code" => "550"
+	},
+	"badrcptto.msg" => {
+		"reason" => "553 sorry, badrcptto(user mail-box not found) (#5.7.1)",
+		"smtp_code" => "553",
 	},
 );
 

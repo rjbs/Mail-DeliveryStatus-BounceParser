@@ -23,6 +23,7 @@ t/corpus/aol.attachment.msg
 t/corpus/aol.unknown.msg
 t/corpus/aol-vacation.msg
 t/corpus/att-via-sendmail.unknown.msg
+t/corpus/badrcptto.msg
 t/corpus/bluebottle.msg
 t/corpus/boxbe-cr.msg
 t/corpus/comcast-via-sendmail.unknown.msg
