@@ -979,7 +979,8 @@ sub _std_reason {
     /No\s+mailbox\s+found/i or
     /<?$EMAIL_ADDR_REGEX>?\s+is\s+a\s+deactivated\s+mailbox/i or
     /Recipient\s+does\s+not\s+exist\s+on\s+this\s+system/i or
-	/user\s+mail-box\s+not\s+found/i
+	/user\s+mail-box\s+not\s+found/i or
+	/No\s+mail\s+box\s+available\s+for\s+this\s+user/i
   ) {
     return "user_unknown";
   }

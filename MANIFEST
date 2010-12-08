@@ -42,6 +42,7 @@ t/corpus/message-too-large.msg
 t/corpus/misidentified-recipient.msg
 t/corpus/msn-via-sendmail.unknown.msg
 t/corpus/no-such-domain.msg
+t/corpus/nomailbox.msg
 t/corpus/non-autoreply.msg
 t/corpus/not-a-relay.msg
 t/corpus/novell-with-rhs.msg

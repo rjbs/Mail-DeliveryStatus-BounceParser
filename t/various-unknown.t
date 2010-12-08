@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 138;
+use Test::More tests => 144;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -139,6 +139,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 		"reason" => "553 sorry, badrcptto(user mail-box not found) (#5.7.1)",
 		"smtp_code" => "553",
 	},
+	"nomailbox.msg" => {
+		"reason" => "550 ** No mail box available for this user **",
+		"smtp_code" => "550",
+	}
 );
 
 foreach my $file (keys %files_and_responses) {
