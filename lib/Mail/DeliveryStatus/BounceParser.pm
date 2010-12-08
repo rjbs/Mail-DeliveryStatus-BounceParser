@@ -1013,7 +1013,9 @@ sub _std_reason {
     /your\s+message\s+has\s+triggered\s+a\s+SPAM\s+block/i or
     /Spam\s+detected/i or
     /Message\s+looks\s+like\s+spam/i or
-	/Message\s+content\s+rejected,\s+UBE/i
+	/Message\s+content\s+rejected,\s+UBE/i or
+	/Blocked\s+using\s+spam\s+pattern/i
+
   ) {
     return "spam";
   }
