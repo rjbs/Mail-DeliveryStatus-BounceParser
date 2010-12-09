@@ -970,7 +970,7 @@ sub _std_reason {
     /account not activated/i or                         # usa.net
     /not\s+our\s+customer/i or                          # Comcast
     /doesn't handle mail for that user/i or             # mailfoundry
-    /Address\s+does\s+not\s+exist/i or
+    /$user_re\s+does\s+not\s+exist/i or
     /Recipient\s+<?$EMAIL_ADDR_REGEX>?\s+does\s+not\s+exist/i or
     /recipient\s+no\s+longer\s+on\s+server/i or # me.com
     /is\s+not\s+a\s+known\s+user\s+on\s+this\s+system/i or # cam.ac.uk

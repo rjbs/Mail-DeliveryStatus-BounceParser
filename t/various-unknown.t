@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 150;
+use Test::More tests => 156;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -145,6 +145,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	},
 	"doesnotexist.msg" => {
 		"reason" => '550 User [recipient@example.net] does not exist',
+		"smtp_code" => "550",
+	},
+	"doesnotexist2.msg" => {
+		"reason" => "550 Recipient does not exist",
 		"smtp_code" => "550",
 	},
 );

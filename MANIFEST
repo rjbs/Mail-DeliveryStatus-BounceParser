@@ -31,6 +31,7 @@ t/corpus/cox-via-sendmail.unknown.msg
 t/corpus/deactivated-mailbox.msg
 t/corpus/domino.unknown.msg
 t/corpus/doesnotexist.msg
+t/corpus/doesnotexist2.msg
 t/corpus/exchange.unknown.msg
 t/corpus/generic-postfix-via-sendmail.unknown.msg
 t/corpus/gmail-via-sendmail.unknown.msg
