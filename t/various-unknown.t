@@ -1,6 +1,7 @@
 #!perl -wT
 use strict;
 
+# Add 6 to this for each case you add to %files_and_responses
 use Test::More tests => 156;
 
 use Mail::DeliveryStatus::BounceParser;
