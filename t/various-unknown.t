@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 144;
+use Test::More tests => 150;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -142,7 +142,11 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	"nomailbox.msg" => {
 		"reason" => "550 ** No mail box available for this user **",
 		"smtp_code" => "550",
-	}
+	},
+	"doesnotexist.msg" => {
+		"reason" => '550 User [recipient@example.net] does not exist',
+		"smtp_code" => "550",
+	},
 );
 
 foreach my $file (keys %files_and_responses) {
