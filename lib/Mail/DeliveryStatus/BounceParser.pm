@@ -198,6 +198,13 @@ sub parse {
 	$self->{is_bounce} = 0;
   }
 
+  {
+    last unless $first_part->stringify_body =~ /This\s+is\s+a\s+one-time\s+automated\s+message\s+to\s+confirm\s+that\s+you're\s+listed\s+on\s+my\s+Boxbe\s+Guest\s+List/;
+	$self->log("Looks like a challenge/response autoresponse; ignoring.");
+	$self->{type} = "Challenge / Response system autoreply";
+	$self->{is_bounce} = 0;
+  }
+
   # we'll deem autoreplies to be usually less than a certain size.
 
   # Some vacation autoreplies are (sigh) multipart/mixed, with an additional

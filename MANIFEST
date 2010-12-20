@@ -18,6 +18,7 @@ t/aol-attachment.t
 t/aol-senderblock.t
 t/bluebottle.t
 t/boxbe.t
+t/boxbe2.t
 t/corpus/aol-senderblock.msg
 t/corpus/aol.attachment.msg
 t/corpus/aol.unknown.msg
@@ -26,6 +27,7 @@ t/corpus/att-via-sendmail.unknown.msg
 t/corpus/badrcptto.msg
 t/corpus/bluebottle.msg
 t/corpus/boxbe-cr.msg
+t/corpus/boxbe-cr2.msg
 t/corpus/comcast-via-sendmail.unknown.msg
 t/corpus/cox-via-sendmail.unknown.msg
 t/corpus/deactivated-mailbox.msg
