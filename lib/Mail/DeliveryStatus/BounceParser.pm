@@ -418,7 +418,8 @@ sub parse {
       # Some MTAs send unsought delivery-status notifications indicating
       # success; others send RFC1892/RFC3464 delivery status notifications
       # for transient failures.
-      if (my $action = lc $report->get('Action')) {
+      if (defined $report->get('Action') and lc $report->get('Action')) {
+		my $action = lc $report->get('Action');
         $action =~ s/^\s+//;
         if ($action =~ s/^\s*([a-z]+)\b.*/$1/s) {
           # In general, assume that anything other than 'failed' is a
