@@ -184,7 +184,7 @@ sub parse {
   }
 
   {
-    last unless $first_part->stringify_body =~ /Your server requires confirmation/;
+    last unless defined $first_part and $first_part->stringify_body =~ /Your server requires confirmation/;
     $self->log("Looks like a challenge/response autoresponse; ignoring.");
     $self->{type} = "Challenge / Response system autoreply";
     $self->{is_bounce} = 0;
@@ -192,14 +192,14 @@ sub parse {
   }
 
   {
-    last unless $first_part->stringify_body =~ /Please add yourself to my Boxbe Guest List/;
+    last unless defined $first_part and $first_part->stringify_body =~ /Please add yourself to my Boxbe Guest List/;
 	$self->log("Looks like a challenge/response autoresponse; ignoring.");
 	$self->{type} = "Challenge / Response system autoreply";
 	$self->{is_bounce} = 0;
   }
 
   {
-    last unless $first_part->stringify_body =~ /This\s+is\s+a\s+one-time\s+automated\s+message\s+to\s+confirm\s+that\s+you're\s+listed\s+on\s+my\s+Boxbe\s+Guest\s+List/;
+    last unless defined $first_part and $first_part->stringify_body =~ /This\s+is\s+a\s+one-time\s+automated\s+message\s+to\s+confirm\s+that\s+you're\s+listed\s+on\s+my\s+Boxbe\s+Guest\s+List/;
 	$self->log("Looks like a challenge/response autoresponse; ignoring.");
 	$self->{type} = "Challenge / Response system autoreply";
 	$self->{is_bounce} = 0;

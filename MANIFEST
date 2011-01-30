@@ -46,6 +46,7 @@ t/corpus/message-too-large.msg
 t/corpus/misidentified-recipient.msg
 t/corpus/msn-via-sendmail.unknown.msg
 t/corpus/no-such-domain.msg
+t/corpus/no-message-collected.msg
 t/corpus/nomailbox.msg
 t/corpus/non-autoreply.msg
 t/corpus/not-a-relay.msg
@@ -108,6 +109,7 @@ t/junkemailfilter.t
 t/malformed-dns.t
 t/message-too-large.t
 t/misidentified-recipient.t
+t/no-message-collected.t
 t/non-autoreply.t
 t/not-a-relay.t
 t/orig-message.t
