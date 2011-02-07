@@ -102,6 +102,7 @@ t/corpus/whitelist.msg
 t/corpus/rcpthosts.msg
 t/corpus/rcpt-dne.msg
 t/corpus/user-unknown-dne.msg
+t/corpus/user-unknown-disabled.msg
 t/autoreply.t
 t/email_addr_regex.t
 t/iis-multiple-bounce.t

@@ -2,7 +2,7 @@
 use strict;
 
 # Add 6 to this for each case you add to %files_and_responses
-use Test::More tests => 156;
+use Test::More tests => 162;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -150,6 +150,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	},
 	"doesnotexist2.msg" => {
 		"reason" => "550 Recipient does not exist",
+		"smtp_code" => "550",
+	},
+	"user-unknown-disabled.msg" => {
+		"reason" => "550 5.2.1 The email account that you tried to reach is     disabled. t11si6005099wes.103",
 		"smtp_code" => "550",
 	},
 );
