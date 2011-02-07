@@ -1025,8 +1025,8 @@ sub _std_reason {
     /Spam\s+detected/i or
     /Message\s+looks\s+like\s+spam/i or
 	/Message\s+content\s+rejected,\s+UBE/i or
-	/Blocked\s+using\s+spam\s+pattern/i
-
+	/Blocked\s+using\s+spam\s+pattern/i or
+	/breaches\s+local\s+URIBL\s+policy/i
   ) {
     return "spam";
   }
