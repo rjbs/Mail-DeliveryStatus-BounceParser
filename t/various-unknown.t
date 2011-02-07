@@ -2,7 +2,7 @@
 use strict;
 
 # Add 6 to this for each case you add to %files_and_responses
-use Test::More tests => 162;
+use Test::More tests => 168;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -156,6 +156,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 		"reason" => "550 5.2.1 The email account that you tried to reach is     disabled. t11si6005099wes.103",
 		"smtp_code" => "550",
 	},
+	"user-unknown-not-active.msg" => {
+		"reason" => '550-recipient@example.net is not an active address at this     host (invalid FreeUK 550 username)',
+		"smtp_code" => "550",
+		},
 );
 
 foreach my $file (keys %files_and_responses) {

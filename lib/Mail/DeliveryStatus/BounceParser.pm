@@ -990,7 +990,8 @@ sub _std_reason {
 	/user\s+mail-box\s+not\s+found/i or
 	/No\s+mail\s+box\s+available\s+for\s+this\s+user/i or
 	/User\s+\[\S+\]\s+does\s+not\s+exist/i or
-	/email\s+account\s+that\s+you\s+tried\s+to\s+reach\s+is\s+disabled/i
+	/email\s+account\s+that\s+you\s+tried\s+to\s+reach\s+is\s+disabled/i or
+	/not\s+an\s+active\s+address\s+at\s+this\s+host/i
   ) {
     return "user_unknown";
   }
