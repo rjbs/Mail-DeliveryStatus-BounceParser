@@ -6,7 +6,7 @@ returns a structured description of the addresses that bounced and
 why they bounced; it also returns information about the original
 returned message, where possible, including the Message-ID.
 
-INSTALLATION
+INSTALLATION 
 
 To install this module type the following:
 
