@@ -42,7 +42,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '1.525';
+our $VERSION = '1.526';
 $VERSION = eval $VERSION;
 
 use MIME::Parser;
@@ -896,8 +896,8 @@ Original author: Meng Weng Wong, E<lt>mengwong+bounceparser@pobox.comE<gt>
 
 Current maintainer: Ricardo SIGNES, E<lt>rjbs@cpan.orgE<gt>
 
-Massive contributions to the 1.5xx series were made by William Yardley.
-Ricardo mostly just helped out and managed releases.
+Massive contributions to the 1.5xx series were made by William Yardley and
+Michael Stevens.  Ricardo mostly just helped out and managed releases.
 
 =head1 COPYRIGHT AND LICENSE
 

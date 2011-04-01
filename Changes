@@ -1,5 +1,13 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.526   2011-04-01
+
+        more cases of over quota (mstevens)
+
+        misc. bug fixes (mstevens)
+
+        RJBS apologizes for the state of the git repository at tag 1.526
+
 1.525   2010-10-30
         (all changes by mstevens)
 
@@ -30,7 +38,7 @@ Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
         Removed p_ms preprocessor (should be needed anymore)
         Fixed bug 21249 (extra \n causing message not to be parsed)
         Added test for above
-        
+
 1.516   Tue Sep 26 2006
         (most maintenance by William Yardley)
         fix manifest
