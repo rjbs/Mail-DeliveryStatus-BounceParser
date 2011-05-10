@@ -1029,7 +1029,8 @@ sub _std_reason {
 	/breaches\s+local\s+URIBL\s+policy/i or
 	/Your\s+email\s+had\s+spam-like\s+header\s+contents/i or
 	/detected\s+as\s+spam/i or
-	/Denied\s+due\s+to\s+spam\s+list/i
+	/Denied\s+due\s+to\s+spam\s+list/i or
+	/appears\s+to\s+be\s+unsolicited/i
   ) {
     return "spam";
   }
