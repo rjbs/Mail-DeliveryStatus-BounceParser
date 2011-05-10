@@ -1,6 +1,6 @@
 package Mail::DeliveryStatus::Report;
 
-our $VERSION = '1.526';
+our $VERSION = '1.527';
 $VERSION = eval $VERSION;
 
 use Mail::Header;

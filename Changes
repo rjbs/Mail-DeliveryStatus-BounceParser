@@ -1,5 +1,9 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.527   2011-04-07
+
+        add another spam detection case (mstevens)
+
 1.526   2011-04-01
 
         more cases of over quota (mstevens)
