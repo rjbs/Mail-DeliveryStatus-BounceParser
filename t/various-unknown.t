@@ -2,7 +2,7 @@
 use strict;
 
 # Add 6 to this for each case you add to %files_and_responses
-use Test::More tests => 168;
+use Test::More tests => 174;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -160,6 +160,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 		"reason" => '550-recipient@example.net is not an active address at this     host (invalid FreeUK 550 username)',
 		"smtp_code" => "550",
 		},
+	"user-unknown-not.msg" => {
+		"reason" => '550 "recipient@example.net" is not a known user',
+		"smtp_code" => "550",
+		}
 );
 
 foreach my $file (keys %files_and_responses) {

@@ -107,6 +107,7 @@ t/corpus/whitelist.msg
 t/corpus/rcpthosts.msg
 t/corpus/rcpt-dne.msg
 t/corpus/user-unknown-dne.msg
+t/corpus/user-unknown-not.msg
 t/corpus/user-unknown-disabled.msg
 t/corpus/user-unknown-not-active.msg
 t/autoreply.t
