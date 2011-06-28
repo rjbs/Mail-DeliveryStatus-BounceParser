@@ -1031,7 +1031,8 @@ sub _std_reason {
 	/Your\s+email\s+had\s+spam-like\s+header\s+contents/i or
 	/detected\s+as\s+spam/i or
 	/Denied\s+due\s+to\s+spam\s+list/i or
-	/appears\s+to\s+be\s+unsolicited/i
+	/appears\s+to\s+be\s+unsolicited/i or
+	/antispam\s+checks/i
   ) {
     return "spam";
   }
