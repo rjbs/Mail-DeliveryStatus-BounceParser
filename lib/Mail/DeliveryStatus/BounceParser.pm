@@ -1033,7 +1033,8 @@ sub _std_reason {
 	/Denied\s+due\s+to\s+spam\s+list/i or
 	/appears\s+to\s+be\s+unsolicited/i or
 	/antispam\s+checks/i or
-	/Probable\s+Spam/i
+	/Probable\s+Spam/i or
+	/ESETS_SMTP\s+\(spam\)/i
   ) {
     return "spam";
   }
