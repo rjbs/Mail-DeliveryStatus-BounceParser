@@ -87,6 +87,7 @@ t/corpus/spam-rejection15.msg
 t/corpus/spam-rejection16.msg
 t/corpus/spam-rejection17.msg
 t/corpus/spam-rejection18.msg
+t/corpus/spam-rejection19.msg
 t/corpus/spam-rejection-uribl.msg
 t/corpus/spam-with-badly-parsed-email.msg
 t/corpus/spam-with-image.msg
@@ -159,6 +160,7 @@ t/spam-rejection15.t
 t/spam-rejection16.t
 t/spam-rejection17.t
 t/spam-rejection18.t
+t/spam-rejection19.t
 t/spam-rejection-uribl.t
 t/spam-with-image.t
 t/spamassassin.t
