@@ -1035,7 +1035,8 @@ sub _std_reason {
 	/antispam\s+checks/i or
 	/Probable\s+Spam/i or
 	/ESETS_SMTP\s+\(spam\)/i or
-	/this\s+message\s+appears\s+to\s+be\s+spam/i
+	/this\s+message\s+appears\s+to\s+be\s+spam/i or
+	/Spam\s+score\s+\(\S+\)\s+too\s+high/i
   ) {
     return "spam";
   }
