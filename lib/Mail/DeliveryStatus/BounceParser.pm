@@ -1038,7 +1038,8 @@ sub _std_reason {
 	/this\s+message\s+appears\s+to\s+be\s+spam/i or
 	/Spam\s+score\s+\(\S+\)\s+too\s+high/i or
 	/matches\s+a\s+profile\s+the\s+Internet\s+community\s+may\s+consider\s+spam/i or
-	/accepted\s+due\s+to\s+spam\s+filter/i
+	/accepted\s+due\s+to\s+spam\s+filter/i or
+	/content\s+filter\s+rejection/i
   ) {
     return "spam";
   }
