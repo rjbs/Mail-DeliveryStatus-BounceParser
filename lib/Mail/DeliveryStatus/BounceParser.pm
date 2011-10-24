@@ -1040,7 +1040,8 @@ sub _std_reason {
 	/matches\s+a\s+profile\s+the\s+Internet\s+community\s+may\s+consider\s+spam/i or
 	/accepted\s+due\s+to\s+spam\s+filter/i or
 	/content\s+filter\s+rejection/i or
-	/using\s+a\s+mass\s+mailer/i
+	/using\s+a\s+mass\s+mailer/i or
+	/Spam\s+email/i
   ) {
     return "spam";
   }
