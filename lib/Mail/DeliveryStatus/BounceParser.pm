@@ -1041,7 +1041,8 @@ sub _std_reason {
 	/accepted\s+due\s+to\s+spam\s+filter/i or
 	/content\s+filter\s+rejection/i or
 	/using\s+a\s+mass\s+mailer/i or
-	/Spam\s+email/i
+	/Spam\s+email/i or
+	/Spam\s+content\s+matched/i
   ) {
     return "spam";
   }
