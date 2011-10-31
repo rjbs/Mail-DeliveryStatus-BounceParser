@@ -939,7 +939,6 @@ sub _std_reason {
     /\s#?5\.2\.2\s/     or                                # rfc 1893
     /User\s+mailbox\s+exceeds\s+allowed\s+size/i or
     /Mailbox\s+size\s+limit\s+exceeded/i or
-    /message\s+size\s+\d+\s+exceeds\s+size\s+limit\s+\d+/i or
     /max\s+message\s+size\s+exceeded/i or
 	/Benutzer\s+hat\s+zuviele\s+Mails\s+auf\s+dem\s+Server/i 
   ) {
@@ -1049,7 +1048,8 @@ sub _std_reason {
   }
 
   if (
-    /RESOLVER.RST.RecipSizeLimit/i
+    /RESOLVER.RST.RecipSizeLimit/i or
+	/exceeds\s+size\s+limit/i
   ) {
     return "message_too_large";
   }

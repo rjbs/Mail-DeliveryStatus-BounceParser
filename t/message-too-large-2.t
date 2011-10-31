@@ -15,7 +15,7 @@ sub readfile {
   return $text;
 }
 
-my $message = readfile('t/corpus/quota-3.msg');
+my $message = readfile('t/corpus/message-too-large-2.msg');
 
 my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
 
@@ -26,4 +26,4 @@ my ($report) = $bounce->reports;
 
 my $std_reason = $report->get("std_reason");
 
-is($std_reason, "over_quota", "std reason is over_quota");
+is($std_reason, "message_too_large", "std reason is message-too-large");
