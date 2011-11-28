@@ -1042,7 +1042,8 @@ sub _std_reason {
 	/using\s+a\s+mass\s+mailer/i or
 	/Spam\s+email/i or
 	/Spam\s+content\s+matched/i or
-	(/CONTENT\s+REJECT/i and /dspam\s+check/i) 
+	(/CONTENT\s+REJECT/i and /dspam\s+check/i) or
+	/this\s+email\s+is\s+spam/i
   ) {
     return "spam";
   }
