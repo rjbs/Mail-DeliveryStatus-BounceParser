@@ -1043,7 +1043,8 @@ sub _std_reason {
 	/Spam\s+email/i or
 	/Spam\s+content\s+matched/i or
 	(/CONTENT\s+REJECT/i and /dspam\s+check/i) or
-	/this\s+email\s+is\s+spam/i
+	/this\s+email\s+is\s+spam/i or
+	/rejected\s+as\s+spam/i
   ) {
     return "spam";
   }
