@@ -407,7 +407,7 @@ sub parse {
       # added the following line as part of fix for #41874
       $para =~ s/\r/ /g;
 
-      my $report = Mail::Header->new([split /\n/, $para]);
+      my $report = Mail::DeliveryStatus::Report->new([split /\n/, $para]);
 
       # Removed a $report->combine here - doesn't seem to work without a tag
       # anyway... not sure what that was for. - wby 20060823
@@ -477,7 +477,9 @@ sub parse {
         $report->delete("reason");
       }
 
-      if (my $status = $report->get('Status')) {
+      my $status = $report->get('Status');
+
+      if ($status) {
         # RFC 1893... prefer Status: if it exists and is something we know
         # about
         # Not 100% sure about 5.1.0...
@@ -487,10 +489,7 @@ sub parse {
           $report->replace(std_reason => "domain_error");
         } elsif ($status eq "5.2.2") {
           $report->replace(std_reason => "over_quota");
-          # this fits my reading of RFC 3463
-          # FIXME: I suspect there's something wrong with the parsing earlier
-          # that this has to be a regexp rather than a straight comparison
-        } elsif ($status =~ /^5\.4\.4/) {
+        } elsif ($status eq "5.4.4") {
           $report->replace(std_reason => "domain_error");
         } else {
           $report->replace(
@@ -516,6 +515,11 @@ sub parse {
       if (defined $diag_code) {
         ($code) = $diag_code =~
          m/ ( ( [245] \d{2} ) \s | \s ( [245] \d{2} ) (?!\.) ) /x;
+      }
+
+      if (!$code && $status) {
+          $code = $status;
+          $code =~ s/\.//g;
       }
 
       if ($code) {
