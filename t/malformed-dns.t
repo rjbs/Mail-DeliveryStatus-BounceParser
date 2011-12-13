@@ -30,7 +30,4 @@ my $std_reason = $report->get("std_reason");
 
 is($std_reason, "domain_error", "std reason is domain_error");
 
-TODO: {
-	local $TODO = "status should be extracted correctly";
-	is($report->get("status"), "5.4.4", "check status code is extracted ok");
-};
+is($report->get("Status"), "5.4.4", "check status code is extracted ok");
