@@ -68,9 +68,7 @@ my %files_and_responses = (
 
   Subject: Test Bounce
 
-was not delivered to:
-
- ',
+was not delivered to:',
     "smtp_code"   =>  '',
   },
   "aol.unknown.msg"                             => {

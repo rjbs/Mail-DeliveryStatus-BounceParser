@@ -27,7 +27,7 @@ my %files_and_responses = (
   },
   "postfix-host-unknown.msg"                => {
     "reason"      => '[dest.example.com]: Name or service not known',
-    "smtp_code"   =>  '',
+    "smtp_code"   =>  500,
     "recipient"   => 'bounce@dest.example.com'
   },
   "no-such-domain.msg" => {
