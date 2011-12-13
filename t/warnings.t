@@ -41,9 +41,7 @@ my ($report2) = $bounce2->reports;
 
 my $std_reason2 = $report2->get("std_reason");
 
-# FIXME: later obviously we'll fix this to be something better than "unknown"
-# but for now it's the expected behaviour.
-is($std_reason2, "unknown", "std reason is unknown");
+is($std_reason2, "user_unknown", "std reason is user_unknown");
 
 my $message3 = readfile('t/corpus/warning-3.msg');
 my $bounce3 = Mail::DeliveryStatus::BounceParser->new($message3);
@@ -67,7 +65,7 @@ my ($report4) = $bounce4->reports;
 
 my $std_reason4 = $report4->get("std_reason");
 
-is($std_reason4, "unknown", "std reason is unknown");
+is($std_reason4, "over_quota", "std reason is over_quota");
 
 my $message5 = readfile('t/corpus/warning-5.msg');
 my $bounce5 = Mail::DeliveryStatus::BounceParser->new($message5);

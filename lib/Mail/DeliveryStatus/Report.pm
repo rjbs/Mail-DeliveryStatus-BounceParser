@@ -15,7 +15,7 @@ BEGIN { @ISA = qw(Mail::Header) };
 sub get {
   my $string = $_[0]->SUPER::get($_[1]);
   $string = q{} unless defined $string and length $string;
-  chomp $string;
+  $string =~ s/\s+$//s;
   return $string;
 }
 
