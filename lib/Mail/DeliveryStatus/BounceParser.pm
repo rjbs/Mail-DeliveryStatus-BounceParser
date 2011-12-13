@@ -478,6 +478,7 @@ sub parse {
       }
 
       my $status = $report->get('Status');
+      $report->replace(Status => $status) if $status =~ s/ \(permanent failure\)$//;
 
       if ($status) {
         # RFC 1893... prefer Status: if it exists and is something we know
@@ -487,6 +488,8 @@ sub parse {
           $report->replace(std_reason => "user_unknown");
         } elsif ($status eq "5.1.2") {
           $report->replace(std_reason => "domain_error");
+        } elsif ($status eq "5.2.1") {
+          $report->replace(std_reason => "user_disabled");
         } elsif ($status eq "5.2.2") {
           $report->replace(std_reason => "over_quota");
         } elsif ($status eq "5.4.4") {
@@ -762,6 +765,7 @@ standardized reasons:
 
   user_unknown
   over_quota
+  user_disabled
   domain_error
   spam
   message_too_large
