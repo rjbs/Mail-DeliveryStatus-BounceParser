@@ -44,6 +44,8 @@ t/corpus/malformed-dns.msg
 t/corpus/mailbox-unknown.msg
 t/corpus/message-too-large.msg
 t/corpus/message-too-large-2.msg
+t/corpus/message-too-large-3.msg
+t/corpus/message-too-large-4.msg
 t/corpus/misidentified-recipient.msg
 t/corpus/msn-via-sendmail.unknown.msg
 t/corpus/no-such-domain.msg
@@ -61,7 +63,6 @@ t/corpus/postfix-smtp-550.msg
 t/corpus/postfix.msg
 t/corpus/qmail.unknown.msg
 t/corpus/quota-2.msg
-t/corpus/message-too-large-3.msg
 t/corpus/quota-4.msg
 t/corpus/quota-5.msg
 t/corpus/quota-6.msg
@@ -134,6 +135,8 @@ t/junkemailfilter.t
 t/malformed-dns.t
 t/message-too-large.t
 t/message-too-large-2.t
+t/message-too-large-3.t
+t/message-too-large-4.t
 t/misidentified-recipient.t
 t/no-message-collected.t
 t/non-autoreply.t
@@ -146,7 +149,6 @@ t/postfix-malformed.t
 t/postfix.t
 t/rcpthosts.t
 t/quota-2.t
-t/message-too-large-3.t
 t/quota-4.t
 t/quota-5.t
 t/quota-6.t

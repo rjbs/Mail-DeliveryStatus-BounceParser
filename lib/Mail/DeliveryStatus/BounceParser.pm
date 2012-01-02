@@ -1059,7 +1059,8 @@ sub _std_reason {
 
   if (
     /RESOLVER.RST.RecipSizeLimit/i or
-	/exceeds\s+size\s+limit/i
+	/exceeds\s+size\s+limit/i or
+	/Message\s+too\s+big/i
   ) {
     return "message_too_large";
   }
