@@ -1,5 +1,8 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.529   xxxx-xx-xx
+
+        Patches from Ondeej Brablc to improve status parsing.
 
 1.528	2011-12-09
 
