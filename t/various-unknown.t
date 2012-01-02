@@ -2,7 +2,7 @@
 use strict;
 
 # Add 6 to this for each case you add to %files_and_responses
-use Test::More tests => 174;
+use Test::More tests => 162;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -101,11 +101,6 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	  "reason" => '553 5.3.0 <recipient@example.net>... Address does not     exist',
 	  "smtp_code" => "553",
   },
-  "user-unknown-polish.msg" => {
-	  # reason is a little ugly
-	  "reason" => '501 5.1.3 Odbiorca <recipient@example.net> nie     istnieje / Recipient <recipient@example.net> does not exist',
-	  "smtp_code" => "501",
-	  },
   "me-user-unknown.msg" => {
 	  "reason" => '550 5.1.6 recipient no longer on server: recipient@example.net',
 	  "smtp_code" => "550",
@@ -118,10 +113,7 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	  "reason" => '554 Rcpt <recipient@example.net> does not exist',
 	  "smtp_code" => "554",
   },
-  "polish-unknown.msg" => {
-		"reason" => "550 5.2.1 Mailbox not available / Konto niedostepne",
-		"smtp_code" => "550"
-	},
+
   "mailbox-unknown.msg" => {
 		"reason" => "550 5.7.1 No mailbox found",
 		"smtp_code" => "550",
@@ -150,10 +142,6 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 		"reason" => "550 Recipient does not exist",
 		"smtp_code" => "550",
 	},
-	"user-unknown-disabled.msg" => {
-		"reason" => "550 5.2.1 The email account that you tried to reach is     disabled. t11si6005099wes.103",
-		"smtp_code" => "550",
-	},
 	"user-unknown-not-active.msg" => {
 		"reason" => '550-recipient@example.net is not an active address at this     host (invalid FreeUK 550 username)',
 		"smtp_code" => "550",
@@ -161,7 +149,12 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 	"user-unknown-not.msg" => {
 		"reason" => '550 "recipient@example.net" is not a known user',
 		"smtp_code" => "550",
-		}
+		},
+	"user-unknown-polish.msg" => {
+		# reason is a little ugly
+		"reason" => '501 5.1.3 Odbiorca <recipient@example.net> nie     istnieje / Recipient <recipient@example.net> does not exist',
+		"smtp_code" => "501",
+	},
 );
 
 foreach my $file (keys %files_and_responses) {

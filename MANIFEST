@@ -186,6 +186,7 @@ t/spamassassin.t
 t/spambouncer.t
 t/status-209.t
 t/surfcontrol-extra-newline.t
+t/user-disabled.t
 t/various-domain.t
 t/various-unknown.t
 t/virus-caused-multiple-weird-reports.t
