@@ -6,6 +6,10 @@ Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 		
         Adds new user_disabled standard reason.
 
+        add another spam detection case (mstevens)
+
+        add another message too large case (mstevens)
+
 1.528	2011-12-09
 
         Lots more spam detection (mstevens)
