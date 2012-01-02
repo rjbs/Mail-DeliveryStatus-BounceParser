@@ -1049,7 +1049,7 @@ sub _std_reason {
 	/content\s+filter\s+rejection/i or
 	/using\s+a\s+mass\s+mailer/i or
 	/Spam\s+email/i or
-	/Spam\s+content\s+matched/i or
+	/Spam\s+content/i or
 	(/CONTENT\s+REJECT/i and /dspam\s+check/i) or
 	/this\s+email\s+is\s+spam/i or
 	/rejected\s+as\s+spam/i
