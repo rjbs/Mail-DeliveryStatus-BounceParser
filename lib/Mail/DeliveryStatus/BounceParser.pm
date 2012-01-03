@@ -42,7 +42,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '1.528';
+our $VERSION = '1.529';
 $VERSION = eval $VERSION;
 
 use MIME::Parser;
