@@ -2,7 +2,7 @@
 use strict;
 
 # Add 6 to this for each case you add to %files_and_responses
-use Test::More tests => 162;
+use Test::More tests => 168;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -154,6 +154,10 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 		# reason is a little ugly
 		"reason" => '501 5.1.3 Odbiorca <recipient@example.net> nie     istnieje / Recipient <recipient@example.net> does not exist',
 		"smtp_code" => "501",
+	},
+	"user-unknown-bad.msg" => {
+		"reason" => "550 BAD_RECIPIENT - see     http://www.mail.sample.ac.uk/undelivered.php?r=BAD_RECIPIENT&e=YXBwMDlAYWJlci5hYy51aw==",
+		"smtp_code" => "550",
 	},
 );
 

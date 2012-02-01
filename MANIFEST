@@ -129,6 +129,7 @@ t/corpus/user-unknown-dne.msg
 t/corpus/user-unknown-not.msg
 t/corpus/user-unknown-disabled.msg
 t/corpus/user-unknown-not-active.msg
+t/corpus/user-unknown-bad.msg
 t/autoreply.t
 t/email_addr_regex.t
 t/iis-multiple-bounce.t

@@ -999,7 +999,8 @@ sub _std_reason {
 	/User\s+\[\S+\]\s+does\s+not\s+exist/i or
 	/email\s+account\s+that\s+you\s+tried\s+to\s+reach\s+is\s+disabled/i or
 	/not\s+an\s+active\s+address\s+at\s+this\s+host/i or
-	/not\s+a\s+known\s+user/i
+	/not\s+a\s+known\s+user/i or
+	/BAD_RECIPIENT/i
   ) {
     return "user_unknown";
   }
