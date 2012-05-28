@@ -46,6 +46,7 @@ t/corpus/message-too-large.msg
 t/corpus/message-too-large-2.msg
 t/corpus/message-too-large-3.msg
 t/corpus/message-too-large-4.msg
+t/corpus/message-too-large-5.msg
 t/corpus/misidentified-recipient.msg
 t/corpus/msn-via-sendmail.unknown.msg
 t/corpus/no-such-domain.msg
@@ -103,6 +104,7 @@ t/corpus/spam-rejection28.msg
 t/corpus/spam-rejection29.msg
 t/corpus/spam-rejection30.msg
 t/corpus/spam-rejection31.msg
+t/corpus/spam-rejection32.msg
 t/corpus/spam-rejection-uribl.msg
 t/corpus/spam-with-badly-parsed-email.msg
 t/corpus/spam-with-image.msg
@@ -141,6 +143,7 @@ t/message-too-large.t
 t/message-too-large-2.t
 t/message-too-large-3.t
 t/message-too-large-4.t
+t/message-too-large-5.t
 t/misidentified-recipient.t
 t/no-message-collected.t
 t/non-autoreply.t

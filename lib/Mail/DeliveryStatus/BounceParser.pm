@@ -1056,7 +1056,8 @@ sub _std_reason {
 	/rejected\s+as\s+spam/i or
 	/MCSpamSignature/i or
 	/identified\s+as\s+spam/i or
-	/Spamming\s+not\s+allowed/i
+	/Spamming\s+not\s+allowed/i or
+	/classified\s+as\s+spam/i
   ) {
     return "spam";
   }
@@ -1064,7 +1065,8 @@ sub _std_reason {
   if (
     /RESOLVER.RST.RecipSizeLimit/i or
 	/exceeds\s+size\s+limit/i or
-	/Message\s+too\s+big/i
+	/Message\s+too\s+big/i or
+	/RESOLVER.RST.SendSizeLimit/i
   ) {
     return "message_too_large";
   }
