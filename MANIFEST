@@ -106,6 +106,7 @@ t/corpus/spam-rejection29.msg
 t/corpus/spam-rejection30.msg
 t/corpus/spam-rejection31.msg
 t/corpus/spam-rejection32.msg
+t/corpus/spam-rejection33.msg
 t/corpus/spam-rejection-uribl.msg
 t/corpus/spam-with-badly-parsed-email.msg
 t/corpus/spam-with-image.msg
