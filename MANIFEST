@@ -47,6 +47,7 @@ t/corpus/message-too-large-2.msg
 t/corpus/message-too-large-3.msg
 t/corpus/message-too-large-4.msg
 t/corpus/message-too-large-5.msg
+t/corpus/message-too-large-6.msg
 t/corpus/misidentified-recipient.msg
 t/corpus/msn-via-sendmail.unknown.msg
 t/corpus/no-such-domain.msg
@@ -147,6 +148,7 @@ t/message-too-large-2.t
 t/message-too-large-3.t
 t/message-too-large-4.t
 t/message-too-large-5.t
+t/message-too-large-6.t
 t/misidentified-recipient.t
 t/no-message-collected.t
 t/non-autoreply.t

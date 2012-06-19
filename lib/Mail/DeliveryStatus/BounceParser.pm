@@ -1069,7 +1069,8 @@ sub _std_reason {
     /RESOLVER.RST.RecipSizeLimit/i or
 	/exceeds\s+size\s+limit/i or
 	/Message\s+too\s+big/i or
-	/RESOLVER.RST.SendSizeLimit/i
+	/RESOLVER.RST.SendSizeLimit/i or
+	/Message\s+Rejected\s+Class=size/i
   ) {
     return "message_too_large";
   }
