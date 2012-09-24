@@ -1063,7 +1063,8 @@ sub _std_reason {
 	/Your\s+email\s+appears\s+similar\s+to\s+spam/i or
 	/This\s+message\s+scored\s+\S+\s+spam\s+points\s+and\s+has\s+been\s+rejected/i or
 	/Spam\s+Blocked/i or
-	/bulk\s+e?mail/i
+	/bulk\s+e?mail/i or
+	/probably\s+spam/i
   ) {
     return "spam";
   }
