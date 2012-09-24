@@ -1062,7 +1062,8 @@ sub _std_reason {
     /Message\s+refused\s+by\s+MailMarshal\s+SpamProfiler/i or
 	/Your\s+email\s+appears\s+similar\s+to\s+spam/i or
 	/This\s+message\s+scored\s+\S+\s+spam\s+points\s+and\s+has\s+been\s+rejected/i or
-	/Spam\s+Blocked/i
+	/Spam\s+Blocked/i or
+	/bulk\s+e?mail/i
   ) {
     return "spam";
   }

@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 108;
+use Test::More tests => 111;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -52,7 +52,8 @@ my @files = ("spam-rejection.msg",
 	     "spam-rejection33.msg",
 	     "spam-rejection34.msg",
 		 "spam-rejection35.msg",
-		 "spam-rejection36.msg"
+		 "spam-rejection36.msg",
+		 "spam-rejection37.msg"
     );
 
 foreach my $file (@files) {
