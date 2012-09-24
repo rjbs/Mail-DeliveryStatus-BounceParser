@@ -14,6 +14,6 @@ requires		('MIME::Entity' => 5.418); # topic localization bug fixed
 requires		("Mail::Header"	=> 2.04); # known to work with current version
 test_requires	('Test::More' => 0.94); # known to work with current version
 
-repository('http://github.com/rjbs/mail-deliverystatus-bounceparser');
+repository('https://gitorious.org/mail-deliverystatus-bounceparser-fork/mail-deliverystatus-bounceparser-fork');
 
 WriteAll();
