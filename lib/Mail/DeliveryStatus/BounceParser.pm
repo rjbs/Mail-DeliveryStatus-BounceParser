@@ -42,7 +42,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '1.532';
+our $VERSION = '1.533';
 $VERSION = eval $VERSION;
 
 use MIME::Parser;
@@ -1064,7 +1064,8 @@ sub _std_reason {
 	/This\s+message\s+scored\s+\S+\s+spam\s+points\s+and\s+has\s+been\s+rejected/i or
 	/Spam\s+Blocked/i or
 	/bulk\s+e?mail/i or
-	/probably\s+spam/i
+	/probably\s+spam/i or
+	/appears\s+to\s+be\s+SPAM/i
   ) {
     return "spam";
   }
