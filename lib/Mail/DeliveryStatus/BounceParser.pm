@@ -1065,7 +1065,8 @@ sub _std_reason {
 	/Spam\s+Blocked/i or
 	/bulk\s+e?mail/i or
 	/probably\s+spam/i or
-	/appears\s+to\s+be\s+SPAM/i
+	/appears\s+to\s+be\s+SPAM/i or
+         /SPAM NOT ACCEPTED/i
   ) {
     return "spam";
   }
