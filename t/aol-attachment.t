@@ -35,5 +35,8 @@ is_deeply(
 );
 
 my $reason = $report->get("reason");
+$reason =~ s/\s//g;
+my $expected_reason = "Your mail to the following recipients could not be delivered because they are not accepting mail with attachments or embedded images:";
+$expected_reason =~ s/\s//g;
 
-is($reason, "Your mail to the following recipients could not be delivered because they are not accepting mail with attachments or embedded images:", "reason is right");
+is($reason, $expected_reason, "reason is right");

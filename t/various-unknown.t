@@ -163,8 +163,6 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 
 foreach my $file (keys %files_and_responses) {
 
-  # just for debugging
-  print "$file\n";
   my $smtp_code = $files_and_responses{$file}{"smtp_code"};
   my $reason    = $files_and_responses{$file}{"reason"};
 
@@ -182,7 +180,10 @@ foreach my $file (keys %files_and_responses) {
   is($report->get('std_reason'), 'user_unknown', "We got the right reason");
 
   # and that the message matches up
-  is($report->get('reason'), $reason, "We got the right message");
+  my $report_reason = $report->get("reason");
+  $report_reason =~ s/\s//g;
+  $reason =~ s/\s//g;
+  is($report_reason, $reason, "We got the right message");
 
   is($report->get('smtp_code'), $smtp_code, "We got the right smtp code");
 

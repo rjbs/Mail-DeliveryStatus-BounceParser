@@ -1,8 +1,12 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
-1.533   xxxx-xx-xx
+1.533   2013-01-23
 
 		Added two new spam detection cases (mstevens)
+
+		Hopefully fixed tests on newer perl, at the cost of slightly
+		reformatted messages. Why is Mail::DeliveryStatus::Report
+		a header object anyway? (mstevens)
 
 1.532   2012-09-24
 

@@ -693,6 +693,7 @@ sub _extract_reports {
     my $reason = $split[$i-1];
     $reason =~ s/(.*?). (Your mail to the following recipients could not be delivered)/$2/;
 
+	$self->log("extracted a reason [$reason]");
     $by_email{$email} = {
       email => $email,
       raw   => join ("", @split[$i-1..$i+1]),
@@ -705,6 +706,7 @@ sub _extract_reports {
 
   foreach my $email (keys %by_email) {
     my $report = Mail::DeliveryStatus::Report->new();
+	$report->modify(1);
     $report->header_hashref($by_email{$email});
     push @toreturn, $report;
   }
