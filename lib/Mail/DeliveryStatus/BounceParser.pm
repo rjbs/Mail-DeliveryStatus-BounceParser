@@ -1327,7 +1327,7 @@ sub _analyze_smtp_transcripts {
   for (split /\n\n|(?=>>>)/, $plain_smtp_transcript) {
     $email = _cleanup_email($1) if /RCPT TO:\s*(\S+)/im;
 
-    if (/The\s+following\s+addresses\s+had\s+permanent\s+fatal\s+errors\s+-----\s+\<(.*)\>/im) {
+    if (/The\s+following\s+addresses\s+had\s+permanent\s+fatal\s+errors\s+-----\s+\<?(.*)\>?/im) {
       $email = _cleanup_email($1);
     }
 
