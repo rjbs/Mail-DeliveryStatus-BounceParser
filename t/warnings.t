@@ -1,7 +1,7 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 22;
+use Test::More tests => 23;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -104,3 +104,9 @@ isa_ok($bounce8, 'Mail::DeliveryStatus::BounceParser');
 
 # it's not a bounce - transient nonfatal error
 ok(!$bounce8->is_bounce, "This is a bounce");
+
+# a bounce without < and > surrounding address
+my $message9 = readfile('t/corpus/warning-9.msg');
+my $bounce9 = Mail::DeliveryStatus::BounceParser->new($message9);
+my $addresses = scalar $bounce9->addresses;
+ok( $addresses >= 1, 'Found at least one email address in message' );
