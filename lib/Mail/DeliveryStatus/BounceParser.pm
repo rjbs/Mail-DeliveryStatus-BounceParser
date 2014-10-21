@@ -42,7 +42,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '1.533';
+our $VERSION = '1.535';
 $VERSION = eval $VERSION;
 
 use MIME::Parser;
@@ -1068,7 +1068,8 @@ sub _std_reason {
 	/bulk\s+e?mail/i or
 	/probably\s+spam/i or
 	/appears\s+to\s+be\s+SPAM/i or
-         /SPAM NOT ACCEPTED/i
+    /SPAM NOT ACCEPTED/i or
+	/5.9.8\s+spam/i
   ) {
     return "spam";
   }
@@ -1326,7 +1327,7 @@ sub _analyze_smtp_transcripts {
   for (split /\n\n|(?=>>>)/, $plain_smtp_transcript) {
     $email = _cleanup_email($1) if /RCPT TO:\s*(\S+)/im;
 
-    if (/The\s+following\s+addresses\s+had\s+permanent\s+fatal\s+errors\s+-----\s+\<(.*)\>/im) {
+    if (/The\s+following\s+addresses\s+had\s+permanent\s+fatal\s+errors\s+-----\s+\<?(.*)\>?/im) {
       $email = _cleanup_email($1);
     }
 
