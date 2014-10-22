@@ -1,5 +1,10 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.536   2014-10-22
+
+		Add missing file from previous release that was causing
+		failed tests
+
 1.535   2014-10-21
 
 	    bug fix from mintywalker@gmail.com

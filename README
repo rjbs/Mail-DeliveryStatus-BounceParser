@@ -1,4 +1,4 @@
-Mail/DeliveryStatus/BounceParser version 1.535
+Mail/DeliveryStatus/BounceParser version 1.536
 ==============================================
 
 Mail::DeliveryStatus::BounceParser analyzes bounce messages and
@@ -38,6 +38,10 @@ COPYRIGHT AND LICENCE
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
+
+REPOSITORY
+
+https://gitorious.org/mail-deliverystatus-bounceparser-fork
 
 AUTHOR
 

@@ -132,6 +132,7 @@ t/corpus/warning-5.msg
 t/corpus/warning-6.msg
 t/corpus/warning-7.msg
 t/corpus/warning-8.msg
+t/corpus/warning-9.msg
 t/corpus/yahoo-via-sendmail.unknown.msg
 t/corpus/yahoo-user-unknown.msg
 t/corpus/user-unknown-polish.msg
