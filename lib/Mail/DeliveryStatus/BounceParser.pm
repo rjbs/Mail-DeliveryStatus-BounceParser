@@ -1038,6 +1038,7 @@ sub _std_reason {
     /Message\s+looks\s+like\s+spam/i or
 	/Message\s+content\s+rejected,\s+UBE/i or
 	/Blocked\s+using\s+spam\s+pattern/i or
+	/Client\s+host\s+\S+\s+blocked\s+using/i or
 	/breaches\s+local\s+URIBL\s+policy/i or
 	/Your\s+email\s+had\s+spam-like\s+header\s+contents/i or
 	/detected\s+as\s+spam/i or

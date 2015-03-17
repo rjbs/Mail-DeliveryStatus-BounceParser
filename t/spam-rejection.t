@@ -59,6 +59,7 @@ my @files = ("spam-rejection.msg",
 		 "spam-rejection40.msg",
 		 "spam-rejection41.msg",
 		 "spam-rejection42.msg",
+		 "spam-rejection43.msg",
     );
 
 foreach my $file (@files) {
