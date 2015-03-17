@@ -1,5 +1,9 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.537   2015-03-17
+
+    Recognize the standard Postfix "rejected by rbl" as spam
+
 1.536   2014-10-22
 
 		Add missing file from previous release that was causing
@@ -44,7 +48,7 @@ Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 1.529   2012-01-03
 
         Patches from Ondeej Brablc to improve status parsing.
-		
+
         Adds new user_disabled standard reason.
 
         add another spam detection case (mstevens)
@@ -54,7 +58,7 @@ Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 1.528	2011-12-09
 
         Lots more spam detection (mstevens)
-	
+
         Another case of message too large (mstevens)
 
         Fix previously miscategorised corpus message (mstevens)
@@ -133,7 +137,7 @@ Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
         Temp fix for bug #20751 - ignore attachments with /image/
           in their content-type, add test for same
         Added comments to a couple tests
-        Munged some email addresses in test messages 
+        Munged some email addresses in test messages
 
 1.512   Sat Jul 29 2006
         warning avoidance; lots of ($string||'') added
