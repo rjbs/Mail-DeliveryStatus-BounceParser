@@ -1,8 +1,7 @@
 #!perl -wT
 use strict;
 
-# Add 6 to this for each case you add to %files_and_responses
-use Test::More tests => 168;
+use Test::More;
 
 use Mail::DeliveryStatus::BounceParser;
 
@@ -20,7 +19,7 @@ sub readfile {
 # providers / MTAs, as delivered by Sendmail, and make sure they give us
 # what we want.
 
-my %files_and_responses = (
+my @files_and_responses = (
   "att-via-sendmail.unknown.msg"                => {
     "reason"      =>
       '550 [SUSPEND] Mailbox currently suspended - Please contact correspondent directly',
@@ -159,36 +158,49 @@ This is a permanent error; I've given up. Sorry it didn't work out.",
 		"reason" => "550 BAD_RECIPIENT - see     http://www.mail.sample.ac.uk/undelivered.php?r=BAD_RECIPIENT&e=YXBwMDlAYWJlci5hYy51aw==",
 		"smtp_code" => "550",
 	},
+
+	"long-smtp.msg" => {
+		"smtp_code" => "447",
+		std_reason  => 'unknown',
+	},
 );
 
-foreach my $file (keys %files_and_responses) {
+plan tests => 0 + @files_and_responses/2;
 
-  my $smtp_code = $files_and_responses{$file}{"smtp_code"};
-  my $reason    = $files_and_responses{$file}{"reason"};
+while (my ($file, $expect) = splice @files_and_responses, 0, 2) {
+  subtest "message $file" => sub {
+    my $smtp_code = $expect->{"smtp_code"};
+    my $reason    = $expect->{"reason"};
 
-  my $message = readfile("t/corpus/$file");
+    my $message = readfile("t/corpus/$file");
 
-  my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
+    my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
 
-  isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
+    isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
 
-  ok($bounce->is_bounce, "it's a bounce, alright");
+    ok($bounce->is_bounce, "it's a bounce, alright");
 
-  my ($report) = $bounce->reports;
+    my ($report) = $bounce->reports;
 
-  # check that std_reason is user_unknown
-  is($report->get('std_reason'), 'user_unknown', "We got the right reason");
+    # check that std_reason is user_unknown
+    is(
+      $report->get('std_reason'),
+      $expect->{std_reason} || 'user_unknown',
+      "We got the right reason",
+    );
 
-  # and that the message matches up
-  my $report_reason = $report->get("reason");
-  $report_reason =~ s/\s//g;
-  $reason =~ s/\s//g;
-  is($report_reason, $reason, "We got the right message");
+    # and that the message matches up
+    if (defined $reason) {
+      my $report_reason = $report->get("reason");
+      $report_reason =~ s/\s//g;
+      $reason =~ s/\s//g;
+      is($report_reason, $reason, "We got the right message");
+    }
 
-  is($report->get('smtp_code'), $smtp_code, "We got the right smtp code");
+    is($report->get('smtp_code'), $smtp_code, "We got the right smtp code");
 
-  my ($address) = $bounce->addresses;
-  $address = lc($address);
-  is($address, 'recipient@example.net', "the right bounced address is given");
-
+    my ($address) = $bounce->addresses;
+    $address = lc($address);
+    is($address, 'recipient@example.net', "the right bounced address is given");
+  };
 }
