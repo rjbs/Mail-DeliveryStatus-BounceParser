@@ -42,7 +42,7 @@ use 5.006;
 use strict;
 use warnings;
 
-our $VERSION = '1.538';
+our $VERSION = '1.539';
 $VERSION = eval $VERSION;
 
 use MIME::Parser;
@@ -520,9 +520,8 @@ sub parse {
          m/ ( ( [245] \d{2} ) \s | \s ( [245] \d{2} ) (?!\.) ) /x;
       }
 
-      if (!$code && $status) {
-          $code = $status;
-          $code =~ s/\.//g;
+      if (!$code && $status && $status =~ /\A([245])\.?([0-9])\.?([0-9])/) {
+          $code = "$1$2$3";
       }
 
       if ($code) {
@@ -591,7 +590,7 @@ sub parse {
     # We may have to specifically allow some other types, but in my testing, all
     # the messages that get here and are actual bounces are text/plain
     # wby - 20060907
-    
+
     # they usually say "returned message" somewhere, and we can split on that,
     # above and below.
     my $body_string = $message->bodyhandle->as_string || '';

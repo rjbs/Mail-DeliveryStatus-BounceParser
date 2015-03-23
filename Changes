@@ -1,5 +1,9 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.359   2015-03-23
+
+    Try harder to avoid smtp_code values that are not three digits
+
 1.537   2015-03-17
 
     Recognize the standard Postfix "rejected by rbl" as spam
