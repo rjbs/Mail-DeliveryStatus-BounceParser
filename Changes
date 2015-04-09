@@ -1,6 +1,10 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
-1.359   2015-03-23
+1.540   2015-04-09
+
+    Avoid a "tried to array-deref undef" error
+
+1.539   2015-03-23
 
     Try harder to avoid smtp_code values that are not three digits
 
