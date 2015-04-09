@@ -1314,7 +1314,7 @@ sub _construct_diagnostic_code {
   "Diagnostic-Code: X-BounceParser;",
   ($by_email{$email}->{'host'} ? "host $by_email{$email}->{'host'} said:" : ()),
   ($by_email{$email}->{'smtp_code'}),
-  (join ", ", @{ $by_email{$email}->{'errors'} }));
+  (join ", ", @{ $by_email{$email}->{'errors'} || [] }));
 }
 
 sub _analyze_smtp_transcripts {
