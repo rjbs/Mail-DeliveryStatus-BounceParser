@@ -1,5 +1,9 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.541   2015-10-06
+
+    Updated packaging: META.*, switch to ExtUtils::MakeMaker
+
 1.540   2015-04-09
 
     Avoid a "tried to array-deref undef" error

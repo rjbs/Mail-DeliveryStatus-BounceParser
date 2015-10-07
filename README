@@ -1,4 +1,4 @@
-Mail/DeliveryStatus/BounceParser version 1.540
+Mail/DeliveryStatus/BounceParser version 1.541
 ==============================================
 
 Mail::DeliveryStatus::BounceParser analyzes bounce messages and
