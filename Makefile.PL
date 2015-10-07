@@ -1,19 +1,37 @@
 use strict;
-use 5.006;
+use 5.6.0;
+use ExtUtils::MakeMaker;
 
-use inc::Module::Install;
+my $mm_ver = ExtUtils::MakeMaker->VERSION;
 
-name          ('Mail-DeliveryStatus-BounceParser');
-author        ('Ricardo SIGNES <rjbs@cpan.org>');
-license       ('perl');
-version_from  ('lib/Mail/DeliveryStatus/BounceParser.pm');
+WriteMakefile(
+  AUTHOR       => 'IC Group',
+  NAME         => 'Mail::DeliveryStatus::BounceParser',
+  VERSION_FROM => './lib/Mail/DeliveryStatus/BounceParser.pm',
+  LICENSE => "perl",
+  PREREQ_PM    => {
+    'MIME::Entity' => 5.418, # topic localization bug fixed
+    "Mail::Header" => 2.04, # known to work with current version
+    ($mm_ver >= 6.64 ? () : ('Test::More' => 0.94)),
+  },
 
-perl_version  ('5.006'); # rjbs refuses to continue supporting 5.00503!
+  ($mm_ver < 6.64 ? () : (TEST_REQUIRES => { 'Test::More' => 0.94 })),
 
-requires		('MIME::Entity' => 5.418); # topic localization bug fixed
-requires		("Mail::Header"	=> 2.04); # known to work with current version
-test_requires	('Test::More' => 0.94); # known to work with current version
+  ($mm_ver < 6.46 ? () : (META_MERGE => {
+    'meta-spec' => { version => 2 },
+    dynamic_config => 1,
+    resources       => {
+      homepage      => 'https://github.com/rjbs/Mail-DeliveryStatus-BounceParser',
+      repository    => {
+         url        => 'https://github.com/rjbs/Mail-DeliveryStatus-BounceParser.git',
+         web        => 'https://github.com/rjbs/Mail-DeliveryStatus-BounceParser',
+         type       => 'git',
+      },
+      bugtracker    => {
+         web        => 'https://github.com/rjbs/Mail-DeliveryStatus-BounceParser/issues',
+      },
+      x_IRC         => 'irc://irc.perl.org/#email',
+    },
+  })),
+);
 
-repository('https://gitorious.org/mail-deliverystatus-bounceparser-fork/mail-deliverystatus-bounceparser-fork');
-
-WriteAll();
