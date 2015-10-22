@@ -15,6 +15,11 @@ WriteMakefile(
     ($mm_ver >= 6.64 ? () : ('Test::More' => 0.94)),
   },
 
+  ($mm_ver >= 6.48
+      ? (MIN_PERL_VERSION => 5.6.0)
+      : ()
+  ),
+
   ($mm_ver < 6.64 ? () : (TEST_REQUIRES => { 'Test::More' => 0.94 })),
 
   ($mm_ver < 6.46 ? () : (META_MERGE => {
