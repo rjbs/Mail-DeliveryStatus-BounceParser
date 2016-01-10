@@ -93,7 +93,7 @@ my @Preprocessors = qw(
   my $bounce = Mail::DeliveryStatus::BounceParser->parse($message, \%arg);
 
 OPTIONS.  If you pass BounceParser->new(..., {log=>sub { ... }}) That will be
-used as a logging callback.
+used as a logging callback. If C<< $message >> is undefined, will parse STDIN.
 
 NON-BOUNCES.  If the message is recognizably a vacation autoresponse, or is a
 report of a transient nonfatal error, or a spam or virus autoresponse, you'll
@@ -101,7 +101,7 @@ still get back a C<$bounce>, but its C<< $bounce->is_bounce() >> will return
 false.
 
 It is possible that some bounces are not really bounces; such as
-anything that apears to have a 2XX status code.  To include such
+anything that appears to have a 2XX status code.  To include such
 non-bounces in the reports, pass the option {report_non_bounces=>1}.
 
 For historical reasons, C<new> is an alias for the C<parse> method.
@@ -120,7 +120,7 @@ sub parse {
   my $message;
 
   if (not $data) {
-    print STDERR "BounceParser: expecting bounce mesage on STDIN\n" if -t STDIN;
+    print STDERR "BounceParser: expecting bounce message on STDIN\n" if -t STDIN;
     $message = $parser->parse(\*STDIN);
   } elsif (not ref $data)        {
     $message = $parser->parse_data($data);
@@ -432,7 +432,7 @@ sub parse {
             $seen_action_failed   = 1;
           } else {
             $self->log("message/delivery-status says 'Action: \L$1'");
-            $self->{type} = 'delivery-status \L$1';
+            $self->{type} = "delivery-status \L$1";
             $self->{is_bounce} = 0;
             return $self;
           }
