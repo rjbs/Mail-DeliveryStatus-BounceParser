@@ -2,20 +2,13 @@
 use strict;
 
 use Test::More tests => 23;
+use lib 't';
+use TestBounceParser;
 
 use Mail::DeliveryStatus::BounceParser;
 
 # Test we can parse various messages without any warnings
 
-# FH because we're being backcompat to pre-lexical
-sub readfile {
-  my $fn = shift;
-  open FH, "$fn" or die $!;
-  local $/;
-  my $text = <FH>;
-  close FH;
-  return $text;
-}
 
 my $message = readfile('t/corpus/warning-1.msg');
 

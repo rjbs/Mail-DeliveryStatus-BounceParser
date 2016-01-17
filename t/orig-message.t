@@ -5,15 +5,9 @@ use Test::More tests => 12;
 
 use Mail::DeliveryStatus::BounceParser;
 
-# FH because we're being backcompat to pre-lexical
-sub readfile {
-  my $fn = shift;
-  open FH, "$fn" or die $!;
-  local $/;
-  my $text = <FH>;
-  close FH;
-  return $text;
-}
+use lib 't';
+use TestBounceParser;
+
 
 {
   my $message = readfile('t/corpus/postfix.msg');
