@@ -161,3 +161,5 @@ TODO: {
 =head1 AUTHOR
 
 Philipp Gortan <gortan@cpan.org>
+
+=cut
