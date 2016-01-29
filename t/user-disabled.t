@@ -1,33 +1,17 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 6;
+use Test::More;
 
-use Mail::DeliveryStatus::BounceParser;
+use lib 't';
+use TestBounceParser;
 
-# FH because we're being backcompat to pre-lexical
-sub readfile {
-  my $fn = shift;
-  open FH, "$fn" or die $!;
-  local $/;
-  my $text = <FH>;
-  close FH;
-  return $text;
+my @test_files = ( "user-unknown-disabled.msg", "polish-unknown.msg" );
+
+for my $fn (@test_files) {
+    subtest $fn => sub {
+        check_report( "t/corpus/$fn", is_bounce => 1, std_reason => 'user_disabled' );
+    };
 }
 
-my @test_files = ("user-unknown-disabled.msg", "polish-unknown.msg");
-
-for my $file (@test_files) {
-    my $message = readfile("t/corpus/$file");
-    
-    my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
-    
-    isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
-    ok($bounce->is_bounce, "This is a bounce");
-    
-    my ($report) = $bounce->reports;
-    
-    my $std_reason = $report->get("std_reason");
-    
-    is($std_reason, "user_disabled", "std reason is user_disabled");
-}
+done_testing;

@@ -1,29 +1,15 @@
 #!perl -wT
 use strict;
 
-use Test::More tests => 3;
+use Test::More;
 
-use Mail::DeliveryStatus::BounceParser;
+use lib 't';
+use TestBounceParser;
 
-# FH because we're being backcompat to pre-lexical
-sub readfile {
-  my $fn = shift;
-  open FH, "$fn" or die $!;
-  local $/;
-  my $text = <FH>;
-  close FH;
-  return $text;
-}
+check_report(
+    't/corpus/rcpthosts.msg',
+    is_bounce  => 1,
+    std_reason => 'domain_error'
+);
 
-my $message = readfile('t/corpus/rcpthosts.msg');
-
-my $bounce = Mail::DeliveryStatus::BounceParser->new($message);
-
-isa_ok($bounce, 'Mail::DeliveryStatus::BounceParser');
-ok($bounce->is_bounce, "This is a bounce");
-
-my ($report) = $bounce->reports;
-
-my $std_reason = $report->get("std_reason");
-
-is($std_reason, "domain_error", "std reason is domain_error");
+done_testing;
