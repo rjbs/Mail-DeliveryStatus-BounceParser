@@ -1,5 +1,11 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.542   2016-01-28
+
+    Major overhaul to tests by Philipp Gortan
+
+    Tiny bug fixes
+
 1.541   2015-10-06
 
     Updated packaging: META.*, switch to ExtUtils::MakeMaker
