@@ -125,7 +125,6 @@ t/corpus/user-unknown-dne.msg
 t/corpus/user-unknown-not-active.msg
 t/corpus/user-unknown-not.msg
 t/corpus/user-unknown-polish.msg
-t/corpus/virus-caused-multiple-weird-reports.msg
 t/corpus/warning-1.msg
 t/corpus/warning-2.msg
 t/corpus/warning-3.msg
@@ -169,5 +168,4 @@ t/TestBounceParser.pm
 t/user-disabled.t
 t/various-domain.t
 t/various-unknown.t
-t/virus-caused-multiple-weird-reports.t
 t/warnings.t
