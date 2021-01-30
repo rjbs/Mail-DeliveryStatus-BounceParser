@@ -1,5 +1,10 @@
 Revision history for Perl extension Mail::DeliveryStatus::BounceParser.
 
+1.543   2021-01-30
+
+    No changes, except a test that contains a sample of a virus is now only
+    stored in the git repo, not in the shipped distribution.
+
 1.542   2016-01-28
 
     Major overhaul to tests by Philipp Gortan
